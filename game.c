@@ -12,7 +12,10 @@ CharacterController bunny;
 CharacterController dog1;
 CharacterController dog2;
 CharacterController cat;
+CharacterController *player;
 
+
+void move_player(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
 void init();
@@ -20,7 +23,7 @@ void init();
 // Handles the first map logic.
 void map_1();
 
-void set_character_sprite(CharacterController* c, UINT8 index);
+void set_character_sprite(CharacterController* c);
 
 void main(void)
 {
@@ -40,11 +43,13 @@ void main(void)
 
 void map_1() {
   // generate_bunny();
+  move_player(&player);
 }
 
 void init() {
   running = 1;
   map = 1;
+  player = &bunny;
   DISPLAY_ON;
   SHOW_SPRITES;
 
@@ -72,16 +77,23 @@ void init() {
   dog1.type = 2;
   dog1.is_the_active = 0;
 
-  set_character_sprite(&bunny, 0);
-  set_character_sprite(&dog1, 1);
+  player->x=10;
+
+  set_character_sprite(&bunny);
+  set_character_sprite(&dog1);
 
 
 
 }
 
-void set_character_sprite(CharacterController* c, UINT8 index) {
-  printf("HM\n");
-  set_sprite_tile(index, c->sprite_1);
-  move_sprite(index, c->x, c->y);
-
+void move_player(CharacterController** c) {
+  printf("%d\n", (*c)->x);
+  // c->x = 10;
+  // move_sprite(*c->type, *c->x, *c->y);
 }
+
+void set_character_sprite(CharacterController* c) {
+  set_sprite_tile(c->type, c->sprite_1);
+  move_sprite(c->type, c->x, c->y);
+}
+// 
