@@ -1,105 +1,241 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : FreeWare ANSI-C Compiler
-                              3 ; Version 2.3.1 Wed Feb 12 00:04:42 2020
+                              3 ; Version 2.3.1 Wed Feb 12 00:19:12 2020
                               4 
                               5 ;--------------------------------------------------------
-                              6 	.module lcc128910
+                              6 	.module lcc147060
                               7 	
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
                              11 	.globl _main
-                             12 ;--------------------------------------------------------
-                             13 ; special function registers
-                             14 ;--------------------------------------------------------
+                             12 	.globl _running
+                             13 	.globl _Characters
+                             14 	.globl _init
                              15 ;--------------------------------------------------------
-                             16 ; special function bits 
+                             16 ; special function registers
                              17 ;--------------------------------------------------------
                              18 ;--------------------------------------------------------
-                             19 ; internal ram data
+                             19 ; special function bits 
                              20 ;--------------------------------------------------------
-                             21 	.area _DATA
-                             22 ;--------------------------------------------------------
-                             23 ; overlayable items in internal ram 
-                             24 ;--------------------------------------------------------
-                             25 	.area _OVERLAY
-                             26 ;--------------------------------------------------------
-                             27 ; indirectly addressable internal ram data
-                             28 ;--------------------------------------------------------
-                             29 	.area _ISEG
-                             30 ;--------------------------------------------------------
-                             31 ; bit data
-                             32 ;--------------------------------------------------------
-                             33 	.area _BSEG
-                             34 ;--------------------------------------------------------
-                             35 ; external ram data
-                             36 ;--------------------------------------------------------
-                             37 	.area _XSEG
-                             38 ;--------------------------------------------------------
-                             39 ; global & static initialisations
-                             40 ;--------------------------------------------------------
-                             41 	.area _GSINIT
-                             42 	.area _GSFINAL
-                             43 	.area _GSINIT
-                             44 ;--------------------------------------------------------
-                             45 ; Home
-                             46 ;--------------------------------------------------------
-                             47 	.area _HOME
-                             48 	.area _CODE
-                             49 ;--------------------------------------------------------
-                             50 ; code
-                             51 ;--------------------------------------------------------
-                             52 	.area _CODE
-                             53 ;	game.c 5
-                             54 ;	genLabel
-                             55 ;	genFunction
-                             56 ;	---------------------------------
-                             57 ; Function main
-                             58 ; ---------------------------------
-   0000                      59 ___main_start:
-   0000                      60 _main:
-                             61 	
-                             62 ;	game.c 7
-                             63 ;	genIpush
-                             64 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
-   0000 21 0A 00             65 	ld	hl,#__str_0
-   0003 E5                   66 	push	hl
-                             67 ;	genCall
-   0004 CD 00 00             68 	call	_printf
-   0007 E8 02                69 	lda	sp,2(sp)
-                             70 ;	genLabel
-   0009                      71 00101$:
-                             72 ;	genEndFunction
-                             73 	
-   0009 C9                   74 	ret
-   000A                      75 ___main_end:
-   000A                      76 __str_0:
-   000A 47 61 6D 65 20 66    77 	.ascii "Game first test"
-        69 72 73 74 20 74
-        65 73 74
-   0019 0A                   78 	.db 0x0A
-   001A 00                   79 	.db 0x00
-                             80 	.area _CODE
+                             21 ;--------------------------------------------------------
+                             22 ; internal ram data
+                             23 ;--------------------------------------------------------
+                             24 	.area _DATA
+   0000                      25 _Characters::
+   0000                      26 	.ds 48
+   0030                      27 _running::
+   0030                      28 	.ds 1
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in internal ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area _OVERLAY
+                             33 ;--------------------------------------------------------
+                             34 ; indirectly addressable internal ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area _ISEG
+                             37 ;--------------------------------------------------------
+                             38 ; bit data
+                             39 ;--------------------------------------------------------
+                             40 	.area _BSEG
+                             41 ;--------------------------------------------------------
+                             42 ; external ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area _XSEG
+                             45 ;--------------------------------------------------------
+                             46 ; global & static initialisations
+                             47 ;--------------------------------------------------------
+                             48 	.area _GSINIT
+                             49 	.area _GSFINAL
+                             50 	.area _GSINIT
+                             51 ;	game.c 26
+                             52 ;	game.c 28
+                             53 ;	genArrayInit
+                             54 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0000 21 00 00             55 	ld	hl,#_Characters
+   0003 CD 00 00             56 	call	__initrleblock
+   0006 30                   57 	.db	48
+   0007 09 00 00 09 00 09    58 	.db	0x09, 0x00, 0x00, 0x09, 0x00, 0x09, 0x0F, 0x00
+        0F 00
+   000F CA 05 FF 00 3F 00    59 	.db	0xCA, 0x05, 0xFF, 0x00, 0x3F, 0x00, 0x3A, 0x45
+        3A 45
+   0017 09 00 00 09 00 09    60 	.db	0x09, 0x00, 0x00, 0x09, 0x00, 0x09, 0x0F, 0x00
+        0F 00
+   001F CA 05 FF 00 3F 00    61 	.db	0xCA, 0x05, 0xFF, 0x00, 0x3F, 0x00, 0x15, 0x2A
+        15 2A
+   0027 24 12 00 09 0F 00    62 	.db	0x24, 0x12, 0x00, 0x09, 0x0F, 0x00, 0xCA, 0x05
+        CA 05
+   002F FF 00 3F 00 3A 45    63 	.db	0xFF, 0x00, 0x3F, 0x00, 0x3A, 0x45, 0x00, 0x00
+        00 00
+   0037 00                   64 	.db	0
+                             65 ;--------------------------------------------------------
+                             66 ; Home
+                             67 ;--------------------------------------------------------
+                             68 	.area _HOME
+                             69 	.area _CODE
+                             70 ;--------------------------------------------------------
+                             71 ; code
+                             72 ;--------------------------------------------------------
+                             73 	.area _CODE
+                             74 ;	game.c 9
+                             75 ;	genLabel
+                             76 ;	genFunction
+                             77 ;	---------------------------------
+                             78 ; Function main
+                             79 ; ---------------------------------
+   0000                      80 ___main_start:
+   0000                      81 _main:
+                             82 	
+                             83 ;	game.c 11
+                             84 ;	genCall
+                             85 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0000 CD 0C 00             86 	call	_init
+                             87 ;	game.c 13
+                             88 ;	genLabel
+   0003                      89 00101$:
+                             90 ;	genIfx
+                             91 ;	AOP_HL for _running
+   0003 AF                   92 	xor	a,a
+   0004 21 30 00             93 	ld	hl,#_running
+   0007 B6                   94 	or	a,(hl)
+   0008 C2 03 00             95 	jp	nz,00101$
+                             96 ;	genLabel
+   000B                      97 00104$:
+                             98 ;	genEndFunction
+                             99 	
+   000B C9                  100 	ret
+   000C                     101 ___main_end:
+                            102 ;	game.c 19
+                            103 ;	genLabel
+                            104 ;	genFunction
+                            105 ;	---------------------------------
+                            106 ; Function init
+                            107 ; ---------------------------------
+   000C                     108 ___init_start:
+   000C                     109 _init:
+   000C E8 FD               110 	lda	sp,-3(sp)
+                            111 ;	game.c 20
+                            112 ;	genAssign
+                            113 ;	AOP_HL for _running
+   000E 21 30 00            114 	ld	hl,#_running
+   0011 36 01               115 	ld	(hl),#0x01
+                            116 ;	game.c 21
+                            117 ;	genAssign
+   0013 01 40 FF            118 	ld	bc,#0xFF40
+                            119 ;	genAssign
+                            120 ;	AOP_STK for _init_sloc0_1_0
+   0016 F8 01               121 	lda	hl,1(sp)
+   0018 36 40               122 	ld	(hl),#0x40
+   001A 23                  123 	inc	hl
+   001B 36 FF               124 	ld	(hl),#0xFF
+                            125 ;	genPointerGet
+                            126 ;	AOP_STK for _init_sloc0_1_0
+                            127 ;	AOP_STK for _init_sloc1_1_0
+   001D 2B                  128 	dec	hl
+   001E 5E                  129 	ld	e,(hl)
+   001F 23                  130 	inc	hl
+   0020 56                  131 	ld	d,(hl)
+   0021 1A                  132 	ld	a,(de)
+   0022 2B                  133 	dec	hl
+   0023 2B                  134 	dec	hl
+                            135 ;	genOr
+                            136 ;	AOP_STK for _init_sloc1_1_0
+   0024 77                  137 	ld      (hl),a
+   0025 7F                  138 	ld      a,a
+   0026 F6 80               139 	or	a,#0x80
+                            140 ;	genAssign (pointer)
+   0028 02                  141 	ld	(bc),a
+                            142 ;	game.c 22
+                            143 ;	genAssign
+   0029 01 40 FF            144 	ld	bc,#0xFF40
+                            145 ;	genAssign
+                            146 ;	AOP_STK for _init_sloc0_1_0
+   002C 23                  147 	inc	hl
+   002D 36 40               148 	ld	(hl),#0x40
+   002F 23                  149 	inc	hl
+   0030 36 FF               150 	ld	(hl),#0xFF
+                            151 ;	genPointerGet
+                            152 ;	AOP_STK for _init_sloc0_1_0
+                            153 ;	AOP_STK for _init_sloc1_1_0
+   0032 2B                  154 	dec	hl
+   0033 5E                  155 	ld	e,(hl)
+   0034 23                  156 	inc	hl
+   0035 56                  157 	ld	d,(hl)
+   0036 1A                  158 	ld	a,(de)
+   0037 2B                  159 	dec	hl
+   0038 2B                  160 	dec	hl
+                            161 ;	genOr
+                            162 ;	AOP_STK for _init_sloc1_1_0
+   0039 77                  163 	ld      (hl),a
+   003A 7F                  164 	ld      a,a
+   003B F6 02               165 	or	a,#0x02
+                            166 ;	genAssign (pointer)
+   003D 02                  167 	ld	(bc),a
+                            168 ;	game.c 23
+                            169 ;	genIpush
+                            170 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   003E 21 00 00            171 	ld	hl,#_Characters
+   0041 E5                  172 	push	hl
+                            173 ;	genIpush
+   0042 21 00 03            174 	ld	hl,#0x0300
+   0045 E5                  175 	push	hl
+                            176 ;	genCall
+   0046 CD 00 00            177 	call	_set_sprite_data
+   0049 E8 04               178 	lda	sp,4(sp)
+                            179 ;	game.c 24
+                            180 ;	genIpush
+                            181 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   004B 21 00 02            182 	ld	hl,#0x0200
+   004E E5                  183 	push	hl
+                            184 ;	genCall
+   004F CD 00 00            185 	call	_set_sprite_tile
+   0052 E8 02               186 	lda	sp,2(sp)
+                            187 ;	game.c 25
+                            188 ;	genIpush
+                            189 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0054 21 28 28            190 	ld	hl,#0x2828
+   0057 E5                  191 	push	hl
+                            192 ;	genIpush
+   0058 3E 00               193 	ld	a,#0x00
+   005A F5                  194 	push	af
+   005B 33                  195 	inc	sp
+                            196 ;	genCall
+   005C CD 00 00            197 	call	_move_sprite
+   005F E8 03               198 	lda	sp,3(sp)
+                            199 ;	genLabel
+   0061                     200 00101$:
+                            201 ;	genEndFunction
+   0061 E8 03               202 	lda	sp,3(sp)
+   0063 C9                  203 	ret
+   0064                     204 ___init_end:
+                            205 	.area _CODE
 ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
 
 Symbol Table
 
-  0 ___main_end                        000A R
+  1 _Characters                        0000 GR
+  0 ___init_end                        0064 R
+  0 ___init_start                      000C R
+  0 ___main_end                        000C R
   0 ___main_start                      0000 R
-  0 __str_0                            000A R
+    __initrleblock                     **** GX
+  0 _init                              000C GR
   0 _main                              0000 GR
-    _printf                            **** GX
+    _move_sprite                       **** GX
+  1 _running                           0030 GR
+    _set_sprite_data                   **** GX
+    _set_sprite_tile                   **** GX
 
 ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 2.
 
 Area Table
 
-   0 _CODE                              size   1B   flags 0
-   1 _DATA                              size    0   flags 0
+   0 _CODE                              size   64   flags 0
+   1 _DATA                              size   31   flags 0
    2 _OVERLAY                           size    0   flags 0
    3 _ISEG                              size    0   flags 0
    4 _BSEG                              size    0   flags 0
    5 _XSEG                              size    0   flags 0
-   6 _GSINIT                            size    0   flags 0
+   6 _GSINIT                            size   38   flags 0
    7 _GSFINAL                           size    0   flags 0
    8 _HOME                              size    0   flags 0
