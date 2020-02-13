@@ -8,6 +8,7 @@ typedef struct CharacterController{
     UINT8 sprite_3;
     INT8 direction; // 1 up, 2 right, 3 down, 4 left
     UBYTE power_active;
+    UINT8 power_timer;
     UBYTE type; // 1 bunny, 2 dog1, 3 dog2, 4cat
     UBYTE is_the_active; // If its the char that the player is controlling now.
 } CharacterController;

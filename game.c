@@ -5,6 +5,8 @@
 #include "CharacterController.c"
 
 UBYTE running;
+UBYTE timer;
+UBYTE troca_timer;
 
 UBYTE map; // Controlls which map we are seeing.
 
@@ -15,7 +17,8 @@ CharacterController cat;
 CharacterController *player;
 
 
-void move_player(CharacterController** c);
+// Check player controls.
+void player_input(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
 void init();
@@ -25,11 +28,20 @@ void map_1();
 
 void set_character_sprite(CharacterController* c);
 
+void move_character(CharacterController* c);
+
+void timers() {
+  if (troca_timer != 0) {
+    troca_timer -= 1;
+  }
+}
+
 void main(void)
 {
   init();
 
   while(running) {
+    timers();
     if (map == 1) {
       map_1();
     }
@@ -43,10 +55,13 @@ void main(void)
 
 void map_1() {
   // generate_bunny();
-  move_player(&player);
+  player_input(&player);
+  move_character(&bunny);
+  move_character(&dog1);
 }
 
 void init() {
+  troca_timer = 0;
   running = 1;
   map = 1;
   player = &bunny;
@@ -86,10 +101,84 @@ void init() {
 
 }
 
-void move_player(CharacterController** c) {
+void player_input(CharacterController** c) {
   printf("%d\n", (*c)->x);
+
+  if ((*c)->power_active == 0 && troca_timer == 0) {
+
+    switch (joypad()) {
+      case J_A:
+        (*c)->power_timer = 10;
+        (*c)->power_active = 1;
+        break;
+
+      case J_B:
+        printf("troca\n");
+        troca_timer = 10;
+        if ((*c)->type == 1) {
+          player = &dog1;
+        }
+        if ((*c)->type == 2) {
+          player = &bunny;
+        }
+        break;
+
+      case J_LEFT:
+        (*c)->x -= 2; 
+        (*c)->direction = 4; 
+        set_sprite_prop((*c)->type, S_FLIPX);
+        break;
+      case J_RIGHT:
+        (*c)->x += 2; 
+        (*c)->direction = 2; 
+        set_sprite_prop((*c)->type, 0);
+        break;
+      case J_UP:
+        (*c)->y -= 2; 
+        (*c)->direction = 1; 
+        break;
+      case J_DOWN:
+        (*c)->y += 2; 
+        (*c)->direction = 3; 
+        break;
+    }
+  }
+
+  // move_sprite((*c)->type, (*c)->x, (*c)->y);
+
   // c->x = 10;
   // move_sprite(*c->type, *c->x, *c->y);
+}
+
+void move_character(CharacterController* c) {
+  if (c->type == 1) {// bunny
+    if (c->power_active) {
+      set_sprite_tile(c->type, c->sprite_3);
+
+      switch(c->direction) {
+        case 4: //LEFT
+          c->x -= 2; 
+          set_sprite_prop(c->type, S_FLIPX);
+          break;
+        case 2: // RIGHT
+          c->x += 2; 
+          set_sprite_prop(c->type, 0);
+          break;
+        case 1: // UP
+          c->y -= 2; 
+          break;
+        case 3: // DOWN
+          c->y += 2; 
+          break;
+      }
+      c->power_timer -= 1;
+      if (c->power_timer == 0) {
+        c->power_active = 0;
+        set_sprite_tile(c->type, c->sprite_1);
+      }
+    }
+  }
+  move_sprite(c->type, c->x, c->y);
 }
 
 void set_character_sprite(CharacterController* c) {
