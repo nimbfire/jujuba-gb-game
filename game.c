@@ -7,13 +7,14 @@
 UBYTE running;
 UBYTE timer;
 UBYTE troca_timer;
-
+// UBYTE map
 UBYTE map; // Controlls which map we are seeing.
 
-CharacterController bunny;
-CharacterController dog1;
-CharacterController dog2;
-CharacterController cat;
+CharacterController bunny;  //1
+CharacterController dog1;   //2
+CharacterController dog2;   //3
+CharacterController cat;    //4
+CharacterController horse;  //5
 CharacterController *player;
 
 
@@ -54,10 +55,29 @@ void main(void)
 }
 
 void map_1() {
+  
+
   // generate_bunny();
   player_input(&player);
+
+  if (troca_timer != 0) {
+    if (troca_timer == 10) {
+      printf("TROCA\n");
+      switch (player->type) {
+        case 1:
+          player = &dog1;
+          break;
+        case 2:
+          player = &bunny;
+          break;
+      }
+
+    }
+  }
   move_character(&bunny);
   move_character(&dog1);
+
+
 }
 
 void init() {
@@ -115,12 +135,7 @@ void player_input(CharacterController** c) {
       case J_B:
         printf("troca\n");
         troca_timer = 10;
-        if ((*c)->type == 1) {
-          player = &dog1;
-        }
-        if ((*c)->type == 2) {
-          player = &bunny;
-        }
+        
         break;
 
       case J_LEFT:
