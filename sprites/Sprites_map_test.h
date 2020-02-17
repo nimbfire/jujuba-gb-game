@@ -1,6 +1,6 @@
 /*
 
- CHARACTERS.H
+ SPRITES_MAP_TEST.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 12
+  Tiles                : 0 to 10
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -24,8 +24,8 @@
 
 
 /* Bank of tiles. */
-#define CharactersBank 0
+#define Sprites_map_testBank 0
 /* Start of tile array. */
-extern unsigned char Characters[];
+extern unsigned char Sprites_map_test[];
 
-/* End of CHARACTERS.H */
+/* End of SPRITES_MAP_TEST.H */
