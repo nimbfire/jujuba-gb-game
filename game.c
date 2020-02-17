@@ -197,6 +197,7 @@ void player_input(CharacterController** c) {
 int can_move(INT8 x, INT8 y, UINT8 direction) {
   UINT8 _x;
   UINT8 _y;
+  UINT16 map_position;
       // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
   // return 1;
 
@@ -229,6 +230,27 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   if (_x < 0 || (unsigned) _x > 19 || _y < 0 || (unsigned) _y > 17) {
     return 0;
   }
+
+  // If we are here, they are not on a border of the map, lets test other collisions.
+
+  // Map position
+  map_position = 0;
+  map_position += (unsigned) _x;
+  map_position += ((unsigned) _y) * 20;
+
+  switch((UINT16)Map1[map_position]) {
+    case (UINT16)1:
+    case (UINT16)2:
+    case (UINT16)3:
+    case (UINT16)4:
+    // case (UINT16)7:
+    // case (UINT16)9:
+    // case (UINT16)4:
+    // case (UINT16)10:
+      // printf("PlayerNotMove\n");
+      return 0;
+  }
+
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
   return 1;
