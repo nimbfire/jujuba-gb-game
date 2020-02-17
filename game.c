@@ -232,39 +232,53 @@ void move_character(CharacterController* c) {
   }
 
   if (c->power_active != 0) {
+
+    // Bunny power
     if (c->type == 1) {// bunny
+      // First time running here
+      if (c->power_active == 1) {
+        // printf("Power active 1\n");
+        c->power_active = 2;
+        c->power_timer = 16;
+      }
+
+      set_sprite_tile(c->type, c->sprite_3);
+
+      // Test once each time we are on a tile
+      if (c->power_timer == 4 ||
+          c->power_timer == 8 ||
+          c->power_timer == 12 || 
+          c->power_timer == 16) 
+      {
+        if (!can_move(c->x, c->y, c->direction)) {
+          c->direction = 0;
+        }
+      }
+
+      switch(c->direction) {
+        case 4: //LEFT
+          c->x -= 2; 
+          set_sprite_prop(c->type, S_FLIPX);
+          break;
+        case 2: // RIGHT
+          c->x += 2; 
+          set_sprite_prop(c->type, 0);
+          break;
+        case 1: // UP
+          c->y -= 2; 
+          break;
+        case 3: // DOWN
+          c->y += 2; 
+          break;
+      }
+      c->power_timer -= 1;
+
+      if (c->power_timer == 0) {
+        c->power_active = 0;
+        set_sprite_tile(c->type, c->sprite_1);
+      }
+    }
     
-    }
-    // First time running here
-    if (c->power_active == 1) {
-      // printf("Power active 1\n");
-      c->power_active = 2;
-      c->power_timer = 16;
-    }
-
-    set_sprite_tile(c->type, c->sprite_3);
-
-    switch(c->direction) {
-      case 4: //LEFT
-        c->x -= 2; 
-        set_sprite_prop(c->type, S_FLIPX);
-        break;
-      case 2: // RIGHT
-        c->x += 2; 
-        set_sprite_prop(c->type, 0);
-        break;
-      case 1: // UP
-        c->y -= 2; 
-        break;
-      case 3: // DOWN
-        c->y += 2; 
-        break;
-    }
-    c->power_timer -= 1;
-    if (c->power_timer == 0) {
-      c->power_active = 0;
-      set_sprite_tile(c->type, c->sprite_1);
-    }
   }
   else {
     // Normal movement
