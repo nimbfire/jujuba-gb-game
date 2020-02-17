@@ -4,6 +4,10 @@
 #include "sprites/Characters.c"
 #include "CharacterController.c"
 
+#include "maps/map_1_test.c"
+#include "sprites/Sprites_map_test.c"
+
+
 UBYTE running;
 UBYTE timer;
 UBYTE input_timer;
@@ -57,7 +61,7 @@ void main(void)
     timers();
     if (map == 1) {
       map_1();
-      performantDelay(5);
+      performantDelay(2);
     }
   }
 
@@ -95,6 +99,12 @@ void map_1() {
 }
 
 void init() {
+
+  set_bkg_data(0,11,Sprites_map_test);
+  set_bkg_tiles(0, 0, 20, 18, Map1test);
+
+  SHOW_BKG;
+
   input_timer = 0;
   running = 1;
   map = 1;
