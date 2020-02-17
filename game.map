@@ -17,9 +17,9 @@ AREA .  .ABS.
 		l__LIT	0000
 		l__GSINITTAIL	0001
 		l__BSS	0087
+		l__GSINIT	01CF
 		l__HEADER	01EB
 		s__CODE	0200
-		l__GSINIT	0207
 		l__DATA	0320
 		l__HOME	04AD
 		l__BASE	0FBD
@@ -28,8 +28,8 @@ AREA .  .ABS.
 		s__BASE	1781
 		s__LIT	273E
 		s__GSINIT	273E
-		s__GSINITTAIL	2945
-		s__GSFINAL	2946
+		s__GSINITTAIL	290D
+		s__GSFINAL	290E
 		.OAM	C000
 		s__DATA	C0A0
 		s__BSS	C3C0
@@ -230,18 +230,18 @@ AREA _LIT
 AREA _GSINIT
 	RADIX HEX
 	BASE 273E
-	SIZE 0207
+	SIZE 01CF
 	ATTRIB REL CON
 	GLOBALS
 		gsinit	273E
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 2945
+	BASE 290D
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 2946
+	BASE 290E
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
@@ -251,8 +251,8 @@ AREA _DATA
 	ATTRIB REL CON
 	GLOBALS
 		_Characters	C0A0
-		_Map1test	C170
-		_Sprites_map_test	C2D8
+		_Map1	C170
+		_sprites_park	C2D8
 		_running	C388
 		_timer	C389
 		_input_timer	C38A
@@ -321,7 +321,7 @@ MODULES
 	FILE /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE game.o
-		NAME lcc31970
+		NAME lcc224030
 LIBRARIES
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE crt0_rle.o

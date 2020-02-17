@@ -4,8 +4,8 @@
 #include "sprites/Characters.c"
 #include "CharacterController.c"
 
-#include "maps/map_1_test.c"
-#include "sprites/Sprites_map_test.c"
+#include "maps/map1.c"
+#include "sprites/SpritesPark.c"
 
 
 UBYTE running;
@@ -100,8 +100,8 @@ void map_1() {
 
 void init() {
 
-  set_bkg_data(0,11,Sprites_map_test);
-  set_bkg_tiles(0, 0, 20, 18, Map1test);
+  set_bkg_data(0,10,sprites_park);
+  set_bkg_tiles(0, 0, 20, 18, Map1);
 
   SHOW_BKG;
 
