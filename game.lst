@@ -1,9 +1,9 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : FreeWare ANSI-C Compiler
-                              3 ; Version 2.3.1 Mon Feb 17 17:16:12 2020
+                              3 ; Version 2.3.1 Tue Feb 18 10:48:17 2020
                               4 
                               5 ;--------------------------------------------------------
-                              6 	.module lcc240280
+                              6 	.module lcc141560
                               7 	
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
@@ -89,7 +89,7 @@
                              89 	.area _GSFINAL
                              90 	.area _GSINIT
                              91 ;	game.c 26
-                             92 ;	game.c 350
+                             92 ;	game.c 376
                              93 ;	genArrayInit
                              94 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    0000 21 00 00             95 	ld	hl,#_Characters
@@ -151,7 +151,7 @@
         7E 7E
    00D6 00                  127 	.db	0
                             128 ;	game.c 25
-                            129 ;	game.c 350
+                            129 ;	game.c 376
                             130 ;	genArrayInit
                             131 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    00D7 21 D0 00            132 	ld	hl,#_Map1
@@ -215,7 +215,7 @@
    0165 BF 05               185 	.db	-65,0x05
    0167 00                  186 	.db	0
                             187 ;	game.c 26
-                            188 ;	game.c 350
+                            188 ;	game.c 376
                             189 ;	genArrayInit
                             190 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    0168 21 38 02            191 	ld	hl,#_sprites_park
@@ -255,7 +255,7 @@
                             214 ; code
                             215 ;--------------------------------------------------------
                             216 	.area _CODE
-                            217 ;	game.c 24
+                            217 ;	game.c 33
                             218 ;	genLabel
                             219 ;	genFunction
                             220 ;	---------------------------------
@@ -264,7 +264,7 @@
    0000                     223 ___performantDelay_start:
    0000                     224 _performantDelay:
                             225 	
-                            226 ;	game.c 26
+                            226 ;	game.c 35
                             227 ;	genAssign
    0000 0E 00               228 	ld	c,#0x00
                             229 ;	genLabel
@@ -278,14 +278,14 @@
    0006 20 03               237 	jr	nz,00109$
    0008 C3 15 00            238 	jp	00105$
    000B                     239 00109$:
-                            240 ;	game.c 27
+                            240 ;	game.c 36
                             241 ;	genCall
                             242 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
    000B C5                  243 	push	bc
    000C CD 00 00            244 	call	_wait_vbl_done
    000F E1                  245 	pop	hl
    0010 4D                  246 	ld	c,l
-                            247 ;	game.c 26
+                            247 ;	game.c 35
                             248 ;	genPlus
                             249 ;	genPlusIncr
                             250 ; Removed redundent load
@@ -298,7 +298,7 @@
                             257 	
    0015 C9                  258 	ret
    0016                     259 ___performantDelay_end:
-                            260 ;	game.c 46
+                            260 ;	game.c 55
                             261 ;	genLabel
                             262 ;	genFunction
                             263 ;	---------------------------------
@@ -307,7 +307,7 @@
    0016                     266 ___timers_start:
    0016                     267 _timers:
                             268 	
-                            269 ;	game.c 48
+                            269 ;	game.c 57
                             270 ;	genCmpEq
                             271 ;	AOP_HL for _input_timer
                             272 ; genCmpEq: left 1, right 1, result 0
@@ -316,7 +316,7 @@
    001A B7                  275 	or	a,a
    001B CA 22 00            276 	jp	z,00103$
    001E                     277 00106$:
-                            278 ;	game.c 49
+                            278 ;	game.c 58
                             279 ;	genMinus
                             280 ;	AOP_HL for _input_timer
    001E 21 EA 02            281 	ld	hl,#_input_timer
@@ -327,7 +327,7 @@
                             286 	
    0022 C9                  287 	ret
    0023                     288 ___timers_end:
-                            289 ;	game.c 53
+                            289 ;	game.c 62
                             290 ;	genLabel
                             291 ;	genFunction
                             292 ;	---------------------------------
@@ -336,11 +336,11 @@
    0023                     295 ___main_start:
    0023                     296 _main:
                             297 	
-                            298 ;	game.c 55
+                            298 ;	game.c 64
                             299 ;	genCall
                             300 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    0023 CD D5 00            301 	call	_init
-                            302 ;	game.c 57
+                            302 ;	game.c 66
                             303 ;	genLabel
    0026                     304 00103$:
                             305 ;	genIfx
@@ -349,11 +349,11 @@
    0027 21 E8 02            308 	ld	hl,#_running
    002A B6                  309 	or	a,(hl)
    002B CA 4E 00            310 	jp	z,00105$
-                            311 ;	game.c 61
+                            311 ;	game.c 70
                             312 ;	genCall
                             313 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    002E CD 16 00            314 	call	_timers
-                            315 ;	game.c 62
+                            315 ;	game.c 71
                             316 ;	genCmpEq
                             317 ;	AOP_HL for _map
                             318 ; genCmpEq: left 1, right 1, result 0
@@ -365,11 +365,11 @@
    003C                     324 00115$:
    003C C3 26 00            325 	jp	00103$
    003F                     326 00116$:
-                            327 ;	game.c 63
+                            327 ;	game.c 72
                             328 ;	genCall
                             329 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    003F CD 64 00            330 	call	_map_1
-                            331 ;	game.c 64
+                            331 ;	game.c 73
                             332 ;	genIpush
                             333 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    0042 3E 02               334 	ld	a,#0x02
@@ -382,7 +382,7 @@
    004B C3 26 00            341 	jp	00103$
                             342 ;	genLabel
    004E                     343 00105$:
-                            344 ;	game.c 68
+                            344 ;	game.c 77
                             345 ;	genIpush
                             346 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    004E 21 5B 00            347 	ld	hl,#__str_0
@@ -390,7 +390,7 @@
                             349 ;	genCall
    0052 CD 00 00            350 	call	_printf
    0055 E8 02               351 	lda	sp,2(sp)
-                            352 ;	game.c 69
+                            352 ;	game.c 78
                             353 ;	genLabel
    0057                     354 00107$:
                             355 ;	genGoto
@@ -406,7 +406,7 @@
         64
    0062 0A                  365 	.db 0x0A
    0063 00                  366 	.db 0x00
-                            367 ;	game.c 74
+                            367 ;	game.c 83
                             368 ;	genLabel
                             369 ;	genFunction
                             370 ;	---------------------------------
@@ -415,7 +415,7 @@
    0064                     373 ___map_1_start:
    0064                     374 _map_1:
                             375 	
-                            376 ;	game.c 78
+                            376 ;	game.c 87
                             377 ;	genIpush
                             378 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    0064 21 1E 03            379 	ld	hl,#_player
@@ -423,7 +423,7 @@
                             381 ;	genCall
    0068 CD B1 01            382 	call	_player_input
    006B E8 02               383 	lda	sp,2(sp)
-                            384 ;	game.c 80
+                            384 ;	game.c 89
                             385 ;	genCmpEq
                             386 ;	AOP_HL for _input_timer
                             387 ; genCmpEq: left 1, right 1, result 0
@@ -432,7 +432,7 @@
    0071 B7                  390 	or	a,a
    0072 CA C2 00            391 	jp	z,00107$
    0075                     392 00114$:
-                            393 ;	game.c 81
+                            393 ;	game.c 90
                             394 ;	genCmpEq
                             395 ;	AOP_HL for _input_timer
                             396 ; genCmpEq: left 1, right 1, result 0
@@ -444,7 +444,7 @@
    0080                     402 00115$:
    0080 C3 C2 00            403 	jp	00107$
    0083                     404 00116$:
-                            405 ;	game.c 83
+                            405 ;	game.c 92
                             406 ;	genAssign
                             407 ;	AOP_HL for _player
    0083 21 1E 03            408 	ld	hl,#_player
@@ -457,7 +457,7 @@
    008C 09                  415 	add	hl,bc
                             416 ;	genAssign (pointer)
    008D 36 00               417 	ld	(hl),#0x00
-                            418 ;	game.c 84
+                            418 ;	game.c 93
                             419 ;	genAssign
                             420 ;	AOP_HL for _player
    008F 21 1E 03            421 	ld	hl,#_player
@@ -489,7 +489,7 @@
    00AA                     447 00118$:
                             448 ;	genGoto
    00AA C3 C2 00            449 	jp	00107$
-                            450 ;	game.c 86
+                            450 ;	game.c 95
                             451 ;	genLabel
    00AD                     452 00101$:
                             453 ;	genAddrOf
@@ -499,10 +499,10 @@
    00B3 73                  457 	ld	(hl),e
    00B4 23                  458 	inc	hl
    00B5 72                  459 	ld	(hl),d
-                            460 ;	game.c 87
+                            460 ;	game.c 96
                             461 ;	genGoto
    00B6 C3 C2 00            462 	jp	00107$
-                            463 ;	game.c 89
+                            463 ;	game.c 98
                             464 ;	genLabel
    00B9                     465 00102$:
                             466 ;	genAddrOf
@@ -512,10 +512,10 @@
    00BF 73                  470 	ld	(hl),e
    00C0 23                  471 	inc	hl
    00C1 72                  472 	ld	(hl),d
-                            473 ;	game.c 91
+                            473 ;	game.c 100
                             474 ;	genLabel
    00C2                     475 00107$:
-                            476 ;	game.c 95
+                            476 ;	game.c 104
                             477 ;	genIpush
                             478 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    00C2 21 EC 02            479 	ld	hl,#_bunny
@@ -523,7 +523,7 @@
                             481 ;	genCall
    00C6 CD F5 04            482 	call	_move_character
    00C9 E8 02               483 	lda	sp,2(sp)
-                            484 ;	game.c 96
+                            484 ;	game.c 105
                             485 ;	genIpush
                             486 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    00CB 21 F6 02            487 	ld	hl,#_dog1
@@ -537,7 +537,7 @@
                             495 	
    00D4 C9                  496 	ret
    00D5                     497 ___map_1_end:
-                            498 ;	game.c 101
+                            498 ;	game.c 110
                             499 ;	genLabel
                             500 ;	genFunction
                             501 ;	---------------------------------
@@ -546,7 +546,7 @@
    00D5                     504 ___init_start:
    00D5                     505 _init:
    00D5 E8 FD               506 	lda	sp,-3(sp)
-                            507 ;	game.c 103
+                            507 ;	game.c 112
                             508 ;	genIpush
                             509 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    00D7 21 38 02            510 	ld	hl,#_sprites_park
@@ -557,7 +557,7 @@
                             515 ;	genCall
    00DF CD 00 00            516 	call	_set_bkg_data
    00E2 E8 04               517 	lda	sp,4(sp)
-                            518 ;	game.c 104
+                            518 ;	game.c 113
                             519 ;	genIpush
                             520 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    00E4 21 D0 00            521 	ld	hl,#_Map1
@@ -571,7 +571,7 @@
                             529 ;	genCall
    00F0 CD 00 00            530 	call	_set_bkg_tiles
    00F3 E8 06               531 	lda	sp,6(sp)
-                            532 ;	game.c 106
+                            532 ;	game.c 115
                             533 ;	genAssign
    00F5 01 40 FF            534 	ld	bc,#0xFF40
                             535 ;	genAssign
@@ -597,29 +597,29 @@
    0108 F6 01               555 	or	a,#0x01
                             556 ;	genAssign (pointer)
    010A 02                  557 	ld	(bc),a
-                            558 ;	game.c 108
+                            558 ;	game.c 117
                             559 ;	genAssign
                             560 ;	AOP_HL for _input_timer
    010B 21 EA 02            561 	ld	hl,#_input_timer
    010E 36 00               562 	ld	(hl),#0x00
-                            563 ;	game.c 109
+                            563 ;	game.c 118
                             564 ;	genAssign
                             565 ;	AOP_HL for _running
    0110 21 E8 02            566 	ld	hl,#_running
    0113 36 01               567 	ld	(hl),#0x01
-                            568 ;	game.c 110
+                            568 ;	game.c 119
                             569 ;	genAssign
                             570 ;	AOP_HL for _map
    0115 21 EB 02            571 	ld	hl,#_map
    0118 36 01               572 	ld	(hl),#0x01
-                            573 ;	game.c 111
+                            573 ;	game.c 120
                             574 ;	genAssign
                             575 ;	AOP_HL for _player
    011A 21 1E 03            576 	ld	hl,#_player
    011D 36 EC               577 	ld	(hl),#<_bunny
    011F 23                  578 	inc	hl
    0120 36 02               579 	ld	(hl),#>_bunny
-                            580 ;	game.c 112
+                            580 ;	game.c 121
                             581 ;	genAssign
    0122 01 40 FF            582 	ld	bc,#0xFF40
                             583 ;	genAssign
@@ -645,7 +645,7 @@
    0135 F6 80               603 	or	a,#0x80
                             604 ;	genAssign (pointer)
    0137 02                  605 	ld	(bc),a
-                            606 ;	game.c 113
+                            606 ;	game.c 122
                             607 ;	genAssign
    0138 01 40 FF            608 	ld	bc,#0xFF40
                             609 ;	genAssign
@@ -671,7 +671,7 @@
    014A F6 02               629 	or	a,#0x02
                             630 ;	genAssign (pointer)
    014C 02                  631 	ld	(bc),a
-                            632 ;	game.c 115
+                            632 ;	game.c 124
                             633 ;	genIpush
                             634 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    014D 21 00 00            635 	ld	hl,#_Characters
@@ -682,129 +682,129 @@
                             640 ;	genCall
    0155 CD 00 00            641 	call	_set_sprite_data
    0158 E8 04               642 	lda	sp,4(sp)
-                            643 ;	game.c 119
+                            643 ;	game.c 128
                             644 ;	genAssign (pointer)
    015A 11 EC 02            645 	ld	de,#_bunny
    015D 3E 08               646 	ld	a,#0x08
    015F 12                  647 	ld	(de),a
-                            648 ;	game.c 120
+                            648 ;	game.c 129
                             649 ;	genPlus
                             650 ;	genPlusIncr
    0160 21 ED 02            651 	ld	hl,#_bunny + 1
                             652 ;	genAssign (pointer)
    0163 36 28               653 	ld	(hl),#0x28
-                            654 ;	game.c 121
+                            654 ;	game.c 130
                             655 ;	genPlus
                             656 ;	genPlusIncr
    0165 23                  657 	inc	hl
                             658 ;	genAssign (pointer)
    0166 36 00               659 	ld	(hl),#0x00
-                            660 ;	game.c 122
+                            660 ;	game.c 131
                             661 ;	genPlus
                             662 ;	genPlusIncr
    0168 23                  663 	inc	hl
                             664 ;	genAssign (pointer)
    0169 36 01               665 	ld	(hl),#0x01
-                            666 ;	game.c 123
+                            666 ;	game.c 132
                             667 ;	genPlus
                             668 ;	genPlusIncr
    016B 23                  669 	inc	hl
                             670 ;	genAssign (pointer)
    016C 36 02               671 	ld	(hl),#0x02
-                            672 ;	game.c 124
+                            672 ;	game.c 133
                             673 ;	genPlus
                             674 ;	genPlusIncr
    016E 23                  675 	inc	hl
                             676 ;	genAssign (pointer)
    016F 36 00               677 	ld	(hl),#0x00
-                            678 ;	game.c 125
+                            678 ;	game.c 134
                             679 ;	genPlus
                             680 ;	genPlusIncr
    0171 23                  681 	inc	hl
                             682 ;	genAssign (pointer)
    0172 36 00               683 	ld	(hl),#0x00
-                            684 ;	game.c 126
+                            684 ;	game.c 135
                             685 ;	genPlus
                             686 ;	genPlusIncr
    0174 23                  687 	inc	hl
    0175 23                  688 	inc	hl
                             689 ;	genAssign (pointer)
    0176 36 01               690 	ld	(hl),#0x01
-                            691 ;	game.c 127
+                            691 ;	game.c 136
                             692 ;	genPlus
                             693 ;	genPlusIncr
    0178 23                  694 	inc	hl
                             695 ;	genAssign (pointer)
    0179 36 01               696 	ld	(hl),#0x01
-                            697 ;	game.c 129
+                            697 ;	game.c 138
                             698 ;	genAssign (pointer)
    017B 11 F6 02            699 	ld	de,#_dog1
    017E 3E 28               700 	ld	a,#0x28
    0180 12                  701 	ld	(de),a
-                            702 ;	game.c 130
+                            702 ;	game.c 139
                             703 ;	genPlus
                             704 ;	genPlusIncr
    0181 21 F7 02            705 	ld	hl,#_dog1 + 1
                             706 ;	genAssign (pointer)
    0184 36 28               707 	ld	(hl),#0x28
-                            708 ;	game.c 131
+                            708 ;	game.c 140
                             709 ;	genPlus
                             710 ;	genPlusIncr
    0186 23                  711 	inc	hl
                             712 ;	genAssign (pointer)
    0187 36 03               713 	ld	(hl),#0x03
-                            714 ;	game.c 132
+                            714 ;	game.c 141
                             715 ;	genPlus
                             716 ;	genPlusIncr
    0189 23                  717 	inc	hl
                             718 ;	genAssign (pointer)
    018A 36 04               719 	ld	(hl),#0x04
-                            720 ;	game.c 133
+                            720 ;	game.c 142
                             721 ;	genPlus
                             722 ;	genPlusIncr
    018C 23                  723 	inc	hl
                             724 ;	genAssign (pointer)
    018D 36 05               725 	ld	(hl),#0x05
-                            726 ;	game.c 134
+                            726 ;	game.c 143
                             727 ;	genPlus
                             728 ;	genPlusIncr
    018F 23                  729 	inc	hl
                             730 ;	genAssign (pointer)
    0190 36 00               731 	ld	(hl),#0x00
-                            732 ;	game.c 135
+                            732 ;	game.c 144
                             733 ;	genPlus
                             734 ;	genPlusIncr
    0192 23                  735 	inc	hl
                             736 ;	genAssign (pointer)
    0193 36 00               737 	ld	(hl),#0x00
-                            738 ;	game.c 136
+                            738 ;	game.c 145
                             739 ;	genPlus
                             740 ;	genPlusIncr
    0195 23                  741 	inc	hl
    0196 23                  742 	inc	hl
                             743 ;	genAssign (pointer)
    0197 36 02               744 	ld	(hl),#0x02
-                            745 ;	game.c 137
+                            745 ;	game.c 146
                             746 ;	genPlus
                             747 ;	genPlusIncr
    0199 23                  748 	inc	hl
                             749 ;	genAssign (pointer)
    019A 36 00               750 	ld	(hl),#0x00
-                            751 ;	game.c 139
+                            751 ;	game.c 148
                             752 ;	genIpush
                             753 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    019C 21 EC 02            754 	ld	hl,#_bunny
    019F E5                  755 	push	hl
                             756 ;	genCall
-   01A0 CD 67 08            757 	call	_set_character_sprite
+   01A0 CD 0E 09            757 	call	_set_character_sprite
    01A3 E8 02               758 	lda	sp,2(sp)
-                            759 ;	game.c 140
+                            759 ;	game.c 149
                             760 ;	genIpush
                             761 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
    01A5 21 F6 02            762 	ld	hl,#_dog1
    01A8 E5                  763 	push	hl
                             764 ;	genCall
-   01A9 CD 67 08            765 	call	_set_character_sprite
+   01A9 CD 0E 09            765 	call	_set_character_sprite
    01AC E8 02               766 	lda	sp,2(sp)
                             767 ;	genLabel
    01AE                     768 00101$:
@@ -812,7 +812,7 @@
    01AE E8 03               770 	lda	sp,3(sp)
    01B0 C9                  771 	ret
    01B1                     772 ___init_end:
-                            773 ;	game.c 146
+                            773 ;	game.c 155
                             774 ;	genLabel
                             775 ;	genFunction
                             776 ;	---------------------------------
@@ -821,7 +821,7 @@
    01B1                     779 ___player_input_start:
    01B1                     780 _player_input:
    01B1 E8 FA               781 	lda	sp,-6(sp)
-                            782 ;	game.c 149
+                            782 ;	game.c 158
                             783 ;	genAssign
                             784 ;	AOP_STK for 
    01B3 F8 08               785 	lda	hl,8(sp)
@@ -882,7 +882,7 @@
    01E6                     840 00135$:
    01E6 C3 E2 03            841 	jp	00119$
    01E9                     842 00136$:
-                            843 ;	game.c 151
+                            843 ;	game.c 160
                             844 ;	genCall
                             845 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
    01E9 C5                  846 	push	bc
@@ -941,7 +941,7 @@
    0221                     899 00142$:
                             900 ;	genGoto
    0221 C3 E2 03            901 	jp	00119$
-                            902 ;	game.c 153
+                            902 ;	game.c 162
                             903 ;	genLabel
    0224                     904 00101$:
                             905 ;	genPointerGet
@@ -970,17 +970,17 @@
    0238 62                  928 	ld	h,d
                             929 ;	genAssign (pointer)
    0239 36 01               930 	ld	(hl),#0x01
-                            931 ;	game.c 155
+                            931 ;	game.c 164
                             932 ;	genGoto
    023B C3 E2 03            933 	jp	00119$
-                            934 ;	game.c 159
+                            934 ;	game.c 168
                             935 ;	genLabel
    023E                     936 00102$:
                             937 ;	genAssign
                             938 ;	AOP_HL for _input_timer
    023E 21 EA 02            939 	ld	hl,#_input_timer
    0241 36 0A               940 	ld	(hl),#0x0A
-                            941 ;	game.c 160
+                            941 ;	game.c 169
                             942 ;	genPointerGet
                             943 ;	AOP_STK for _player_input_sloc1_1_0
    0243 59                  944 	ld	e,c
@@ -1007,10 +1007,10 @@
    0257 62                  965 	ld	h,d
                             966 ;	genAssign (pointer)
    0258 36 00               967 	ld	(hl),#0x00
-                            968 ;	game.c 162
+                            968 ;	game.c 171
                             969 ;	genGoto
    025A C3 E2 03            970 	jp	00119$
-                            971 ;	game.c 165
+                            971 ;	game.c 174
                             972 ;	genLabel
    025D                     973 00103$:
                             974 ;	genPointerGet
@@ -1047,7 +1047,7 @@
    0277 56                 1005 	ld	d,(hl)
    0278 3E 04              1006 	ld	a,#0x04
    027A 12                 1007 	ld	(de),a
-                           1008 ;	game.c 166
+                           1008 ;	game.c 175
                            1009 ;	genPointerGet
                            1010 ;	AOP_STK for _player_input_sloc0_1_0
                            1011 ;	AOP_STK for _player_input_sloc2_1_0
@@ -1125,15 +1125,15 @@
    02B8 2A                 1083 	ld	a,(hl+)
    02B9 B6                 1084 	or	a,(hl)
    02BA CA E2 03           1085 	jp	z,00119$
-                           1086 ;	game.c 167
+                           1086 ;	game.c 176
                            1087 ;	genAssign
                            1088 ;	AOP_HL for _input_timer
    02BD 21 EA 02           1089 	ld	hl,#_input_timer
    02C0 36 04              1090 	ld	(hl),#0x04
-                           1091 ;	game.c 169
+                           1091 ;	game.c 178
                            1092 ;	genGoto
    02C2 C3 E2 03           1093 	jp	00119$
-                           1094 ;	game.c 171
+                           1094 ;	game.c 180
                            1095 ;	genLabel
    02C5                    1096 00106$:
                            1097 ;	genPointerGet
@@ -1170,7 +1170,7 @@
    02DF 56                 1128 	ld	d,(hl)
    02E0 3E 02              1129 	ld	a,#0x02
    02E2 12                 1130 	ld	(de),a
-                           1131 ;	game.c 172
+                           1131 ;	game.c 181
                            1132 ;	genPointerGet
                            1133 ;	AOP_STK for _player_input_sloc0_1_0
                            1134 ;	AOP_STK for _player_input_sloc3_1_0
@@ -1248,15 +1248,15 @@
    0320 2A                 1206 	ld	a,(hl+)
    0321 B6                 1207 	or	a,(hl)
    0322 CA E2 03           1208 	jp	z,00119$
-                           1209 ;	game.c 173
+                           1209 ;	game.c 182
                            1210 ;	genAssign
                            1211 ;	AOP_HL for _input_timer
    0325 21 EA 02           1212 	ld	hl,#_input_timer
    0328 36 04              1213 	ld	(hl),#0x04
-                           1214 ;	game.c 175
+                           1214 ;	game.c 184
                            1215 ;	genGoto
    032A C3 E2 03           1216 	jp	00119$
-                           1217 ;	game.c 177
+                           1217 ;	game.c 186
                            1218 ;	genLabel
    032D                    1219 00109$:
                            1220 ;	genPointerGet
@@ -1293,7 +1293,7 @@
    0347 56                 1251 	ld	d,(hl)
    0348 3E 01              1252 	ld	a,#0x01
    034A 12                 1253 	ld	(de),a
-                           1254 ;	game.c 178
+                           1254 ;	game.c 187
                            1255 ;	genPointerGet
                            1256 ;	AOP_STK for _player_input_sloc0_1_0
                            1257 ;	AOP_STK for _player_input_sloc3_1_0
@@ -1371,15 +1371,15 @@
    0388 2A                 1329 	ld	a,(hl+)
    0389 B6                 1330 	or	a,(hl)
    038A CA E2 03           1331 	jp	z,00119$
-                           1332 ;	game.c 179
+                           1332 ;	game.c 188
                            1333 ;	genAssign
                            1334 ;	AOP_HL for _input_timer
    038D 21 EA 02           1335 	ld	hl,#_input_timer
    0390 36 04              1336 	ld	(hl),#0x04
-                           1337 ;	game.c 181
+                           1337 ;	game.c 190
                            1338 ;	genGoto
    0392 C3 E2 03           1339 	jp	00119$
-                           1340 ;	game.c 183
+                           1340 ;	game.c 192
                            1341 ;	genLabel
    0395                    1342 00112$:
                            1343 ;	genPointerGet
@@ -1409,7 +1409,7 @@
    03A9 56                 1367 	ld	d,(hl)
    03AA 3E 03              1368 	ld	a,#0x03
    03AC 12                 1369 	ld	(de),a
-                           1370 ;	game.c 184
+                           1370 ;	game.c 193
                            1371 ;	genPointerGet
                            1372 ;	AOP_STK for _player_input_sloc1_1_0
                            1373 ;	AOP_STK for _player_input_sloc3_1_0
@@ -1468,19 +1468,19 @@
    03D8 79                 1426 	ld	a,c
    03D9 B0                 1427 	or	a,b
    03DA CA E2 03           1428 	jp	z,00119$
-                           1429 ;	game.c 185
+                           1429 ;	game.c 194
                            1430 ;	genAssign
                            1431 ;	AOP_HL for _input_timer
    03DD 21 EA 02           1432 	ld	hl,#_input_timer
    03E0 36 04              1433 	ld	(hl),#0x04
-                           1434 ;	game.c 188
+                           1434 ;	game.c 197
                            1435 ;	genLabel
    03E2                    1436 00119$:
                            1437 ;	genEndFunction
    03E2 E8 06              1438 	lda	sp,6(sp)
    03E4 C9                 1439 	ret
    03E5                    1440 ___player_input_end:
-                           1441 ;	game.c 197
+                           1441 ;	game.c 206
                            1442 ;	genLabel
                            1443 ;	genFunction
                            1444 ;	---------------------------------
@@ -1489,7 +1489,7 @@
    03E5                    1447 ___can_move_start:
    03E5                    1448 _can_move:
    03E5 E8 FA              1449 	lda	sp,-6(sp)
-                           1450 ;	game.c 208
+                           1450 ;	game.c 217
                            1451 ;	genCmpLt
                            1452 ;	AOP_STK for 
    03E7 F8 0A              1453 	lda	hl,10(sp)
@@ -1519,7 +1519,7 @@
    0406 C3 18 04           1477 	jp	00102$
    0409 C3 2A 04           1478 	jp	00104$
    040C C3 0F 04           1479 	jp	00101$
-                           1480 ;	game.c 210
+                           1480 ;	game.c 219
                            1481 ;	genLabel
    040F                    1482 00101$:
                            1483 ;	genMinus
@@ -1528,10 +1528,10 @@
    0411 7E                 1486 	ld	a,(hl)
    0412 C6 F8              1487 	add	a,#0xF8
    0414 77                 1488 	ld	(hl),a
-                           1489 ;	game.c 211
+                           1489 ;	game.c 220
                            1490 ;	genGoto
    0415 C3 30 04           1491 	jp	00105$
-                           1492 ;	game.c 213
+                           1492 ;	game.c 222
                            1493 ;	genLabel
    0418                    1494 00102$:
                            1495 ;	genPlus
@@ -1542,10 +1542,10 @@
    041A 7E                 1500 	ld	a,(hl)
    041B C6 08              1501 	add	a,#0x08
    041D 77                 1502 	ld	(hl),a
-                           1503 ;	game.c 214
+                           1503 ;	game.c 223
                            1504 ;	genGoto
    041E C3 30 04           1505 	jp	00105$
-                           1506 ;	game.c 216
+                           1506 ;	game.c 225
                            1507 ;	genLabel
    0421                    1508 00103$:
                            1509 ;	genMinus
@@ -1554,10 +1554,10 @@
    0423 7E                 1512 	ld	a,(hl)
    0424 C6 F8              1513 	add	a,#0xF8
    0426 77                 1514 	ld	(hl),a
-                           1515 ;	game.c 217
+                           1515 ;	game.c 226
                            1516 ;	genGoto
    0427 C3 30 04           1517 	jp	00105$
-                           1518 ;	game.c 219
+                           1518 ;	game.c 228
                            1519 ;	genLabel
    042A                    1520 00104$:
                            1521 ;	genPlus
@@ -1568,10 +1568,10 @@
    042C 7E                 1526 	ld	a,(hl)
    042D C6 08              1527 	add	a,#0x08
    042F 77                 1528 	ld	(hl),a
-                           1529 ;	game.c 221
+                           1529 ;	game.c 230
                            1530 ;	genLabel
    0430                    1531 00105$:
-                           1532 ;	game.c 223
+                           1532 ;	game.c 232
                            1533 ;	genCast
                            1534 ;	AOP_STK for 
    0430 F8 08              1535 	lda	hl,8(sp)
@@ -1590,7 +1590,7 @@
                            1548 ;	AOP_STK for _can_move__x_1_1
    0442 F8 05              1549 	lda	hl,5(sp)
    0444 71                 1550 	ld	(hl),c
-                           1551 ;	game.c 224
+                           1551 ;	game.c 233
                            1552 ;	genCast
                            1553 ;	AOP_STK for 
    0445 F8 09              1554 	lda	hl,9(sp)
@@ -1614,7 +1614,7 @@
                            1572 ;	AOP_STK for _can_move__y_1_1
    045C F8 04              1573 	lda	hl,4(sp)
    045E 70                 1574 	ld	(hl),b
-                           1575 ;	game.c 230
+                           1575 ;	game.c 239
                            1576 ;	genCmpLt
                            1577 ;	AOP_STK for _can_move__x_1_1
    045F 23                 1578 	inc	hl
@@ -1655,13 +1655,13 @@
    0487 D2 90 04           1613 	jp	nc,00107$
                            1614 ;	genLabel
    048A                    1615 00106$:
-                           1616 ;	game.c 231
+                           1616 ;	game.c 240
                            1617 ;	genRet
    048A 11 00 00           1618 	ld	de,#0x0000
    048D C3 F2 04           1619 	jp	00116$
                            1620 ;	genLabel
    0490                    1621 00107$:
-                           1622 ;	game.c 238
+                           1622 ;	game.c 247
                            1623 ;	genAssign
                            1624 ;	(registers are the same)
                            1625 ;	genAssign
@@ -1670,7 +1670,7 @@
    0492 70                 1628 	ld	(hl),b
    0493 23                 1629 	inc	hl
    0494 71                 1630 	ld	(hl),c
-                           1631 ;	game.c 239
+                           1631 ;	game.c 248
                            1632 ;	genMult
                            1633 ;	AOP_STK for _can_move_sloc0_1_0
    0495 F8 00              1634 	lda	hl,0(sp)
@@ -1699,7 +1699,7 @@
    04AB F8 02              1657 	lda	hl,2(sp)
    04AD 22                 1658 	ld	(hl+),a
    04AE 72                 1659 	ld	(hl),d
-                           1660 ;	game.c 241
+                           1660 ;	game.c 250
                            1661 ;	genPlus
                            1662 ;	AOP_STK for _can_move_map_position_1_1
                            1663 ;	Can't optimise plus by inc, falling back to the normal way
@@ -1746,7 +1746,7 @@
    04E0 C3 E9 04           1704 	jp	00113$
    04E3 C3 E9 04           1705 	jp	00112$
    04E6 C3 E9 04           1706 	jp	00111$
-                           1707 ;	game.c 251
+                           1707 ;	game.c 260
                            1708 ;	genLabel
    04E9                    1709 00114$:
                            1710 ;	genLabel
@@ -1758,10 +1758,10 @@
                            1716 ;	genRet
    04E9 11 00 00           1717 	ld	de,#0x0000
    04EC C3 F2 04           1718 	jp	00116$
-                           1719 ;	game.c 252
+                           1719 ;	game.c 261
                            1720 ;	genLabel
    04EF                    1721 00115$:
-                           1722 ;	game.c 256
+                           1722 ;	game.c 265
                            1723 ;	genRet
    04EF 11 01 00           1724 	ld	de,#0x0001
                            1725 ;	genLabel
@@ -1770,7 +1770,7 @@
    04F2 E8 06              1728 	lda	sp,6(sp)
    04F4 C9                 1729 	ret
    04F5                    1730 ___can_move_end:
-                           1731 ;	game.c 259
+                           1731 ;	game.c 268
                            1732 ;	genLabel
                            1733 ;	genFunction
                            1734 ;	---------------------------------
@@ -1779,7 +1779,7 @@
    04F5                    1737 ___move_character_start:
    04F5                    1738 _move_character:
    04F5 E8 F2              1739 	lda	sp,-14(sp)
-                           1740 ;	game.c 262
+                           1740 ;	game.c 271
                            1741 ;	genAssign
                            1742 ;	AOP_HL for _player
    04F7 21 1E 03           1743 	ld	hl,#_player
@@ -1832,14 +1832,14 @@
                            1790 ; genCmpEq: left 1, right 1, result 0
    0520 79                 1791 	ld	a,c
    0521 B8                 1792 	cp	b
-                           1793 ;	game.c 263
+                           1793 ;	game.c 272
                            1794 ;	genRet
                            1795 ;	genLabel
    0522 CA 28 05           1796 	jp	z,00102$
-   0525                    1797 00153$:
-   0525 C3 64 08           1798 	jp	00135$
+   0525                    1797 00162$:
+   0525 C3 0B 09           1798 	jp	00141$
    0528                    1799 00102$:
-                           1800 ;	game.c 266
+                           1800 ;	game.c 275
                            1801 ;	genPlus
                            1802 ;	AOP_STK for _move_character_sloc0_1_0
                            1803 ;	AOP_STK for _move_character_sloc2_1_0
@@ -1864,29 +1864,29 @@
                            1822 ; genCmpEq: left 1, right 1, result 0
    0539 4F                 1823 	ld	c,a
    053A B7                 1824 	or	a,a
-   053B CA 2C 07           1825 	jp	z,00133$
-   053E                    1826 00154$:
-                           1827 ;	game.c 269
+   053B CA D3 07           1825 	jp	z,00139$
+   053E                    1826 00163$:
+                           1827 ;	game.c 278
                            1828 ;	genCmpEq
                            1829 ; genCmpEq: left 1, right 1, result 0
    053E 78                 1830 	ld	a,b
    053F FE 01              1831 	cp	a,#0x01
-   0541 C2 3B 08           1832 	jp	nz,00134$
-   0544 18 03              1833 	jr	00156$
-   0546                    1834 00155$:
-   0546 C3 3B 08           1835 	jp	00134$
-   0549                    1836 00156$:
-                           1837 ;	game.c 271
+   0541 C2 29 07           1832 	jp	nz,00120$
+   0544 18 03              1833 	jr	00165$
+   0546                    1834 00164$:
+   0546 C3 29 07           1835 	jp	00120$
+   0549                    1836 00165$:
+                           1837 ;	game.c 280
                            1838 ;	genCmpEq
                            1839 ; genCmpEq: left 1, right 1, result 0
    0549 79                 1840 	ld	a,c
    054A FE 01              1841 	cp	a,#0x01
    054C C2 6B 05           1842 	jp	nz,00104$
-   054F 18 03              1843 	jr	00158$
-   0551                    1844 00157$:
+   054F 18 03              1843 	jr	00167$
+   0551                    1844 00166$:
    0551 C3 6B 05           1845 	jp	00104$
-   0554                    1846 00158$:
-                           1847 ;	game.c 273
+   0554                    1846 00167$:
+                           1847 ;	game.c 282
                            1848 ;	genAssign (pointer)
                            1849 ;	AOP_STK for _move_character_sloc2_1_0
    0554 F8 08              1850 	lda	hl,8(sp)
@@ -1895,7 +1895,7 @@
    0558 56                 1853 	ld	d,(hl)
    0559 3E 02              1854 	ld	a,#0x02
    055B 12                 1855 	ld	(de),a
-                           1856 ;	game.c 274
+                           1856 ;	game.c 283
                            1857 ;	genPlus
                            1858 ;	AOP_STK for _move_character_sloc0_1_0
                            1859 ;	genPlusIncr
@@ -1914,7 +1914,7 @@
    0569 36 10              1872 	ld	(hl),#0x10
                            1873 ;	genLabel
    056B                    1874 00104$:
-                           1875 ;	game.c 277
+                           1875 ;	game.c 286
                            1876 ;	genPlus
                            1877 ;	AOP_STK for _move_character_sloc0_1_0
                            1878 ;	AOP_STK for _move_character_sloc3_1_0
@@ -1951,7 +1951,7 @@
    0587 E8 02              1909 	lda	sp,2(sp)
    0589 E1                 1910 	pop	hl
    058A 44                 1911 	ld	b,h
-                           1912 ;	game.c 280
+                           1912 ;	game.c 289
                            1913 ;	genPlus
                            1914 ;	AOP_STK for _move_character_sloc0_1_0
                            1915 ;	AOP_STK for _move_character_sloc3_1_0
@@ -1977,34 +1977,34 @@
    059C 4F                 1935 	ld	c,a
    059D FE 04              1936 	cp	a,#0x04
    059F CA B9 05           1937 	jp	z,00107$
-   05A2                    1938 00159$:
-                           1939 ;	game.c 281
+   05A2                    1938 00168$:
+                           1939 ;	game.c 290
                            1940 ;	genCmpEq
                            1941 ; genCmpEq: left 1, right 1, result 0
    05A2 79                 1942 	ld	a,c
    05A3 FE 08              1943 	cp	a,#0x08
    05A5 CA B9 05           1944 	jp	z,00107$
-   05A8                    1945 00160$:
-                           1946 ;	game.c 282
+   05A8                    1945 00169$:
+                           1946 ;	game.c 291
                            1947 ;	genCmpEq
                            1948 ; genCmpEq: left 1, right 1, result 0
    05A8 79                 1949 	ld	a,c
    05A9 FE 0C              1950 	cp	a,#0x0C
    05AB CA B9 05           1951 	jp	z,00107$
-   05AE                    1952 00161$:
-                           1953 ;	game.c 283
+   05AE                    1952 00170$:
+                           1953 ;	game.c 292
                            1954 ;	genCmpEq
                            1955 ; genCmpEq: left 1, right 1, result 0
    05AE 79                 1956 	ld	a,c
    05AF FE 10              1957 	cp	a,#0x10
    05B1 C2 13 06           1958 	jp	nz,00108$
-   05B4 18 03              1959 	jr	00163$
-   05B6                    1960 00162$:
+   05B4 18 03              1959 	jr	00172$
+   05B6                    1960 00171$:
    05B6 C3 13 06           1961 	jp	00108$
-   05B9                    1962 00163$:
+   05B9                    1962 00172$:
                            1963 ;	genLabel
    05B9                    1964 00107$:
-                           1965 ;	game.c 285
+                           1965 ;	game.c 294
                            1966 ;	genPlus
                            1967 ;	AOP_STK for _move_character_sloc0_1_0
                            1968 ;	AOP_STK for _move_character_sloc4_1_0
@@ -2099,7 +2099,7 @@
    0606 2A                 2057 	ld	a,(hl+)
    0607 B6                 2058 	or	a,(hl)
    0608 C2 13 06           2059 	jp	nz,00108$
-                           2060 ;	game.c 286
+                           2060 ;	game.c 295
                            2061 ;	genAssign (pointer)
                            2062 ;	AOP_STK for _move_character_sloc4_1_0
    060B 23                 2063 	inc	hl
@@ -2111,7 +2111,7 @@
    0612 12                 2069 	ld	(de),a
                            2070 ;	genLabel
    0613                    2071 00108$:
-                           2072 ;	game.c 290
+                           2072 ;	game.c 299
                            2073 ;	genPlus
                            2074 ;	AOP_STK for _move_character_sloc0_1_0
                            2075 ;	AOP_STK for _move_character_sloc6_1_0
@@ -2157,17 +2157,17 @@
    0636 77                 2115 	ld      (hl),a
    0637 5F                 2116 	ld      e,a
    0638 16 00              2117 	ld	d,#0x00
-   063A 21 41 06           2118 	ld	hl,#00164$
+   063A 21 41 06           2118 	ld	hl,#00173$
    063D 19                 2119 	add	hl,de
    063E 19                 2120 	add	hl,de
    063F 19                 2121 	add	hl,de
    0640 E9                 2122 	jp	(hl)
-   0641                    2123 00164$:
+   0641                    2123 00173$:
    0641 C3 A8 06           2124 	jp	00114$
    0644 C3 7D 06           2125 	jp	00113$
    0647 C3 CB 06           2126 	jp	00115$
    064A C3 4D 06           2127 	jp	00112$
-                           2128 ;	game.c 292
+                           2128 ;	game.c 301
                            2129 ;	genLabel
    064D                    2130 00112$:
                            2131 ;	genPointerGet
@@ -2197,7 +2197,7 @@
    065F F8 01              2155 	lda	hl,1(sp)
    0661 7E                 2156 	ld	a,(hl)
    0662 12                 2157 	ld	(de),a
-                           2158 ;	game.c 293
+                           2158 ;	game.c 302
                            2159 ;	genPointerGet
                            2160 ;	AOP_STK for _move_character_sloc1_1_0
                            2161 ;	AOP_STK for _move_character_sloc7_1_0
@@ -2223,10 +2223,10 @@
    0674 CD 00 00           2181 	call	_set_sprite_prop
    0677 E8 02              2182 	lda	sp,2(sp)
    0679 C1                 2183 	pop	bc
-                           2184 ;	game.c 294
+                           2184 ;	game.c 303
                            2185 ;	genGoto
    067A C3 E6 06           2186 	jp	00116$
-                           2187 ;	game.c 296
+                           2187 ;	game.c 305
                            2188 ;	genLabel
    067D                    2189 00113$:
                            2190 ;	genPointerGet
@@ -2252,7 +2252,7 @@
    068B 23                 2210 	inc	hl
    068C 56                 2211 	ld	d,(hl)
    068D 12                 2212 	ld	(de),a
-                           2213 ;	game.c 297
+                           2213 ;	game.c 306
                            2214 ;	genPointerGet
                            2215 ;	AOP_STK for _move_character_sloc1_1_0
                            2216 ;	AOP_STK for _move_character_sloc7_1_0
@@ -2278,10 +2278,10 @@
    069F CD 00 00           2236 	call	_set_sprite_prop
    06A2 E8 02              2237 	lda	sp,2(sp)
    06A4 C1                 2238 	pop	bc
-                           2239 ;	game.c 298
+                           2239 ;	game.c 307
                            2240 ;	genGoto
    06A5 C3 E6 06           2241 	jp	00116$
-                           2242 ;	game.c 300
+                           2242 ;	game.c 309
                            2243 ;	genLabel
    06A8                    2244 00114$:
                            2245 ;	genPlus
@@ -2325,10 +2325,10 @@
    06C5 23                 2283 	inc	hl
    06C6 7E                 2284 	ld	a,(hl)
    06C7 12                 2285 	ld	(de),a
-                           2286 ;	game.c 301
+                           2286 ;	game.c 310
                            2287 ;	genGoto
    06C8 C3 E6 06           2288 	jp	00116$
-                           2289 ;	game.c 303
+                           2289 ;	game.c 312
                            2290 ;	genLabel
    06CB                    2291 00115$:
                            2292 ;	genPlus
@@ -2368,10 +2368,10 @@
    06E3 23                 2326 	inc	hl
    06E4 56                 2327 	ld	d,(hl)
    06E5 12                 2328 	ld	(de),a
-                           2329 ;	game.c 305
+                           2329 ;	game.c 314
                            2330 ;	genLabel
    06E6                    2331 00116$:
-                           2332 ;	game.c 306
+                           2332 ;	game.c 315
                            2333 ;	genMinus
    06E6 0D                 2334 	dec	c
                            2335 ;	genAssign (pointer)
@@ -2382,17 +2382,17 @@
    06EB 56                 2340 	ld	d,(hl)
    06EC 79                 2341 	ld	a,c
    06ED 12                 2342 	ld	(de),a
-                           2343 ;	game.c 308
+                           2343 ;	game.c 317
                            2344 ;	genCmpEq
                            2345 ; genCmpEq: left 1, right 1, result 0
    06EE 79                 2346 	ld	a,c
    06EF B7                 2347 	or	a,a
-   06F0 C2 3B 08           2348 	jp	nz,00134$
-   06F3 18 03              2349 	jr	00166$
-   06F5                    2350 00165$:
-   06F5 C3 3B 08           2351 	jp	00134$
-   06F8                    2352 00166$:
-                           2353 ;	game.c 309
+   06F0 C2 29 07           2348 	jp	nz,00120$
+   06F3 18 03              2349 	jr	00175$
+   06F5                    2350 00174$:
+   06F5 C3 29 07           2351 	jp	00120$
+   06F8                    2352 00175$:
+                           2353 ;	game.c 318
                            2354 ;	genAssign (pointer)
                            2355 ;	AOP_STK for _move_character_sloc2_1_0
    06F8 F8 08              2356 	lda	hl,8(sp)
@@ -2401,7 +2401,7 @@
    06FC 56                 2359 	ld	d,(hl)
    06FD 3E 00              2360 	ld	a,#0x00
    06FF 12                 2361 	ld	(de),a
-                           2362 ;	game.c 310
+                           2362 ;	game.c 319
                            2363 ;	genPlus
                            2364 ;	AOP_STK for _move_character_sloc0_1_0
                            2365 ;	AOP_STK for _move_character_sloc6_1_0
@@ -2449,505 +2449,698 @@
    0725 E8 02              2407 	lda	sp,2(sp)
    0727 E1                 2408 	pop	hl
    0728 44                 2409 	ld	b,h
-                           2410 ;	genGoto
-   0729 C3 3B 08           2411 	jp	00134$
-                           2412 ;	genLabel
-   072C                    2413 00133$:
-                           2414 ;	game.c 317
-                           2415 ;	genCmpEq
-                           2416 ;	AOP_HL for _input_timer
-                           2417 ; genCmpEq: left 1, right 1, result 0
-   072C 21 EA 02           2418 	ld	hl,#_input_timer
-   072F 7E                 2419 	ld	a,(hl)
-   0730 B7                 2420 	or	a,a
-   0731 CA DF 07           2421 	jp	z,00127$
-   0734                    2422 00167$:
-                           2423 ;	game.c 318
-                           2424 ;	genPlus
-                           2425 ;	AOP_STK for _move_character_sloc0_1_0
-                           2426 ;	AOP_STK for _move_character_sloc6_1_0
-                           2427 ;	genPlusIncr
-                           2428 ;	Can't optimise plus by inc, falling back to the normal way
-   0734 F8 0C              2429 	lda	hl,12(sp)
-   0736 5E                 2430 	ld	e,(hl)
-   0737 23                 2431 	inc	hl
-   0738 56                 2432 	ld	d,(hl)
-   0739 21 05 00           2433 	ld	hl,#0x0005
-   073C 19                 2434 	add	hl,de
-   073D 7D                 2435 	ld	a,l
-   073E 54                 2436 	ld	d,h
-   073F F8 01              2437 	lda	hl,1(sp)
-                           2438 ;	genPointerGet
-                           2439 ;	AOP_STK for _move_character_sloc6_1_0
-   0741 22                 2440 	ld	(hl+),a
-   0742 72                 2441 	ld	(hl),d
-   0743 5F                 2442 	ld	e,a
-   0744 1A                 2443 	ld	a,(de)
-                           2444 ;	genCmpLt
-   0745 4F                 2445 	ld	c,a
-   0746 FE 01              2446 	cp	#0x01
-   0748 DA DF 07           2447 	jp	c,00127$
-                           2448 ;	genCmpGt
-   074B 3E 04              2449 	ld	a,#0x04
-   074D 91                 2450 	sub	a,c
-   074E DA DF 07           2451 	jp	c,00127$
-                           2452 ;	genMinus
-   0751 0D                 2453 	dec	c
-                           2454 ;	genJumpTab
-   0752 59                 2455 	ld	e,c
-   0753 16 00              2456 	ld	d,#0x00
-   0755 21 5C 07           2457 	ld	hl,#00168$
-   0758 19                 2458 	add	hl,de
-   0759 19                 2459 	add	hl,de
-   075A 19                 2460 	add	hl,de
-   075B E9                 2461 	jp	(hl)
-   075C                    2462 00168$:
-   075C C3 A9 07           2463 	jp	00123$
-   075F C3 89 07           2464 	jp	00122$
-   0762 C3 C6 07           2465 	jp	00124$
-   0765 C3 68 07           2466 	jp	00121$
-                           2467 ;	game.c 320
-                           2468 ;	genLabel
-   0768                    2469 00121$:
-                           2470 ;	genPointerGet
-                           2471 ;	AOP_STK for _move_character_sloc0_1_0
-   0768 F8 0C              2472 	lda	hl,12(sp)
-   076A 5E                 2473 	ld	e,(hl)
-   076B 23                 2474 	inc	hl
-   076C 56                 2475 	ld	d,(hl)
-   076D 1A                 2476 	ld	a,(de)
-   076E 4F                 2477 	ld	c,a
-                           2478 ;	genMinus
-   076F 0D                 2479 	dec	c
-   0770 0D                 2480 	dec	c
-                           2481 ;	genAssign (pointer)
-                           2482 ;	AOP_STK for _move_character_sloc0_1_0
-   0771 2B                 2483 	dec	hl
-   0772 5E                 2484 	ld	e,(hl)
-   0773 23                 2485 	inc	hl
-   0774 56                 2486 	ld	d,(hl)
-   0775 79                 2487 	ld	a,c
-   0776 12                 2488 	ld	(de),a
-                           2489 ;	game.c 321
-                           2490 ;	genIpush
-                           2491 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
-   0777 C5                 2492 	push	bc
-   0778 3E 20              2493 	ld	a,#0x20
-   077A F5                 2494 	push	af
-   077B 33                 2495 	inc	sp
-                           2496 ;	genIpush
-   077C 78                 2497 	ld	a,b
-   077D F5                 2498 	push	af
-   077E 33                 2499 	inc	sp
-                           2500 ;	genCall
-   077F CD 00 00           2501 	call	_set_sprite_prop
-   0782 E8 02              2502 	lda	sp,2(sp)
-   0784 E1                 2503 	pop	hl
-   0785 44                 2504 	ld	b,h
-                           2505 ;	game.c 322
-                           2506 ;	genGoto
-   0786 C3 DF 07           2507 	jp	00127$
-                           2508 ;	game.c 324
-                           2509 ;	genLabel
-   0789                    2510 00122$:
-                           2511 ;	genPointerGet
-                           2512 ;	AOP_STK for _move_character_sloc0_1_0
-   0789 F8 0C              2513 	lda	hl,12(sp)
-   078B 5E                 2514 	ld	e,(hl)
-   078C 23                 2515 	inc	hl
-   078D 56                 2516 	ld	d,(hl)
-   078E 1A                 2517 	ld	a,(de)
-                           2518 ;	genPlus
-                           2519 ;	genPlusIncr
-                           2520 ;	Can't optimise plus by inc, falling back to the normal way
-   078F 4F                 2521 	ld	c,a
-   0790 C6 02              2522 	add	a,#0x02
-                           2523 ;	genAssign (pointer)
-                           2524 ;	AOP_STK for _move_character_sloc0_1_0
-   0792 2B                 2525 	dec	hl
-   0793 5E                 2526 	ld	e,(hl)
-   0794 23                 2527 	inc	hl
-   0795 56                 2528 	ld	d,(hl)
-   0796 12                 2529 	ld	(de),a
-                           2530 ;	game.c 325
-                           2531 ;	genIpush
-                           2532 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
-   0797 C5                 2533 	push	bc
-   0798 3E 00              2534 	ld	a,#0x00
-   079A F5                 2535 	push	af
-   079B 33                 2536 	inc	sp
-                           2537 ;	genIpush
-   079C 78                 2538 	ld	a,b
-   079D F5                 2539 	push	af
-   079E 33                 2540 	inc	sp
-                           2541 ;	genCall
-   079F CD 00 00           2542 	call	_set_sprite_prop
-   07A2 E8 02              2543 	lda	sp,2(sp)
-   07A4 E1                 2544 	pop	hl
-   07A5 44                 2545 	ld	b,h
-                           2546 ;	game.c 326
-                           2547 ;	genGoto
-   07A6 C3 DF 07           2548 	jp	00127$
-                           2549 ;	game.c 328
-                           2550 ;	genLabel
-   07A9                    2551 00123$:
-                           2552 ;	genPlus
-                           2553 ;	AOP_STK for _move_character_sloc0_1_0
-                           2554 ;	AOP_STK for _move_character_sloc6_1_0
-                           2555 ;	genPlusIncr
-                           2556 ;	Can't optimise plus by inc, falling back to the normal way
-   07A9 F8 0C              2557 	lda	hl,12(sp)
-   07AB 5E                 2558 	ld	e,(hl)
-   07AC 23                 2559 	inc	hl
-   07AD 56                 2560 	ld	d,(hl)
-   07AE 21 01 00           2561 	ld	hl,#0x0001
-   07B1 19                 2562 	add	hl,de
-   07B2 7D                 2563 	ld	a,l
-   07B3 54                 2564 	ld	d,h
-   07B4 F8 01              2565 	lda	hl,1(sp)
-                           2566 ;	genPointerGet
-                           2567 ;	AOP_STK for _move_character_sloc6_1_0
-   07B6 22                 2568 	ld	(hl+),a
-   07B7 72                 2569 	ld	(hl),d
-   07B8 5F                 2570 	ld	e,a
-   07B9 1A                 2571 	ld	a,(de)
-   07BA 4F                 2572 	ld	c,a
-                           2573 ;	genMinus
-   07BB 0D                 2574 	dec	c
-   07BC 0D                 2575 	dec	c
-                           2576 ;	genAssign (pointer)
-                           2577 ;	AOP_STK for _move_character_sloc6_1_0
-   07BD 2B                 2578 	dec	hl
-   07BE 5E                 2579 	ld	e,(hl)
-   07BF 23                 2580 	inc	hl
-   07C0 56                 2581 	ld	d,(hl)
-   07C1 79                 2582 	ld	a,c
-   07C2 12                 2583 	ld	(de),a
-                           2584 ;	game.c 329
-                           2585 ;	genGoto
-   07C3 C3 DF 07           2586 	jp	00127$
-                           2587 ;	game.c 331
-                           2588 ;	genLabel
-   07C6                    2589 00124$:
-                           2590 ;	genPlus
-                           2591 ;	AOP_STK for _move_character_sloc0_1_0
-                           2592 ;	AOP_STK for _move_character_sloc6_1_0
-                           2593 ;	genPlusIncr
-                           2594 ;	Can't optimise plus by inc, falling back to the normal way
-   07C6 F8 0C              2595 	lda	hl,12(sp)
-   07C8 5E                 2596 	ld	e,(hl)
-   07C9 23                 2597 	inc	hl
-   07CA 56                 2598 	ld	d,(hl)
-   07CB 21 01 00           2599 	ld	hl,#0x0001
-   07CE 19                 2600 	add	hl,de
-   07CF 7D                 2601 	ld	a,l
-   07D0 54                 2602 	ld	d,h
-   07D1 F8 01              2603 	lda	hl,1(sp)
-                           2604 ;	genPointerGet
-                           2605 ;	AOP_STK for _move_character_sloc6_1_0
-   07D3 22                 2606 	ld	(hl+),a
-   07D4 72                 2607 	ld	(hl),d
-   07D5 5F                 2608 	ld	e,a
-   07D6 1A                 2609 	ld	a,(de)
-                           2610 ;	genPlus
-                           2611 ;	genPlusIncr
-                           2612 ;	Can't optimise plus by inc, falling back to the normal way
-   07D7 4F                 2613 	ld	c,a
-   07D8 C6 02              2614 	add	a,#0x02
-                           2615 ;	genAssign (pointer)
-                           2616 ;	AOP_STK for _move_character_sloc6_1_0
-   07DA 2B                 2617 	dec	hl
-   07DB 5E                 2618 	ld	e,(hl)
-   07DC 23                 2619 	inc	hl
-   07DD 56                 2620 	ld	d,(hl)
-   07DE 12                 2621 	ld	(de),a
-                           2622 ;	game.c 333
-                           2623 ;	genLabel
-   07DF                    2624 00127$:
-                           2625 ;	game.c 335
-                           2626 ;	genCmpEq
-                           2627 ;	AOP_HL for _input_timer
-                           2628 ; genCmpEq: left 1, right 1, result 0
-   07DF 21 EA 02           2629 	ld	hl,#_input_timer
-   07E2 7E                 2630 	ld	a,(hl)
-   07E3 FE 04              2631 	cp	a,#0x04
-   07E5 C2 0D 08           2632 	jp	nz,00129$
-   07E8 18 03              2633 	jr	00170$
-   07EA                    2634 00169$:
-   07EA C3 0D 08           2635 	jp	00129$
-   07ED                    2636 00170$:
-                           2637 ;	game.c 336
-                           2638 ;	genPlus
-                           2639 ;	AOP_STK for _move_character_sloc0_1_0
-                           2640 ;	AOP_STK for _move_character_sloc6_1_0
-                           2641 ;	genPlusIncr
-                           2642 ;	Can't optimise plus by inc, falling back to the normal way
-   07ED F8 0C              2643 	lda	hl,12(sp)
-   07EF 5E                 2644 	ld	e,(hl)
-   07F0 23                 2645 	inc	hl
-   07F1 56                 2646 	ld	d,(hl)
-   07F2 21 03 00           2647 	ld	hl,#0x0003
-   07F5 19                 2648 	add	hl,de
-   07F6 7D                 2649 	ld	a,l
-   07F7 54                 2650 	ld	d,h
-   07F8 F8 01              2651 	lda	hl,1(sp)
-                           2652 ;	genPointerGet
-                           2653 ;	AOP_STK for _move_character_sloc6_1_0
-   07FA 22                 2654 	ld	(hl+),a
-   07FB 72                 2655 	ld	(hl),d
-   07FC 5F                 2656 	ld	e,a
-   07FD 1A                 2657 	ld	a,(de)
-   07FE 4F                 2658 	ld	c,a
-                           2659 ;	genIpush
-                           2660 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
-   07FF C5                 2661 	push	bc
-   0800 79                 2662 	ld	a,c
-   0801 F5                 2663 	push	af
-   0802 33                 2664 	inc	sp
-                           2665 ;	genIpush
-   0803 78                 2666 	ld	a,b
-   0804 F5                 2667 	push	af
-   0805 33                 2668 	inc	sp
-                           2669 ;	genCall
-   0806 CD 00 00           2670 	call	_set_sprite_tile
-   0809 E8 02              2671 	lda	sp,2(sp)
-   080B E1                 2672 	pop	hl
-   080C 44                 2673 	ld	b,h
-                           2674 ;	genLabel
-   080D                    2675 00129$:
-                           2676 ;	game.c 338
-                           2677 ;	genCmpEq
-                           2678 ;	AOP_HL for _input_timer
-                           2679 ; genCmpEq: left 1, right 1, result 0
-   080D 21 EA 02           2680 	ld	hl,#_input_timer
-   0810 7E                 2681 	ld	a,(hl)
-   0811 FE 02              2682 	cp	a,#0x02
-   0813 C2 3B 08           2683 	jp	nz,00134$
-   0816 18 03              2684 	jr	00172$
-   0818                    2685 00171$:
-   0818 C3 3B 08           2686 	jp	00134$
-   081B                    2687 00172$:
-                           2688 ;	game.c 339
-                           2689 ;	genPlus
-                           2690 ;	AOP_STK for _move_character_sloc0_1_0
-                           2691 ;	AOP_STK for _move_character_sloc6_1_0
-                           2692 ;	genPlusIncr
-                           2693 ;	Can't optimise plus by inc, falling back to the normal way
-   081B F8 0C              2694 	lda	hl,12(sp)
-   081D 5E                 2695 	ld	e,(hl)
-   081E 23                 2696 	inc	hl
-   081F 56                 2697 	ld	d,(hl)
-   0820 21 02 00           2698 	ld	hl,#0x0002
-   0823 19                 2699 	add	hl,de
-   0824 7D                 2700 	ld	a,l
-   0825 54                 2701 	ld	d,h
-   0826 F8 01              2702 	lda	hl,1(sp)
-                           2703 ;	genPointerGet
-                           2704 ;	AOP_STK for _move_character_sloc6_1_0
-   0828 22                 2705 	ld	(hl+),a
-   0829 72                 2706 	ld	(hl),d
-   082A 5F                 2707 	ld	e,a
-   082B 1A                 2708 	ld	a,(de)
-   082C 4F                 2709 	ld	c,a
-                           2710 ;	genIpush
-                           2711 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
-   082D C5                 2712 	push	bc
-   082E 79                 2713 	ld	a,c
-   082F F5                 2714 	push	af
-   0830 33                 2715 	inc	sp
-                           2716 ;	genIpush
-   0831 78                 2717 	ld	a,b
-   0832 F5                 2718 	push	af
-   0833 33                 2719 	inc	sp
-                           2720 ;	genCall
-   0834 CD 00 00           2721 	call	_set_sprite_tile
-   0837 E8 02              2722 	lda	sp,2(sp)
-   0839 E1                 2723 	pop	hl
-   083A 44                 2724 	ld	b,h
-                           2725 ;	genLabel
-   083B                    2726 00134$:
-                           2727 ;	game.c 343
-                           2728 ;	genPlus
-                           2729 ;	AOP_STK for _move_character_sloc0_1_0
-                           2730 ;	AOP_STK for _move_character_sloc6_1_0
-                           2731 ;	genPlusIncr
-                           2732 ;	Can't optimise plus by inc, falling back to the normal way
-   083B F8 0C              2733 	lda	hl,12(sp)
-   083D 5E                 2734 	ld	e,(hl)
-   083E 23                 2735 	inc	hl
-   083F 56                 2736 	ld	d,(hl)
-   0840 21 01 00           2737 	ld	hl,#0x0001
-   0843 19                 2738 	add	hl,de
-   0844 7D                 2739 	ld	a,l
-   0845 54                 2740 	ld	d,h
-   0846 F8 01              2741 	lda	hl,1(sp)
-                           2742 ;	genPointerGet
-                           2743 ;	AOP_STK for _move_character_sloc6_1_0
-   0848 22                 2744 	ld	(hl+),a
-   0849 72                 2745 	ld	(hl),d
-   084A 5F                 2746 	ld	e,a
-   084B 1A                 2747 	ld	a,(de)
-   084C 4F                 2748 	ld	c,a
-                           2749 ;	genPointerGet
-                           2750 ;	AOP_STK for _move_character_sloc0_1_0
-                           2751 ;	AOP_STK for _move_character_sloc7_1_0
-   084D F8 0C              2752 	lda	hl,12(sp)
-   084F 5E                 2753 	ld	e,(hl)
-   0850 23                 2754 	inc	hl
-   0851 56                 2755 	ld	d,(hl)
-   0852 1A                 2756 	ld	a,(de)
-   0853 F8 00              2757 	lda	hl,0(sp)
-   0855 77                 2758 	ld	(hl),a
-                           2759 ;	genIpush
-                           2760 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
-   0856 79                 2761 	ld	a,c
-   0857 F5                 2762 	push	af
-   0858 33                 2763 	inc	sp
-                           2764 ;	genIpush
-                           2765 ;	AOP_STK for _move_character_sloc7_1_0
-   0859 7E                 2766 	ld	a,(hl)
-   085A F5                 2767 	push	af
-   085B 33                 2768 	inc	sp
-                           2769 ;	genIpush
-   085C 78                 2770 	ld	a,b
-   085D F5                 2771 	push	af
-   085E 33                 2772 	inc	sp
-                           2773 ;	genCall
-   085F CD 00 00           2774 	call	_move_sprite
-   0862 E8 03              2775 	lda	sp,3(sp)
-                           2776 ;	genLabel
-   0864                    2777 00135$:
-                           2778 ;	genEndFunction
-   0864 E8 0E              2779 	lda	sp,14(sp)
-   0866 C9                 2780 	ret
-   0867                    2781 ___move_character_end:
-                           2782 ;	game.c 346
-                           2783 ;	genLabel
-                           2784 ;	genFunction
-                           2785 ;	---------------------------------
-                           2786 ; Function set_character_sprite
-                           2787 ; ---------------------------------
-   0867                    2788 ___set_character_sprite_start:
-   0867                    2789 _set_character_sprite:
-   0867 E8 FA              2790 	lda	sp,-6(sp)
-                           2791 ;	game.c 347
-                           2792 ;	genAssign
-                           2793 ;	AOP_STK for 
-   0869 F8 08              2794 	lda	hl,8(sp)
-   086B 4E                 2795 	ld	c,(hl)
-   086C 23                 2796 	inc	hl
-   086D 46                 2797 	ld	b,(hl)
-                           2798 ;	genPlus
-                           2799 ;	AOP_STK for _set_character_sprite_sloc0_1_0
-                           2800 ;	genPlusIncr
-                           2801 ;	Can't optimise plus by inc, falling back to the normal way
-   086E 21 02 00           2802 	ld	hl,#0x0002
-   0871 09                 2803 	add	hl,bc
-   0872 7D                 2804 	ld	a,l
-   0873 54                 2805 	ld	d,h
-   0874 F8 04              2806 	lda	hl,4(sp)
-                           2807 ;	genPointerGet
-                           2808 ;	AOP_STK for _set_character_sprite_sloc0_1_0
-                           2809 ;	AOP_STK for _set_character_sprite_sloc1_1_0
-   0876 22                 2810 	ld	(hl+),a
-   0877 72                 2811 	ld	(hl),d
-   0878 5F                 2812 	ld	e,a
-   0879 1A                 2813 	ld	a,(de)
-   087A 2B                 2814 	dec	hl
-   087B 2B                 2815 	dec	hl
-   087C 77                 2816 	ld	(hl),a
-                           2817 ;	genPlus
-                           2818 ;	AOP_STK for _set_character_sprite_sloc0_1_0
-                           2819 ;	genPlusIncr
-                           2820 ;	Can't optimise plus by inc, falling back to the normal way
-   087D 21 08 00           2821 	ld	hl,#0x0008
-   0880 09                 2822 	add	hl,bc
-   0881 7D                 2823 	ld	a,l
-   0882 54                 2824 	ld	d,h
-   0883 F8 04              2825 	lda	hl,4(sp)
-                           2826 ;	genPointerGet
-                           2827 ;	AOP_STK for _set_character_sprite_sloc0_1_0
-                           2828 ;	AOP_STK for _set_character_sprite_sloc2_1_0
-   0885 22                 2829 	ld	(hl+),a
-   0886 72                 2830 	ld	(hl),d
-   0887 5F                 2831 	ld	e,a
-   0888 1A                 2832 	ld	a,(de)
-   0889 F8 02              2833 	lda	hl,2(sp)
-   088B 77                 2834 	ld	(hl),a
-                           2835 ;	genIpush
-                           2836 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
-   088C C5                 2837 	push	bc
-                           2838 ;	AOP_STK for _set_character_sprite_sloc1_1_0
-   088D 23                 2839 	inc	hl
-   088E 7E                 2840 	ld	a,(hl)
-   088F F5                 2841 	push	af
-   0890 33                 2842 	inc	sp
-                           2843 ;	genIpush
-                           2844 ;	AOP_STK for _set_character_sprite_sloc2_1_0
-   0891 2B                 2845 	dec	hl
-   0892 7E                 2846 	ld	a,(hl)
-   0893 F5                 2847 	push	af
-   0894 33                 2848 	inc	sp
-                           2849 ;	genCall
-   0895 CD 00 00           2850 	call	_set_sprite_tile
-   0898 E8 02              2851 	lda	sp,2(sp)
-   089A C1                 2852 	pop	bc
-                           2853 ;	game.c 348
-                           2854 ;	genPlus
-                           2855 ;	AOP_STK for _set_character_sprite_sloc3_1_0
-                           2856 ;	genPlusIncr
-                           2857 ;	Can't optimise plus by inc, falling back to the normal way
-   089B 21 01 00           2858 	ld	hl,#0x0001
-   089E 09                 2859 	add	hl,bc
-   089F 7D                 2860 	ld	a,l
-   08A0 54                 2861 	ld	d,h
-   08A1 F8 00              2862 	lda	hl,0(sp)
-                           2863 ;	genPointerGet
-                           2864 ;	AOP_STK for _set_character_sprite_sloc3_1_0
-                           2865 ;	AOP_STK for _set_character_sprite_sloc2_1_0
-   08A3 22                 2866 	ld	(hl+),a
-   08A4 72                 2867 	ld	(hl),d
-   08A5 5F                 2868 	ld	e,a
-   08A6 1A                 2869 	ld	a,(de)
-   08A7 23                 2870 	inc	hl
-   08A8 77                 2871 	ld	(hl),a
-                           2872 ;	genPointerGet
-   08A9 0A                 2873 	ld	a,(bc)
-   08AA 4F                 2874 	ld	c,a
-                           2875 ;	genPointerGet
-                           2876 ;	AOP_STK for _set_character_sprite_sloc0_1_0
-   08AB 23                 2877 	inc	hl
-   08AC 23                 2878 	inc	hl
-   08AD 5E                 2879 	ld	e,(hl)
-   08AE 23                 2880 	inc	hl
-   08AF 56                 2881 	ld	d,(hl)
-   08B0 1A                 2882 	ld	a,(de)
-   08B1 47                 2883 	ld	b,a
-                           2884 ;	genIpush
-                           2885 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
-                           2886 ;	AOP_STK for _set_character_sprite_sloc2_1_0
-   08B2 F8 02              2887 	lda	hl,2(sp)
-   08B4 7E                 2888 	ld	a,(hl)
-   08B5 F5                 2889 	push	af
-   08B6 33                 2890 	inc	sp
-                           2891 ;	genIpush
-   08B7 79                 2892 	ld	a,c
-   08B8 F5                 2893 	push	af
-   08B9 33                 2894 	inc	sp
-                           2895 ;	genIpush
-   08BA 78                 2896 	ld	a,b
-   08BB F5                 2897 	push	af
-   08BC 33                 2898 	inc	sp
-                           2899 ;	genCall
-   08BD CD 00 00           2900 	call	_move_sprite
-   08C0 E8 03              2901 	lda	sp,3(sp)
-                           2902 ;	genLabel
-   08C2                    2903 00101$:
-                           2904 ;	genEndFunction
-   08C2 E8 06              2905 	lda	sp,6(sp)
-   08C4 C9                 2906 	ret
-   08C5                    2907 ___set_character_sprite_end:
-                           2908 	.area _CODE
+                           2410 ;	genLabel
+   0729                    2411 00120$:
+                           2412 ;	game.c 324
+                           2413 ;	genCmpEq
+                           2414 ; genCmpEq: left 1, right 1, result 0
+   0729 78                 2415 	ld	a,b
+   072A FE 02              2416 	cp	a,#0x02
+   072C C2 E2 08           2417 	jp	nz,00140$
+   072F 18 03              2418 	jr	00177$
+   0731                    2419 00176$:
+   0731 C3 E2 08           2420 	jp	00140$
+   0734                    2421 00177$:
+                           2422 ;	game.c 325
+                           2423 ;	genPlus
+                           2424 ;	AOP_STK for _move_character_sloc0_1_0
+                           2425 ;	AOP_STK for _move_character_sloc6_1_0
+                           2426 ;	genPlusIncr
+                           2427 ;	Can't optimise plus by inc, falling back to the normal way
+   0734 F8 0C              2428 	lda	hl,12(sp)
+   0736 5E                 2429 	ld	e,(hl)
+   0737 23                 2430 	inc	hl
+   0738 56                 2431 	ld	d,(hl)
+   0739 21 04 00           2432 	ld	hl,#0x0004
+   073C 19                 2433 	add	hl,de
+   073D 7D                 2434 	ld	a,l
+   073E 54                 2435 	ld	d,h
+   073F F8 01              2436 	lda	hl,1(sp)
+                           2437 ;	genPointerGet
+                           2438 ;	AOP_STK for _move_character_sloc6_1_0
+   0741 22                 2439 	ld	(hl+),a
+   0742 72                 2440 	ld	(hl),d
+   0743 5F                 2441 	ld	e,a
+   0744 1A                 2442 	ld	a,(de)
+   0745 4F                 2443 	ld	c,a
+                           2444 ;	genIpush
+                           2445 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0746 C5                 2446 	push	bc
+   0747 79                 2447 	ld	a,c
+   0748 F5                 2448 	push	af
+   0749 33                 2449 	inc	sp
+                           2450 ;	genIpush
+   074A 78                 2451 	ld	a,b
+   074B F5                 2452 	push	af
+   074C 33                 2453 	inc	sp
+                           2454 ;	genCall
+   074D CD 00 00           2455 	call	_set_sprite_tile
+   0750 E8 02              2456 	lda	sp,2(sp)
+   0752 E1                 2457 	pop	hl
+   0753 44                 2458 	ld	b,h
+                           2459 ;	game.c 327
+                           2460 ;	genPointerGet
+                           2461 ;	AOP_STK for _move_character_sloc2_1_0
+   0754 F8 08              2462 	lda	hl,8(sp)
+   0756 5E                 2463 	ld	e,(hl)
+   0757 23                 2464 	inc	hl
+   0758 56                 2465 	ld	d,(hl)
+   0759 1A                 2466 	ld	a,(de)
+                           2467 ;	genCmpEq
+                           2468 ; genCmpEq: left 1, right 1, result 0
+   075A 4F                 2469 	ld	c,a
+   075B FE 01              2470 	cp	a,#0x01
+   075D C2 7C 07           2471 	jp	nz,00122$
+   0760 18 03              2472 	jr	00179$
+   0762                    2473 00178$:
+   0762 C3 7C 07           2474 	jp	00122$
+   0765                    2475 00179$:
+                           2476 ;	game.c 329
+                           2477 ;	genAssign (pointer)
+                           2478 ;	AOP_STK for _move_character_sloc2_1_0
+   0765 F8 08              2479 	lda	hl,8(sp)
+   0767 5E                 2480 	ld	e,(hl)
+   0768 23                 2481 	inc	hl
+   0769 56                 2482 	ld	d,(hl)
+   076A 3E 02              2483 	ld	a,#0x02
+   076C 12                 2484 	ld	(de),a
+                           2485 ;	game.c 330
+                           2486 ;	genPlus
+                           2487 ;	AOP_STK for _move_character_sloc0_1_0
+                           2488 ;	genPlusIncr
+                           2489 ;	Can't optimise plus by inc, falling back to the normal way
+   076D F8 0C              2490 	lda	hl,12(sp)
+   076F 5E                 2491 	ld	e,(hl)
+   0770 23                 2492 	inc	hl
+   0771 56                 2493 	ld	d,(hl)
+   0772 21 07 00           2494 	ld	hl,#0x0007
+   0775 19                 2495 	add	hl,de
+   0776 7D                 2496 	ld	a,l
+   0777 54                 2497 	ld	d,h
+   0778 6F                 2498 	ld	l,a
+   0779 62                 2499 	ld	h,d
+                           2500 ;	genAssign (pointer)
+   077A 36 10              2501 	ld	(hl),#0x10
+                           2502 ;	genLabel
+   077C                    2503 00122$:
+                           2504 ;	game.c 332
+                           2505 ;	genPlus
+                           2506 ;	AOP_STK for _move_character_sloc0_1_0
+                           2507 ;	AOP_STK for _move_character_sloc6_1_0
+                           2508 ;	genPlusIncr
+                           2509 ;	Can't optimise plus by inc, falling back to the normal way
+   077C F8 0C              2510 	lda	hl,12(sp)
+   077E 5E                 2511 	ld	e,(hl)
+   077F 23                 2512 	inc	hl
+   0780 56                 2513 	ld	d,(hl)
+   0781 21 07 00           2514 	ld	hl,#0x0007
+   0784 19                 2515 	add	hl,de
+   0785 7D                 2516 	ld	a,l
+   0786 54                 2517 	ld	d,h
+   0787 F8 01              2518 	lda	hl,1(sp)
+                           2519 ;	genPointerGet
+                           2520 ;	AOP_STK for _move_character_sloc6_1_0
+   0789 22                 2521 	ld	(hl+),a
+   078A 72                 2522 	ld	(hl),d
+   078B 5F                 2523 	ld	e,a
+   078C 1A                 2524 	ld	a,(de)
+   078D 4F                 2525 	ld	c,a
+                           2526 ;	genMinus
+   078E 0D                 2527 	dec	c
+                           2528 ;	genAssign (pointer)
+                           2529 ;	AOP_STK for _move_character_sloc6_1_0
+   078F 2B                 2530 	dec	hl
+   0790 5E                 2531 	ld	e,(hl)
+   0791 23                 2532 	inc	hl
+   0792 56                 2533 	ld	d,(hl)
+   0793 79                 2534 	ld	a,c
+   0794 12                 2535 	ld	(de),a
+                           2536 ;	game.c 334
+                           2537 ;	genCmpEq
+                           2538 ; genCmpEq: left 1, right 1, result 0
+   0795 79                 2539 	ld	a,c
+   0796 B7                 2540 	or	a,a
+   0797 C2 E2 08           2541 	jp	nz,00140$
+   079A 18 03              2542 	jr	00181$
+   079C                    2543 00180$:
+   079C C3 E2 08           2544 	jp	00140$
+   079F                    2545 00181$:
+                           2546 ;	game.c 335
+                           2547 ;	genAssign (pointer)
+                           2548 ;	AOP_STK for _move_character_sloc2_1_0
+   079F F8 08              2549 	lda	hl,8(sp)
+   07A1 5E                 2550 	ld	e,(hl)
+   07A2 23                 2551 	inc	hl
+   07A3 56                 2552 	ld	d,(hl)
+   07A4 3E 00              2553 	ld	a,#0x00
+   07A6 12                 2554 	ld	(de),a
+                           2555 ;	game.c 336
+                           2556 ;	genPlus
+                           2557 ;	AOP_STK for _move_character_sloc0_1_0
+                           2558 ;	AOP_STK for _move_character_sloc6_1_0
+                           2559 ;	genPlusIncr
+                           2560 ;	Can't optimise plus by inc, falling back to the normal way
+   07A7 F8 0C              2561 	lda	hl,12(sp)
+   07A9 5E                 2562 	ld	e,(hl)
+   07AA 23                 2563 	inc	hl
+   07AB 56                 2564 	ld	d,(hl)
+   07AC 21 02 00           2565 	ld	hl,#0x0002
+   07AF 19                 2566 	add	hl,de
+   07B0 7D                 2567 	ld	a,l
+   07B1 54                 2568 	ld	d,h
+   07B2 F8 01              2569 	lda	hl,1(sp)
+                           2570 ;	genPointerGet
+                           2571 ;	AOP_STK for _move_character_sloc6_1_0
+   07B4 22                 2572 	ld	(hl+),a
+   07B5 72                 2573 	ld	(hl),d
+   07B6 5F                 2574 	ld	e,a
+   07B7 1A                 2575 	ld	a,(de)
+   07B8 4F                 2576 	ld	c,a
+                           2577 ;	genPointerGet
+                           2578 ;	AOP_STK for _move_character_sloc1_1_0
+                           2579 ;	AOP_STK for _move_character_sloc7_1_0
+   07B9 F8 0A              2580 	lda	hl,10(sp)
+   07BB 5E                 2581 	ld	e,(hl)
+   07BC 23                 2582 	inc	hl
+   07BD 56                 2583 	ld	d,(hl)
+   07BE 1A                 2584 	ld	a,(de)
+   07BF F8 00              2585 	lda	hl,0(sp)
+   07C1 77                 2586 	ld	(hl),a
+                           2587 ;	genIpush
+                           2588 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   07C2 C5                 2589 	push	bc
+   07C3 79                 2590 	ld	a,c
+   07C4 F5                 2591 	push	af
+   07C5 33                 2592 	inc	sp
+                           2593 ;	genIpush
+                           2594 ;	AOP_STK for _move_character_sloc7_1_0
+   07C6 7E                 2595 	ld	a,(hl)
+   07C7 F5                 2596 	push	af
+   07C8 33                 2597 	inc	sp
+                           2598 ;	genCall
+   07C9 CD 00 00           2599 	call	_set_sprite_tile
+   07CC E8 02              2600 	lda	sp,2(sp)
+   07CE E1                 2601 	pop	hl
+   07CF 44                 2602 	ld	b,h
+                           2603 ;	genGoto
+   07D0 C3 E2 08           2604 	jp	00140$
+                           2605 ;	genLabel
+   07D3                    2606 00139$:
+                           2607 ;	game.c 343
+                           2608 ;	genCmpEq
+                           2609 ;	AOP_HL for _input_timer
+                           2610 ; genCmpEq: left 1, right 1, result 0
+   07D3 21 EA 02           2611 	ld	hl,#_input_timer
+   07D6 7E                 2612 	ld	a,(hl)
+   07D7 B7                 2613 	or	a,a
+   07D8 CA 86 08           2614 	jp	z,00133$
+   07DB                    2615 00182$:
+                           2616 ;	game.c 344
+                           2617 ;	genPlus
+                           2618 ;	AOP_STK for _move_character_sloc0_1_0
+                           2619 ;	AOP_STK for _move_character_sloc6_1_0
+                           2620 ;	genPlusIncr
+                           2621 ;	Can't optimise plus by inc, falling back to the normal way
+   07DB F8 0C              2622 	lda	hl,12(sp)
+   07DD 5E                 2623 	ld	e,(hl)
+   07DE 23                 2624 	inc	hl
+   07DF 56                 2625 	ld	d,(hl)
+   07E0 21 05 00           2626 	ld	hl,#0x0005
+   07E3 19                 2627 	add	hl,de
+   07E4 7D                 2628 	ld	a,l
+   07E5 54                 2629 	ld	d,h
+   07E6 F8 01              2630 	lda	hl,1(sp)
+                           2631 ;	genPointerGet
+                           2632 ;	AOP_STK for _move_character_sloc6_1_0
+   07E8 22                 2633 	ld	(hl+),a
+   07E9 72                 2634 	ld	(hl),d
+   07EA 5F                 2635 	ld	e,a
+   07EB 1A                 2636 	ld	a,(de)
+                           2637 ;	genCmpLt
+   07EC 4F                 2638 	ld	c,a
+   07ED FE 01              2639 	cp	#0x01
+   07EF DA 86 08           2640 	jp	c,00133$
+                           2641 ;	genCmpGt
+   07F2 3E 04              2642 	ld	a,#0x04
+   07F4 91                 2643 	sub	a,c
+   07F5 DA 86 08           2644 	jp	c,00133$
+                           2645 ;	genMinus
+   07F8 0D                 2646 	dec	c
+                           2647 ;	genJumpTab
+   07F9 59                 2648 	ld	e,c
+   07FA 16 00              2649 	ld	d,#0x00
+   07FC 21 03 08           2650 	ld	hl,#00183$
+   07FF 19                 2651 	add	hl,de
+   0800 19                 2652 	add	hl,de
+   0801 19                 2653 	add	hl,de
+   0802 E9                 2654 	jp	(hl)
+   0803                    2655 00183$:
+   0803 C3 50 08           2656 	jp	00129$
+   0806 C3 30 08           2657 	jp	00128$
+   0809 C3 6D 08           2658 	jp	00130$
+   080C C3 0F 08           2659 	jp	00127$
+                           2660 ;	game.c 346
+                           2661 ;	genLabel
+   080F                    2662 00127$:
+                           2663 ;	genPointerGet
+                           2664 ;	AOP_STK for _move_character_sloc0_1_0
+   080F F8 0C              2665 	lda	hl,12(sp)
+   0811 5E                 2666 	ld	e,(hl)
+   0812 23                 2667 	inc	hl
+   0813 56                 2668 	ld	d,(hl)
+   0814 1A                 2669 	ld	a,(de)
+   0815 4F                 2670 	ld	c,a
+                           2671 ;	genMinus
+   0816 0D                 2672 	dec	c
+   0817 0D                 2673 	dec	c
+                           2674 ;	genAssign (pointer)
+                           2675 ;	AOP_STK for _move_character_sloc0_1_0
+   0818 2B                 2676 	dec	hl
+   0819 5E                 2677 	ld	e,(hl)
+   081A 23                 2678 	inc	hl
+   081B 56                 2679 	ld	d,(hl)
+   081C 79                 2680 	ld	a,c
+   081D 12                 2681 	ld	(de),a
+                           2682 ;	game.c 347
+                           2683 ;	genIpush
+                           2684 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   081E C5                 2685 	push	bc
+   081F 3E 20              2686 	ld	a,#0x20
+   0821 F5                 2687 	push	af
+   0822 33                 2688 	inc	sp
+                           2689 ;	genIpush
+   0823 78                 2690 	ld	a,b
+   0824 F5                 2691 	push	af
+   0825 33                 2692 	inc	sp
+                           2693 ;	genCall
+   0826 CD 00 00           2694 	call	_set_sprite_prop
+   0829 E8 02              2695 	lda	sp,2(sp)
+   082B E1                 2696 	pop	hl
+   082C 44                 2697 	ld	b,h
+                           2698 ;	game.c 348
+                           2699 ;	genGoto
+   082D C3 86 08           2700 	jp	00133$
+                           2701 ;	game.c 350
+                           2702 ;	genLabel
+   0830                    2703 00128$:
+                           2704 ;	genPointerGet
+                           2705 ;	AOP_STK for _move_character_sloc0_1_0
+   0830 F8 0C              2706 	lda	hl,12(sp)
+   0832 5E                 2707 	ld	e,(hl)
+   0833 23                 2708 	inc	hl
+   0834 56                 2709 	ld	d,(hl)
+   0835 1A                 2710 	ld	a,(de)
+                           2711 ;	genPlus
+                           2712 ;	genPlusIncr
+                           2713 ;	Can't optimise plus by inc, falling back to the normal way
+   0836 4F                 2714 	ld	c,a
+   0837 C6 02              2715 	add	a,#0x02
+                           2716 ;	genAssign (pointer)
+                           2717 ;	AOP_STK for _move_character_sloc0_1_0
+   0839 2B                 2718 	dec	hl
+   083A 5E                 2719 	ld	e,(hl)
+   083B 23                 2720 	inc	hl
+   083C 56                 2721 	ld	d,(hl)
+   083D 12                 2722 	ld	(de),a
+                           2723 ;	game.c 351
+                           2724 ;	genIpush
+                           2725 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   083E C5                 2726 	push	bc
+   083F 3E 00              2727 	ld	a,#0x00
+   0841 F5                 2728 	push	af
+   0842 33                 2729 	inc	sp
+                           2730 ;	genIpush
+   0843 78                 2731 	ld	a,b
+   0844 F5                 2732 	push	af
+   0845 33                 2733 	inc	sp
+                           2734 ;	genCall
+   0846 CD 00 00           2735 	call	_set_sprite_prop
+   0849 E8 02              2736 	lda	sp,2(sp)
+   084B E1                 2737 	pop	hl
+   084C 44                 2738 	ld	b,h
+                           2739 ;	game.c 352
+                           2740 ;	genGoto
+   084D C3 86 08           2741 	jp	00133$
+                           2742 ;	game.c 354
+                           2743 ;	genLabel
+   0850                    2744 00129$:
+                           2745 ;	genPlus
+                           2746 ;	AOP_STK for _move_character_sloc0_1_0
+                           2747 ;	AOP_STK for _move_character_sloc6_1_0
+                           2748 ;	genPlusIncr
+                           2749 ;	Can't optimise plus by inc, falling back to the normal way
+   0850 F8 0C              2750 	lda	hl,12(sp)
+   0852 5E                 2751 	ld	e,(hl)
+   0853 23                 2752 	inc	hl
+   0854 56                 2753 	ld	d,(hl)
+   0855 21 01 00           2754 	ld	hl,#0x0001
+   0858 19                 2755 	add	hl,de
+   0859 7D                 2756 	ld	a,l
+   085A 54                 2757 	ld	d,h
+   085B F8 01              2758 	lda	hl,1(sp)
+                           2759 ;	genPointerGet
+                           2760 ;	AOP_STK for _move_character_sloc6_1_0
+   085D 22                 2761 	ld	(hl+),a
+   085E 72                 2762 	ld	(hl),d
+   085F 5F                 2763 	ld	e,a
+   0860 1A                 2764 	ld	a,(de)
+   0861 4F                 2765 	ld	c,a
+                           2766 ;	genMinus
+   0862 0D                 2767 	dec	c
+   0863 0D                 2768 	dec	c
+                           2769 ;	genAssign (pointer)
+                           2770 ;	AOP_STK for _move_character_sloc6_1_0
+   0864 2B                 2771 	dec	hl
+   0865 5E                 2772 	ld	e,(hl)
+   0866 23                 2773 	inc	hl
+   0867 56                 2774 	ld	d,(hl)
+   0868 79                 2775 	ld	a,c
+   0869 12                 2776 	ld	(de),a
+                           2777 ;	game.c 355
+                           2778 ;	genGoto
+   086A C3 86 08           2779 	jp	00133$
+                           2780 ;	game.c 357
+                           2781 ;	genLabel
+   086D                    2782 00130$:
+                           2783 ;	genPlus
+                           2784 ;	AOP_STK for _move_character_sloc0_1_0
+                           2785 ;	AOP_STK for _move_character_sloc6_1_0
+                           2786 ;	genPlusIncr
+                           2787 ;	Can't optimise plus by inc, falling back to the normal way
+   086D F8 0C              2788 	lda	hl,12(sp)
+   086F 5E                 2789 	ld	e,(hl)
+   0870 23                 2790 	inc	hl
+   0871 56                 2791 	ld	d,(hl)
+   0872 21 01 00           2792 	ld	hl,#0x0001
+   0875 19                 2793 	add	hl,de
+   0876 7D                 2794 	ld	a,l
+   0877 54                 2795 	ld	d,h
+   0878 F8 01              2796 	lda	hl,1(sp)
+                           2797 ;	genPointerGet
+                           2798 ;	AOP_STK for _move_character_sloc6_1_0
+   087A 22                 2799 	ld	(hl+),a
+   087B 72                 2800 	ld	(hl),d
+   087C 5F                 2801 	ld	e,a
+   087D 1A                 2802 	ld	a,(de)
+                           2803 ;	genPlus
+                           2804 ;	genPlusIncr
+                           2805 ;	Can't optimise plus by inc, falling back to the normal way
+   087E 4F                 2806 	ld	c,a
+   087F C6 02              2807 	add	a,#0x02
+                           2808 ;	genAssign (pointer)
+                           2809 ;	AOP_STK for _move_character_sloc6_1_0
+   0881 2B                 2810 	dec	hl
+   0882 5E                 2811 	ld	e,(hl)
+   0883 23                 2812 	inc	hl
+   0884 56                 2813 	ld	d,(hl)
+   0885 12                 2814 	ld	(de),a
+                           2815 ;	game.c 359
+                           2816 ;	genLabel
+   0886                    2817 00133$:
+                           2818 ;	game.c 361
+                           2819 ;	genCmpEq
+                           2820 ;	AOP_HL for _input_timer
+                           2821 ; genCmpEq: left 1, right 1, result 0
+   0886 21 EA 02           2822 	ld	hl,#_input_timer
+   0889 7E                 2823 	ld	a,(hl)
+   088A FE 04              2824 	cp	a,#0x04
+   088C C2 B4 08           2825 	jp	nz,00135$
+   088F 18 03              2826 	jr	00185$
+   0891                    2827 00184$:
+   0891 C3 B4 08           2828 	jp	00135$
+   0894                    2829 00185$:
+                           2830 ;	game.c 362
+                           2831 ;	genPlus
+                           2832 ;	AOP_STK for _move_character_sloc0_1_0
+                           2833 ;	AOP_STK for _move_character_sloc6_1_0
+                           2834 ;	genPlusIncr
+                           2835 ;	Can't optimise plus by inc, falling back to the normal way
+   0894 F8 0C              2836 	lda	hl,12(sp)
+   0896 5E                 2837 	ld	e,(hl)
+   0897 23                 2838 	inc	hl
+   0898 56                 2839 	ld	d,(hl)
+   0899 21 03 00           2840 	ld	hl,#0x0003
+   089C 19                 2841 	add	hl,de
+   089D 7D                 2842 	ld	a,l
+   089E 54                 2843 	ld	d,h
+   089F F8 01              2844 	lda	hl,1(sp)
+                           2845 ;	genPointerGet
+                           2846 ;	AOP_STK for _move_character_sloc6_1_0
+   08A1 22                 2847 	ld	(hl+),a
+   08A2 72                 2848 	ld	(hl),d
+   08A3 5F                 2849 	ld	e,a
+   08A4 1A                 2850 	ld	a,(de)
+   08A5 4F                 2851 	ld	c,a
+                           2852 ;	genIpush
+                           2853 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   08A6 C5                 2854 	push	bc
+   08A7 79                 2855 	ld	a,c
+   08A8 F5                 2856 	push	af
+   08A9 33                 2857 	inc	sp
+                           2858 ;	genIpush
+   08AA 78                 2859 	ld	a,b
+   08AB F5                 2860 	push	af
+   08AC 33                 2861 	inc	sp
+                           2862 ;	genCall
+   08AD CD 00 00           2863 	call	_set_sprite_tile
+   08B0 E8 02              2864 	lda	sp,2(sp)
+   08B2 E1                 2865 	pop	hl
+   08B3 44                 2866 	ld	b,h
+                           2867 ;	genLabel
+   08B4                    2868 00135$:
+                           2869 ;	game.c 364
+                           2870 ;	genCmpEq
+                           2871 ;	AOP_HL for _input_timer
+                           2872 ; genCmpEq: left 1, right 1, result 0
+   08B4 21 EA 02           2873 	ld	hl,#_input_timer
+   08B7 7E                 2874 	ld	a,(hl)
+   08B8 FE 02              2875 	cp	a,#0x02
+   08BA C2 E2 08           2876 	jp	nz,00140$
+   08BD 18 03              2877 	jr	00187$
+   08BF                    2878 00186$:
+   08BF C3 E2 08           2879 	jp	00140$
+   08C2                    2880 00187$:
+                           2881 ;	game.c 365
+                           2882 ;	genPlus
+                           2883 ;	AOP_STK for _move_character_sloc0_1_0
+                           2884 ;	AOP_STK for _move_character_sloc6_1_0
+                           2885 ;	genPlusIncr
+                           2886 ;	Can't optimise plus by inc, falling back to the normal way
+   08C2 F8 0C              2887 	lda	hl,12(sp)
+   08C4 5E                 2888 	ld	e,(hl)
+   08C5 23                 2889 	inc	hl
+   08C6 56                 2890 	ld	d,(hl)
+   08C7 21 02 00           2891 	ld	hl,#0x0002
+   08CA 19                 2892 	add	hl,de
+   08CB 7D                 2893 	ld	a,l
+   08CC 54                 2894 	ld	d,h
+   08CD F8 01              2895 	lda	hl,1(sp)
+                           2896 ;	genPointerGet
+                           2897 ;	AOP_STK for _move_character_sloc6_1_0
+   08CF 22                 2898 	ld	(hl+),a
+   08D0 72                 2899 	ld	(hl),d
+   08D1 5F                 2900 	ld	e,a
+   08D2 1A                 2901 	ld	a,(de)
+   08D3 4F                 2902 	ld	c,a
+                           2903 ;	genIpush
+                           2904 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   08D4 C5                 2905 	push	bc
+   08D5 79                 2906 	ld	a,c
+   08D6 F5                 2907 	push	af
+   08D7 33                 2908 	inc	sp
+                           2909 ;	genIpush
+   08D8 78                 2910 	ld	a,b
+   08D9 F5                 2911 	push	af
+   08DA 33                 2912 	inc	sp
+                           2913 ;	genCall
+   08DB CD 00 00           2914 	call	_set_sprite_tile
+   08DE E8 02              2915 	lda	sp,2(sp)
+   08E0 E1                 2916 	pop	hl
+   08E1 44                 2917 	ld	b,h
+                           2918 ;	genLabel
+   08E2                    2919 00140$:
+                           2920 ;	game.c 369
+                           2921 ;	genPlus
+                           2922 ;	AOP_STK for _move_character_sloc0_1_0
+                           2923 ;	AOP_STK for _move_character_sloc6_1_0
+                           2924 ;	genPlusIncr
+                           2925 ;	Can't optimise plus by inc, falling back to the normal way
+   08E2 F8 0C              2926 	lda	hl,12(sp)
+   08E4 5E                 2927 	ld	e,(hl)
+   08E5 23                 2928 	inc	hl
+   08E6 56                 2929 	ld	d,(hl)
+   08E7 21 01 00           2930 	ld	hl,#0x0001
+   08EA 19                 2931 	add	hl,de
+   08EB 7D                 2932 	ld	a,l
+   08EC 54                 2933 	ld	d,h
+   08ED F8 01              2934 	lda	hl,1(sp)
+                           2935 ;	genPointerGet
+                           2936 ;	AOP_STK for _move_character_sloc6_1_0
+   08EF 22                 2937 	ld	(hl+),a
+   08F0 72                 2938 	ld	(hl),d
+   08F1 5F                 2939 	ld	e,a
+   08F2 1A                 2940 	ld	a,(de)
+   08F3 4F                 2941 	ld	c,a
+                           2942 ;	genPointerGet
+                           2943 ;	AOP_STK for _move_character_sloc0_1_0
+                           2944 ;	AOP_STK for _move_character_sloc7_1_0
+   08F4 F8 0C              2945 	lda	hl,12(sp)
+   08F6 5E                 2946 	ld	e,(hl)
+   08F7 23                 2947 	inc	hl
+   08F8 56                 2948 	ld	d,(hl)
+   08F9 1A                 2949 	ld	a,(de)
+   08FA F8 00              2950 	lda	hl,0(sp)
+   08FC 77                 2951 	ld	(hl),a
+                           2952 ;	genIpush
+                           2953 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   08FD 79                 2954 	ld	a,c
+   08FE F5                 2955 	push	af
+   08FF 33                 2956 	inc	sp
+                           2957 ;	genIpush
+                           2958 ;	AOP_STK for _move_character_sloc7_1_0
+   0900 7E                 2959 	ld	a,(hl)
+   0901 F5                 2960 	push	af
+   0902 33                 2961 	inc	sp
+                           2962 ;	genIpush
+   0903 78                 2963 	ld	a,b
+   0904 F5                 2964 	push	af
+   0905 33                 2965 	inc	sp
+                           2966 ;	genCall
+   0906 CD 00 00           2967 	call	_move_sprite
+   0909 E8 03              2968 	lda	sp,3(sp)
+                           2969 ;	genLabel
+   090B                    2970 00141$:
+                           2971 ;	genEndFunction
+   090B E8 0E              2972 	lda	sp,14(sp)
+   090D C9                 2973 	ret
+   090E                    2974 ___move_character_end:
+                           2975 ;	game.c 372
+                           2976 ;	genLabel
+                           2977 ;	genFunction
+                           2978 ;	---------------------------------
+                           2979 ; Function set_character_sprite
+                           2980 ; ---------------------------------
+   090E                    2981 ___set_character_sprite_start:
+   090E                    2982 _set_character_sprite:
+   090E E8 FA              2983 	lda	sp,-6(sp)
+                           2984 ;	game.c 373
+                           2985 ;	genAssign
+                           2986 ;	AOP_STK for 
+   0910 F8 08              2987 	lda	hl,8(sp)
+   0912 4E                 2988 	ld	c,(hl)
+   0913 23                 2989 	inc	hl
+   0914 46                 2990 	ld	b,(hl)
+                           2991 ;	genPlus
+                           2992 ;	AOP_STK for _set_character_sprite_sloc0_1_0
+                           2993 ;	genPlusIncr
+                           2994 ;	Can't optimise plus by inc, falling back to the normal way
+   0915 21 02 00           2995 	ld	hl,#0x0002
+   0918 09                 2996 	add	hl,bc
+   0919 7D                 2997 	ld	a,l
+   091A 54                 2998 	ld	d,h
+   091B F8 04              2999 	lda	hl,4(sp)
+                           3000 ;	genPointerGet
+                           3001 ;	AOP_STK for _set_character_sprite_sloc0_1_0
+                           3002 ;	AOP_STK for _set_character_sprite_sloc1_1_0
+   091D 22                 3003 	ld	(hl+),a
+   091E 72                 3004 	ld	(hl),d
+   091F 5F                 3005 	ld	e,a
+   0920 1A                 3006 	ld	a,(de)
+   0921 2B                 3007 	dec	hl
+   0922 2B                 3008 	dec	hl
+   0923 77                 3009 	ld	(hl),a
+                           3010 ;	genPlus
+                           3011 ;	AOP_STK for _set_character_sprite_sloc0_1_0
+                           3012 ;	genPlusIncr
+                           3013 ;	Can't optimise plus by inc, falling back to the normal way
+   0924 21 08 00           3014 	ld	hl,#0x0008
+   0927 09                 3015 	add	hl,bc
+   0928 7D                 3016 	ld	a,l
+   0929 54                 3017 	ld	d,h
+   092A F8 04              3018 	lda	hl,4(sp)
+                           3019 ;	genPointerGet
+                           3020 ;	AOP_STK for _set_character_sprite_sloc0_1_0
+                           3021 ;	AOP_STK for _set_character_sprite_sloc2_1_0
+   092C 22                 3022 	ld	(hl+),a
+   092D 72                 3023 	ld	(hl),d
+   092E 5F                 3024 	ld	e,a
+   092F 1A                 3025 	ld	a,(de)
+   0930 F8 02              3026 	lda	hl,2(sp)
+   0932 77                 3027 	ld	(hl),a
+                           3028 ;	genIpush
+                           3029 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0933 C5                 3030 	push	bc
+                           3031 ;	AOP_STK for _set_character_sprite_sloc1_1_0
+   0934 23                 3032 	inc	hl
+   0935 7E                 3033 	ld	a,(hl)
+   0936 F5                 3034 	push	af
+   0937 33                 3035 	inc	sp
+                           3036 ;	genIpush
+                           3037 ;	AOP_STK for _set_character_sprite_sloc2_1_0
+   0938 2B                 3038 	dec	hl
+   0939 7E                 3039 	ld	a,(hl)
+   093A F5                 3040 	push	af
+   093B 33                 3041 	inc	sp
+                           3042 ;	genCall
+   093C CD 00 00           3043 	call	_set_sprite_tile
+   093F E8 02              3044 	lda	sp,2(sp)
+   0941 C1                 3045 	pop	bc
+                           3046 ;	game.c 374
+                           3047 ;	genPlus
+                           3048 ;	AOP_STK for _set_character_sprite_sloc3_1_0
+                           3049 ;	genPlusIncr
+                           3050 ;	Can't optimise plus by inc, falling back to the normal way
+   0942 21 01 00           3051 	ld	hl,#0x0001
+   0945 09                 3052 	add	hl,bc
+   0946 7D                 3053 	ld	a,l
+   0947 54                 3054 	ld	d,h
+   0948 F8 00              3055 	lda	hl,0(sp)
+                           3056 ;	genPointerGet
+                           3057 ;	AOP_STK for _set_character_sprite_sloc3_1_0
+                           3058 ;	AOP_STK for _set_character_sprite_sloc2_1_0
+   094A 22                 3059 	ld	(hl+),a
+   094B 72                 3060 	ld	(hl),d
+   094C 5F                 3061 	ld	e,a
+   094D 1A                 3062 	ld	a,(de)
+   094E 23                 3063 	inc	hl
+   094F 77                 3064 	ld	(hl),a
+                           3065 ;	genPointerGet
+   0950 0A                 3066 	ld	a,(bc)
+   0951 4F                 3067 	ld	c,a
+                           3068 ;	genPointerGet
+                           3069 ;	AOP_STK for _set_character_sprite_sloc0_1_0
+   0952 23                 3070 	inc	hl
+   0953 23                 3071 	inc	hl
+   0954 5E                 3072 	ld	e,(hl)
+   0955 23                 3073 	inc	hl
+   0956 56                 3074 	ld	d,(hl)
+   0957 1A                 3075 	ld	a,(de)
+   0958 47                 3076 	ld	b,a
+                           3077 ;	genIpush
+                           3078 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                           3079 ;	AOP_STK for _set_character_sprite_sloc2_1_0
+   0959 F8 02              3080 	lda	hl,2(sp)
+   095B 7E                 3081 	ld	a,(hl)
+   095C F5                 3082 	push	af
+   095D 33                 3083 	inc	sp
+                           3084 ;	genIpush
+   095E 79                 3085 	ld	a,c
+   095F F5                 3086 	push	af
+   0960 33                 3087 	inc	sp
+                           3088 ;	genIpush
+   0961 78                 3089 	ld	a,b
+   0962 F5                 3090 	push	af
+   0963 33                 3091 	inc	sp
+                           3092 ;	genCall
+   0964 CD 00 00           3093 	call	_move_sprite
+   0967 E8 03              3094 	lda	sp,3(sp)
+                           3095 ;	genLabel
+   0969                    3096 00101$:
+                           3097 ;	genEndFunction
+   0969 E8 06              3098 	lda	sp,6(sp)
+   096B C9                 3099 	ret
+   096C                    3100 ___set_character_sprite_end:
+                           3101 	.area _CODE
 ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
 
 Symbol Table
@@ -2962,14 +3155,14 @@ Symbol Table
   0 ___main_start                      0023 R
   0 ___map_1_end                       00D5 R
   0 ___map_1_start                     0064 R
-  0 ___move_character_end              0867 R
+  0 ___move_character_end              090E R
   0 ___move_character_start            04F5 R
   0 ___performantDelay_end             0016 R
   0 ___performantDelay_start           0000 R
   0 ___player_input_end                03E5 R
   0 ___player_input_start              01B1 R
-  0 ___set_character_sprite_end        08C5 R
-  0 ___set_character_sprite_start      0867 R
+  0 ___set_character_sprite_end        096C R
+  0 ___set_character_sprite_start      090E R
   0 ___timers_end                      0023 R
   0 ___timers_start                    0016 R
     __initrleblock                     **** GX
@@ -2995,7 +3188,7 @@ Symbol Table
   1 _running                           02E8 GR
     _set_bkg_data                      **** GX
     _set_bkg_tiles                     **** GX
-  0 _set_character_sprite              0867 GR
+  0 _set_character_sprite              090E GR
     _set_sprite_data                   **** GX
     _set_sprite_prop                   **** GX
     _set_sprite_tile                   **** GX
@@ -3008,7 +3201,7 @@ Symbol Table
 
 Area Table
 
-   0 _CODE                              size  8C5   flags 0
+   0 _CODE                              size  96C   flags 0
    1 _DATA                              size  320   flags 0
    2 _OVERLAY                           size    0   flags 0
    3 _ISEG                              size    0   flags 0
