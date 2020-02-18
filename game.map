@@ -19,17 +19,17 @@ AREA .  .ABS.
 		l__BSS	0087
 		l__HEADER	01EB
 		s__CODE	0200
-		l__GSINIT	0203
+		l__GSINIT	0215
 		l__DATA	0320
 		l__HOME	04AD
 		l__BASE	0FBD
-		l__CODE	12D0
-		s__HOME	14D0
-		s__BASE	197D
-		s__LIT	293A
-		s__GSINIT	293A
-		s__GSINITTAIL	2B3D
-		s__GSFINAL	2B3E
+		l__CODE	135B
+		s__HOME	155B
+		s__BASE	1A08
+		s__LIT	29C5
+		s__GSINIT	29C5
+		s__GSINITTAIL	2BDA
+		s__GSFINAL	2BDB
 		.OAM	C000
 		s__DATA	C0A0
 		s__BSS	C3C0
@@ -43,70 +43,71 @@ AREA .  .ABS.
 AREA _CODE
 	RADIX HEX
 	BASE 0200
-	SIZE 12D0
+	SIZE 135B
 	ATTRIB REL CON
 	GLOBALS
 		_performantDelay	0200
 		_timers	0216
-		_main	0223
-		_map_1	0264
-		_init	02F7
-		_is_ded	03D3
-		_player_input	04A8
-		_can_move	06DC
-		_move_character	07E6
-		_set_character_sprite	0BFF
-		__divschar_rrx_s	0C5D
-		__divschar_rrx_hds	0C64
-		__modschar_rrx_s	0C6B
-		__modschar_rrx_hds	0C72
-		__divsint_rrx_s	0C77
-		__divsint_rrx_hds	0C83
-		__modsint_rrx_s	0C8B
-		__modsint_rrx_hds	0C97
-		__divuchar_rrx_s	0C9D
-		__divuchar_rrx_hds	0CA4
-		__moduchar_rrx_s	0CAB
-		__moduchar_rrx_hds	0CB2
-		__divuint_rrx_s	0CB7
-		__divuint_rrx_hds	0CC3
-		__moduint_rrx_s	0CCB
-		__moduint_rrx_hds	0CD7
-		.mod8	0CDD
-		.div8	0CDD
-		.mod16	0CE5
-		.div16	0CE5
-		.modu8	0D1F
-		.divu8	0D1F
-		.modu16	0D22
-		.divu16	0D22
-		_putchar	0D5F
-		_setchar	0D68
-		_gotoxy	0D71
-		_posx	0D7C
-		_posy	0D8D
-		.adv_gcurs	0D9E
-		.circle	0DBB
-		.horlin	0E5E
-		.verlin	0E96
-		.circplot	0EF2
-		.box	0F70
-		.line	1046
-		.xonly	1167
-		.yonly	12B6
-		.plot	12D7
-		.wrbyte	12F4
-		.getpix	1376
-		.wrtchr	13AB
-		_gotogxy	140F
-		_wrtchr	141A
-		_getpix	142F
-		_color	143B
-		_circle	144A
-		_box	1464
-		_line	1488
-		_plot_point	14A0
-		_plot	14B4
+		_main	0227
+		_map_1_water	026B
+		_map_1	02F5
+		_init	0388
+		_is_ded	0469
+		_player_input	053E
+		_can_move	0772
+		_move_character	0871
+		_set_character_sprite	0C8A
+		__divschar_rrx_s	0CE8
+		__divschar_rrx_hds	0CEF
+		__modschar_rrx_s	0CF6
+		__modschar_rrx_hds	0CFD
+		__divsint_rrx_s	0D02
+		__divsint_rrx_hds	0D0E
+		__modsint_rrx_s	0D16
+		__modsint_rrx_hds	0D22
+		__divuchar_rrx_s	0D28
+		__divuchar_rrx_hds	0D2F
+		__moduchar_rrx_s	0D36
+		__moduchar_rrx_hds	0D3D
+		__divuint_rrx_s	0D42
+		__divuint_rrx_hds	0D4E
+		__moduint_rrx_s	0D56
+		__moduint_rrx_hds	0D62
+		.mod8	0D68
+		.div8	0D68
+		.mod16	0D70
+		.div16	0D70
+		.modu8	0DAA
+		.divu8	0DAA
+		.modu16	0DAD
+		.divu16	0DAD
+		_putchar	0DEA
+		_setchar	0DF3
+		_gotoxy	0DFC
+		_posx	0E07
+		_posy	0E18
+		.adv_gcurs	0E29
+		.circle	0E46
+		.horlin	0EE9
+		.verlin	0F21
+		.circplot	0F7D
+		.box	0FFB
+		.line	10D1
+		.xonly	11F2
+		.yonly	1341
+		.plot	1362
+		.wrbyte	137F
+		.getpix	1401
+		.wrtchr	1436
+		_gotogxy	149A
+		_wrtchr	14A5
+		_getpix	14BA
+		_color	14C6
+		_circle	14D5
+		_box	14EF
+		_line	1513
+		_plot_point	152B
+		_plot	153F
 AREA _HEADER
 	RADIX HEX
 	BASE 0000
@@ -116,133 +117,133 @@ AREA _HEADER
 		_exit	01D2
 AREA _HOME
 	RADIX HEX
-	BASE 14D0
+	BASE 155B
 	SIZE 04AD
 	ATTRIB REL CON
 	GLOBALS
-		.set_mode	14D0
-		.remove_VBL	14E0
-		.remove_LCD	14E6
-		.remove_TIM	14EC
-		.remove_SIO	14F2
-		.remove_JOY	14F8
-		.add_VBL	14FE
-		.add_LCD	1504
-		.add_TIM	150A
-		.add_SIO	1510
-		.add_JOY	1516
-		.remove_int	151C
-		.add_int	153C
-		.wait_vbl_done	1558
-		_wait_vbl_done	1558
-		_display_off	156F
-		.display_off	156F
-		.serial_IO	1590
-		_mode	15BF
-		_get_mode	15C8
-		_enable_interrupts	15CD
-		_disable_interrupts	15CF
-		_reset	15D1
-		.reset	15D1
-		_set_interrupts	15D7
-		_remove_VBL	15E2
-		_remove_LCD	15ED
-		_remove_TIM	15F8
-		_remove_SIO	1603
-		_remove_JOY	160E
-		_add_VBL	1619
-		_add_LCD	1624
-		_add_TIM	162F
-		_add_SIO	163A
-		_add_JOY	1645
-		_clock	1650
-		__printTStates	1659
-		banked_call	165A
-		banked_ret	1673
-		__initrleblock	167C
-		_printf	16A3
-		_sprintf	16C0
+		.set_mode	155B
+		.remove_VBL	156B
+		.remove_LCD	1571
+		.remove_TIM	1577
+		.remove_SIO	157D
+		.remove_JOY	1583
+		.add_VBL	1589
+		.add_LCD	158F
+		.add_TIM	1595
+		.add_SIO	159B
+		.add_JOY	15A1
+		.remove_int	15A7
+		.add_int	15C7
+		.wait_vbl_done	15E3
+		_wait_vbl_done	15E3
+		_display_off	15FA
+		.display_off	15FA
+		.serial_IO	161B
+		_mode	164A
+		_get_mode	1653
+		_enable_interrupts	1658
+		_disable_interrupts	165A
+		_reset	165C
+		.reset	165C
+		_set_interrupts	1662
+		_remove_VBL	166D
+		_remove_LCD	1678
+		_remove_TIM	1683
+		_remove_SIO	168E
+		_remove_JOY	1699
+		_add_VBL	16A4
+		_add_LCD	16AF
+		_add_TIM	16BA
+		_add_SIO	16C5
+		_add_JOY	16D0
+		_clock	16DB
+		__printTStates	16E4
+		banked_call	16E5
+		banked_ret	16FE
+		__initrleblock	1707
+		_printf	172E
+		_sprintf	174B
 AREA _BASE
 	RADIX HEX
-	BASE 197D
+	BASE 1A08
 	SIZE 0FBD
 	ATTRIB REL CON
 	GLOBALS
-		.set_sprite_prop	197D
-		_set_sprite_prop	198A
-		.mv_sprite	1995
-		_move_sprite	19A4
-		_set_win_data	19B1
-		_set_bkg_data	19B1
-		_set_sprite_data	19FE
-		.padup	1A2D
-		_waitpadup	1A2D
-		.jpad	1A3D
-		.wait_pad	1A6A
-		_joypad	1A71
-		_waitpad	1A76
-		.set_sprite_tile	1A80
-		_set_sprite_tile	1A8D
-		.copy_vram	1A98
-		_get_data	1AA7
-		_set_data	1AA7
-		_set_bkg_tiles	1ABA
-		font_copy_uncompressed	1ACE
-		font_copy_compressed	1B04
-		font_load	1B59
-		font_copy_current	1BA1
-		font_set	1BE9
-		.put_char	1BF6
-		.out_char	1C0F
-		.del_char	1C16
-		_font_load	1C71
-		_font_set	1C7F
-		_font_init	1C8E
-		_cls	1CB0
-		.cls	1CB0
-		.cr_curs	1CE2
-		.adv_curs	1CF7
-		.tmode	1D53
-		.tmode_out	1D7C
-		_font_load_ibm_fixed	1D8C
-		_font_ibm_fixed	1D93
-		_font_ibm_fixed_tiles	1E95
-		.gmode	2695
-		.vbl	26F7
-		.lcd	2702
-		.draw_image	270F
-		.switch_data	2719
-		_switch_data	2750
-		_draw_image	276B
-		.y_table	277E
-		.set_xy_wtt	289E
-		.set_xy_btt	28AF
-		.set_xy_tt	28BE
-		_set_tiles	28EF
-		.init_vram	2908
-		.init_wtt	2916
-		.init_btt	2926
-		.init_tt	2934
+		.set_sprite_prop	1A08
+		_set_sprite_prop	1A15
+		.mv_sprite	1A20
+		_move_sprite	1A2F
+		_set_win_data	1A3C
+		_set_bkg_data	1A3C
+		_set_sprite_data	1A89
+		.padup	1AB8
+		_waitpadup	1AB8
+		.jpad	1AC8
+		.wait_pad	1AF5
+		_joypad	1AFC
+		_waitpad	1B01
+		.set_sprite_tile	1B0B
+		_set_sprite_tile	1B18
+		.copy_vram	1B23
+		_get_data	1B32
+		_set_data	1B32
+		_set_bkg_tiles	1B45
+		font_copy_uncompressed	1B59
+		font_copy_compressed	1B8F
+		font_load	1BE4
+		font_copy_current	1C2C
+		font_set	1C74
+		.put_char	1C81
+		.out_char	1C9A
+		.del_char	1CA1
+		_font_load	1CFC
+		_font_set	1D0A
+		_font_init	1D19
+		_cls	1D3B
+		.cls	1D3B
+		.cr_curs	1D6D
+		.adv_curs	1D82
+		.tmode	1DDE
+		.tmode_out	1E07
+		_font_load_ibm_fixed	1E17
+		_font_ibm_fixed	1E1E
+		_font_ibm_fixed_tiles	1F20
+		.gmode	2720
+		.vbl	2782
+		.lcd	278D
+		.draw_image	279A
+		.switch_data	27A4
+		_switch_data	27DB
+		_draw_image	27F6
+		.y_table	2809
+		.set_xy_wtt	2929
+		.set_xy_btt	293A
+		.set_xy_tt	2949
+		_set_tiles	297A
+		.init_vram	2993
+		.init_wtt	29A1
+		.init_btt	29B1
+		.init_tt	29BF
 AREA _LIT
 	RADIX HEX
-	BASE 293A
+	BASE 29C5
 	SIZE 0000
 	ATTRIB REL CON
 AREA _GSINIT
 	RADIX HEX
-	BASE 293A
-	SIZE 0203
+	BASE 29C5
+	SIZE 0215
 	ATTRIB REL CON
 	GLOBALS
-		gsinit	293A
+		gsinit	29C5
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 2B3D
+	BASE 2BDA
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 2B3E
+	BASE 2BDB
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
@@ -322,7 +323,7 @@ MODULES
 	FILE /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE game.o
-		NAME lcc220760
+		NAME lcc248770
 LIBRARIES
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE crt0_rle.o
@@ -332,6 +333,8 @@ LIBRARIES
 		MODULE mv_spr.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_data.o
+	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
+		MODULE div.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE pad.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
@@ -342,8 +345,6 @@ LIBRARIES
 		MODULE cpy_data.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_bk_t.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
-		MODULE div.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE font.o
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib

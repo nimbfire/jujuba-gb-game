@@ -18,7 +18,7 @@
 #define OBJECT_DEATH_FLAG     0x04U
 
 UBYTE running;
-UBYTE timer;
+UINT8 timer;
 UBYTE input_timer;
 // UBYTE16 player_map_position;
 // UBYTE map
@@ -61,6 +61,7 @@ void timers() {
   if (input_timer != 0) {
     input_timer -= 1;
   }
+  timer += 1;
 }
 
 void main(void)
@@ -75,6 +76,7 @@ void main(void)
     if (map == 1) {
       map_1();
       performantDelay(2);
+      map_1_water();
     }
   }
 
@@ -82,6 +84,31 @@ void main(void)
   while (1) {
 
   }
+}
+
+// Update map 1 water
+void map_1_water(){
+  UINT16 map_position;
+
+  if (timer % 32 == 0) {
+    map_position = 360;
+    while (map_position != 0) {
+      map_position -= 1;
+      // printf("%d\n", map_position);
+      switch((UINT16)Map1[map_position]) {
+        case (UINT16) 2:
+          Map1[map_position] = 3;
+          break;
+        case (UINT16) 3:
+          Map1[map_position] = 2;
+          break;
+
+      }
+    }
+    set_bkg_tiles(0, 0, 20, 18, Map1);
+
+  }
+  
 }
 
 void map_1() {
@@ -121,9 +148,10 @@ void init() {
 
   SHOW_BKG;
 
-  input_timer = 0;
-  running = 1;
-  map = 1;
+  input_timer = 0u;
+  running = 1u;
+  map = 1u;
+  timer = 1u;
   player = &bunny;
   DISPLAY_ON;
   SHOW_SPRITES;
@@ -290,7 +318,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   switch((UINT16)Map1[map_position]) {
     case (UINT16)1:
     // case (UINT16)2:
-    case (UINT16)3:
+    // case (UINT16)3:
     case (UINT16)4:
     // case (UINT16)7:
     // case (UINT16)9:
