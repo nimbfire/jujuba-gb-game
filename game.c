@@ -160,9 +160,15 @@ void init() {
 }
 
 int is_ded(CharacterController** c) {
+
   UINT8 _x;
   UINT8 _y;
   UINT16 map_position;
+
+  if ((*c)->power_active && (*c)->type == 1) {
+    return 0;
+  }
+
       // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
 
   _x = (((unsigned) (*c)->x) / 8) -1;
