@@ -20,6 +20,7 @@
 UBYTE running;
 UBYTE timer;
 UBYTE input_timer;
+// UBYTE16 player_map_position;
 // UBYTE map
 UBYTE map; // Controlls which map we are seeing.
 
@@ -39,6 +40,9 @@ void performantDelay(UINT8 numLoops) {
 
 // Check player controls.
 void player_input(CharacterController** c);
+
+// Check player is ded.
+int is_ded(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
 void init();
@@ -82,6 +86,9 @@ void main(void)
 
 void map_1() {
   
+  if (is_ded(&player)) {
+    printf("you ded\n");
+  }
 
   // generate_bunny();
   player_input(&player);
@@ -150,6 +157,33 @@ void init() {
 
 
 
+}
+
+int is_ded(CharacterController** c) {
+  UINT8 _x;
+  UINT8 _y;
+  UINT16 map_position;
+      // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
+
+  _x = (((unsigned) (*c)->x) / 8) -1;
+  _y = (((unsigned) (*c)->y) / 8) -2;
+
+
+  // Map position
+  map_position = 0;
+  map_position += (unsigned) _x;
+  map_position += ((unsigned) _y) * 20;
+
+  switch((UINT16)Map1[map_position]) {
+    case (UINT16)2:
+    // case (UINT16)7:
+    // case (UINT16)9:
+    // case (UINT16)4:
+    // case (UINT16)10:
+      // printf("PlayerNotMove\n");
+      return 1;
+  }
+  return 0;
 }
 
 void player_input(CharacterController** c) {
@@ -249,7 +283,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
 
   switch((UINT16)Map1[map_position]) {
     case (UINT16)1:
-    case (UINT16)2:
+    // case (UINT16)2:
     case (UINT16)3:
     case (UINT16)4:
     // case (UINT16)7:
@@ -330,7 +364,7 @@ void move_character(CharacterController* c) {
         c->power_timer = 16;
       }
       c->power_timer -= 1;
-      
+
       if (c->power_timer == 0) {
         c->power_active = 0;
         set_sprite_tile(c->type, c->sprite_1);
