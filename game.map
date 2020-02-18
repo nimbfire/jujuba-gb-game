@@ -19,8 +19,8 @@ AREA .  .ABS.
 		l__BSS	0087
 		l__HEADER	01EB
 		s__CODE	0200
-		l__GSINIT	0215
-		l__DATA	0320
+		l__GSINIT	0290
+		l__DATA	0340
 		l__HOME	04AD
 		l__BASE	0FBD
 		l__CODE	135B
@@ -28,16 +28,16 @@ AREA .  .ABS.
 		s__BASE	1A08
 		s__LIT	29C5
 		s__GSINIT	29C5
-		s__GSINITTAIL	2BDA
-		s__GSFINAL	2BDB
+		s__GSINITTAIL	2C55
+		s__GSFINAL	2C56
 		.OAM	C000
 		s__DATA	C0A0
-		s__BSS	C3C0
-		s__HEAP	C447
-		s__BSEG	C447
-		s__ISEG	C447
-		s__XSEG	C447
-		s__OVERLAY	C447
+		s__BSS	C3E0
+		s__HEAP	C467
+		s__BSEG	C467
+		s__ISEG	C467
+		s__XSEG	C467
+		s__OVERLAY	C467
 		.STACK	E000
 		.refresh_OAM	FF80
 AREA _CODE
@@ -232,98 +232,98 @@ AREA _LIT
 AREA _GSINIT
 	RADIX HEX
 	BASE 29C5
-	SIZE 0215
+	SIZE 0290
 	ATTRIB REL CON
 	GLOBALS
 		gsinit	29C5
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 2BDA
+	BASE 2C55
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 2BDB
+	BASE 2C56
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
 	RADIX HEX
 	BASE C0A0
-	SIZE 0320
+	SIZE 0340
 	ATTRIB REL CON
 	GLOBALS
 		_Characters	C0A0
-		_Map1	C170
-		_sprites_park	C2D8
-		_running	C388
-		_timer	C389
-		_input_timer	C38A
-		_map	C38B
-		_bunny	C38C
-		_dog1	C396
-		_dog2	C3A0
-		_cat	C3AA
-		_horse	C3B4
-		_player	C3BE
+		_Map1	C190
+		_sprites_park	C2F8
+		_running	C3A8
+		_timer	C3A9
+		_input_timer	C3AA
+		_map	C3AB
+		_bunny	C3AC
+		_dog1	C3B6
+		_dog2	C3C0
+		_cat	C3CA
+		_horse	C3D4
+		_player	C3DE
 AREA _BSS
 	RADIX HEX
-	BASE C3C0
+	BASE C3E0
 	SIZE 0087
 	ATTRIB REL CON
 	GLOBALS
-		__cpu	C3C0
-		.mode	C3C1
-		__io_out	C3C2
-		__io_in	C3C3
-		__io_status	C3C4
-		.vbl_done	C3C5
-		__current_bank	C3C6
-		_sys_time	C3C7
-		.sys_time	C3C7
-		.int_0x40	C3C9
-		.int_0x48	C3D9
-		.int_0x50	C3E9
-		.int_0x58	C3F9
-		.int_0x60	C409
-		font_current	C41C
-		font_first_free_tile	C41F
-		font_table	C420
-		.curx	C432
-		.cury	C433
-		.fg_colour	C434
-		.bg_colour	C435
+		__cpu	C3E0
+		.mode	C3E1
+		__io_out	C3E2
+		__io_in	C3E3
+		__io_status	C3E4
+		.vbl_done	C3E5
+		__current_bank	C3E6
+		_sys_time	C3E7
+		.sys_time	C3E7
+		.int_0x40	C3E9
+		.int_0x48	C3F9
+		.int_0x50	C409
+		.int_0x58	C419
+		.int_0x60	C429
+		font_current	C43C
+		font_first_free_tile	C43F
+		font_table	C440
+		.curx	C452
+		.cury	C453
+		.fg_colour	C454
+		.bg_colour	C455
 AREA _HEAP
 	RADIX HEX
-	BASE C447
+	BASE C467
 	SIZE 0000
 	ATTRIB REL CON
 	GLOBALS
-		_malloc_heap_start	C447
+		_malloc_heap_start	C467
 AREA _OVERLAY
 	RADIX HEX
-	BASE C447
+	BASE C467
 	SIZE 0000
 	ATTRIB REL CON
 AREA _ISEG
 	RADIX HEX
-	BASE C447
+	BASE C467
 	SIZE 0000
 	ATTRIB REL CON
 AREA _BSEG
 	RADIX HEX
-	BASE C447
+	BASE C467
 	SIZE 0000
 	ATTRIB REL CON
 AREA _XSEG
 	RADIX HEX
-	BASE C447
+	BASE C467
 	SIZE 0000
 	ATTRIB REL CON
 MODULES
 	FILE /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE game.o
-		NAME lcc261560
+		NAME lcc42570
 LIBRARIES
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE crt0_rle.o
