@@ -23,3 +23,4 @@ Barriers
 Special
 41 - 50
 41 - key barrier
+42 - key barrier passing

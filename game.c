@@ -250,7 +250,25 @@ int got_key(CharacterController** c) {
     player->x == (&key)->x &&
     player->y == (&key)->y
     ) {
-    printf("gotkey\n");
+    // update the block so you can pass it
+    UINT16 map_position;
+
+
+    map_position = 360;
+    while (map_position != 0) {
+      map_position -= 1;
+      // printf("%d\n", map_position);
+      switch((UINT16)Map1[map_position]) {
+        case (UINT16) 41:
+          Map1[map_position] = 42;
+          break;
+          break;
+
+      }
+    }
+    set_bkg_tiles(0, 0, 20, 18, Map1);
+
+    
   }
 }
 
@@ -388,18 +406,20 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     (UINT16)Map1[map_position] < (UINT16)41) {
     return 0;
   }
-  // switch((UINT16)Map1[map_position]) {
-  //   case (UINT16)1:
-  //   // case (UINT16)2:
-  //   // case (UINT16)3:
-  //   case (UINT16)4:
-  //   // case (UINT16)7:
-  //   // case (UINT16)9:
-  //   // case (UINT16)4:
-  //   // case (UINT16)10:
-  //     // printf("PlayerNotMove\n");
-  //     return 0;
-  // }
+
+  // Or, test individual blocks
+  switch((UINT16)Map1[map_position]) {
+    case (UINT16)41:
+    // case (UINT16)2:
+    // case (UINT16)3:
+    // case (UINT16)4:
+    // case (UINT16)7:
+    // case (UINT16)9:
+    // case (UINT16)4:
+    // case (UINT16)10:
+      // printf("PlayerNotMove\n");
+      return 0;
+  }
 
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
