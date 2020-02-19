@@ -3,6 +3,7 @@
 
 #include "sprites/Characters.c"
 #include "CharacterController.c"
+#include "ObjectController.c"
 
 #include "maps/map1.c"
 #include "sprites/SpritesPark.c"
@@ -30,6 +31,10 @@ CharacterController dog2;   //3
 CharacterController cat;    //4
 CharacterController horse;  //5
 CharacterController *player;
+ObjectController key;
+ObjectController item1;
+ObjectController item2;
+ObjectController item3;
 
 void performantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -45,7 +50,9 @@ void player_input(CharacterController** c);
 int is_ded(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
-void init();
+void init_map1();
+
+int got_key(CharacterController** c);
 
 // Handles the first map logic.
 void map_1();
@@ -66,7 +73,7 @@ void timers() {
 
 void main(void)
 {
-  init();
+  init_map1();
 
   while(running) {
     // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
@@ -154,9 +161,10 @@ void map_1_water(){
 void map_1() {
   
   if (is_ded(&player)) {
-    init();
+    init_map1();
     // printf("you ded\n");
   }
+  got_key(&player);
 
   // generate_bunny();
   player_input(&player);
@@ -182,7 +190,7 @@ void map_1() {
 
 }
 
-void init() {
+void init_map1() {
 
   set_bkg_data(0,60,sprites_park);
   set_bkg_tiles(0, 0, 20, 18, Map1);
@@ -197,8 +205,14 @@ void init() {
   DISPLAY_ON;
   SHOW_SPRITES;
 
-  set_sprite_data(0,12,Characters);
+  set_sprite_data(0,15,Characters);
 
+
+  // key.x = 152;
+  // key.y = 144;
+  key.x = 8;
+  key.y = 32;
+  key.sprite_1 = 14;
 
   // generate bunny
   bunny.x = 8;
@@ -223,10 +237,23 @@ void init() {
 
   set_character_sprite(&bunny);
   set_character_sprite(&dog1);
-
-
+  set_character_sprite(&key);
 
 }
+
+
+int got_key(CharacterController** c) {
+  // printf("%u\n", player->x);
+  // printf("%u\n", (&key)->x);
+  // printf("%u - %u\n", (unsigned)(*c)->x, &key->x);
+  if (
+    player->x == (&key)->x &&
+    player->y == (&key)->y
+    ) {
+    printf("gotkey\n");
+  }
+}
+
 
 int is_ded(CharacterController** c) {
 
