@@ -88,33 +88,74 @@ void main(void)
 
 // Update map 1 water
 void map_1_water(){
-  UINT16 map_position;
+  unsigned char sprite_water_1[] =
+  {
+    0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
+    0xFF,0x00,0xBB,0x00,0x55,0x00,0xFF,0x00
+  };
+
+  unsigned char sprite_water_2[] =
+  {
+    0xFF,0x00,0xBB,0x00,0x55,0x00,0xFF,0x00,
+    0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00
+  };
 
   if (timer % 32 == 0) {
-    map_position = 360;
-    while (map_position != 0) {
-      map_position -= 1;
-      // printf("%d\n", map_position);
-      switch((UINT16)Map1[map_position]) {
-        case (UINT16) 2:
-          Map1[map_position] = 3;
-          break;
-        case (UINT16) 3:
-          Map1[map_position] = 2;
-          break;
-
-      }
+    if (timer % 64 == 0) {
+      set_bkg_data(11,1,sprite_water_1);
+      
     }
-    set_bkg_tiles(0, 0, 20, 18, Map1);
-
+    else {
+      set_bkg_data(11,1,sprite_water_2);
+      
+    }
   }
+  // sprites_park[90] = 0xA3;
+  // sprites_park[91] = 0xA3;
+  // sprites_park[92] = 0xA3;
+  // sprites_park[93] = 0xA3;
+  // sprites_park[94] = 0xA3;
+  // unsigned char sprite[] =
+  //   {
+  //     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
+  //     0xFF,0x00,0xBB,0x00,0x55,0x00,0xFF,0x00,
+  //   };
+  // // sprites_park[0] = 0xA3;
+  // set_bkg_data(11,1,sprite);
+
+  // tile 11, position 88
+  // if (sprites_park[90] == 0xDD) {
+  //   sprites_park[90] = 0xBB;
+  // }
+
+  // UINT16 map_position;
+
+  // if (timer % 32 == 0) {
+  //   map_position = 360;
+  //   while (map_position != 0) {
+  //     map_position -= 1;
+  //     // printf("%d\n", map_position);
+  //     switch((UINT16)Map1[map_position]) {
+  //       case (UINT16) 2:
+  //         Map1[map_position] = 3;
+  //         break;
+  //       case (UINT16) 3:
+  //         Map1[map_position] = 2;
+  //         break;
+
+  //     }
+  //   }
+  //   set_bkg_tiles(0, 0, 20, 18, Map1);
+
+  // }
   
 }
 
 void map_1() {
   
   if (is_ded(&player)) {
-    printf("you ded\n");
+    init();
+    // printf("you ded\n");
   }
 
   // generate_bunny();
@@ -143,7 +184,7 @@ void map_1() {
 
 void init() {
 
-  set_bkg_data(0,11,sprites_park);
+  set_bkg_data(0,60,sprites_park);
   set_bkg_tiles(0, 0, 20, 18, Map1);
 
   SHOW_BKG;
@@ -171,7 +212,7 @@ void init() {
   bunny.is_the_active = 1;
 
   dog1.x = 40;
-  dog1.y = 40;
+  dog1.y = 48;
   dog1.sprite_1 = 3;
   dog1.sprite_2 = 4;
   dog1.sprite_3 = 5;
@@ -209,7 +250,8 @@ int is_ded(CharacterController** c) {
   map_position += ((unsigned) _y) * 20;
 
   switch((UINT16)Map1[map_position]) {
-    case (UINT16)2:
+    case (UINT16)11:
+    // case (UINT16)3:
     // case (UINT16)7:
     // case (UINT16)9:
     // case (UINT16)4:
@@ -315,18 +357,22 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   map_position += (unsigned) _x;
   map_position += ((unsigned) _y) * 20;
 
-  switch((UINT16)Map1[map_position]) {
-    case (UINT16)1:
-    // case (UINT16)2:
-    // case (UINT16)3:
-    case (UINT16)4:
-    // case (UINT16)7:
-    // case (UINT16)9:
-    // case (UINT16)4:
-    // case (UINT16)10:
-      // printf("PlayerNotMove\n");
-      return 0;
+  if ((UINT16)Map1[map_position] > (UINT16)20 &&
+    (UINT16)Map1[map_position] < (UINT16)41) {
+    return 0;
   }
+  // switch((UINT16)Map1[map_position]) {
+  //   case (UINT16)1:
+  //   // case (UINT16)2:
+  //   // case (UINT16)3:
+  //   case (UINT16)4:
+  //   // case (UINT16)7:
+  //   // case (UINT16)9:
+  //   // case (UINT16)4:
+  //   // case (UINT16)10:
+  //     // printf("PlayerNotMove\n");
+  //     return 0;
+  // }
 
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
