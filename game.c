@@ -9,6 +9,11 @@
 #include "sprites/SpritesPark.c"
 
 
+// Chars flags
+#define DOG1_FLAG    0x01U
+#define DOG2_FLAG    0x01U
+
+
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U
 
@@ -208,10 +213,10 @@ void init_map1() {
   set_sprite_data(0,15,Characters);
 
 
-  // key.x = 152;
-  // key.y = 144;
-  key.x = 8;
-  key.y = 32;
+  key.x = 152;
+  key.y = 144;
+  // key.x = 8;
+  // key.y = 32;
   key.sprite_1 = 14;
 
   // generate bunny
@@ -241,6 +246,10 @@ void init_map1() {
 
 }
 
+void instanciate_chars() {
+
+}
+
 
 int got_key(CharacterController** c) {
   // printf("%u\n", player->x);
@@ -267,8 +276,6 @@ int got_key(CharacterController** c) {
       }
     }
     set_bkg_tiles(0, 0, 20, 18, Map1);
-
-    
   }
 }
 
