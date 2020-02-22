@@ -6,6 +6,9 @@ typedef struct CharacterController{
     UINT8 sprite_1;
     UINT8 sprite_2;
     UINT8 sprite_3;
+    UINT8 sprite_4;
+    UINT8 sprite_5;
+    UINT8 sprite_6;
     UINT8 direction; // 1 up, 2 right, 3 down, 4 left
     UBYTE power_active;
     UINT8 power_timer;

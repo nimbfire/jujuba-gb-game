@@ -10,9 +10,9 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 14
+  Tiles                : 0 to 30
 
-  Palette colors       : None.
+  Palette colors       : Included.
   SGB Palette          : None.
   CGB Palette          : None.
 
@@ -25,6 +25,78 @@
 
 /* Bank of tiles. */
 #define CharactersBank 0
+
+/* Super Gameboy palette 0 */
+#define CharactersSGBPal0c0 6076
+#define CharactersSGBPal0c1 8935
+#define CharactersSGBPal0c2 6596
+#define CharactersSGBPal0c3 5344
+
+/* Super Gameboy palette 1 */
+#define CharactersSGBPal1c0 6076
+#define CharactersSGBPal1c1 8935
+#define CharactersSGBPal1c2 6596
+#define CharactersSGBPal1c3 5344
+
+/* Super Gameboy palette 2 */
+#define CharactersSGBPal2c0 6076
+#define CharactersSGBPal2c1 8935
+#define CharactersSGBPal2c2 6596
+#define CharactersSGBPal2c3 5344
+
+/* Super Gameboy palette 3 */
+#define CharactersSGBPal3c0 6076
+#define CharactersSGBPal3c1 8935
+#define CharactersSGBPal3c2 6596
+#define CharactersSGBPal3c3 5344
+
+/* Gameboy Color palette 0 */
+#define CharactersCGBPal0c0 6076
+#define CharactersCGBPal0c1 8935
+#define CharactersCGBPal0c2 6596
+#define CharactersCGBPal0c3 5344
+
+/* Gameboy Color palette 1 */
+#define CharactersCGBPal1c0 6076
+#define CharactersCGBPal1c1 8935
+#define CharactersCGBPal1c2 6596
+#define CharactersCGBPal1c3 5344
+
+/* Gameboy Color palette 2 */
+#define CharactersCGBPal2c0 6076
+#define CharactersCGBPal2c1 8935
+#define CharactersCGBPal2c2 6596
+#define CharactersCGBPal2c3 5344
+
+/* Gameboy Color palette 3 */
+#define CharactersCGBPal3c0 6076
+#define CharactersCGBPal3c1 8935
+#define CharactersCGBPal3c2 6596
+#define CharactersCGBPal3c3 5344
+
+/* Gameboy Color palette 4 */
+#define CharactersCGBPal4c0 6076
+#define CharactersCGBPal4c1 8935
+#define CharactersCGBPal4c2 6596
+#define CharactersCGBPal4c3 5344
+
+/* Gameboy Color palette 5 */
+#define CharactersCGBPal5c0 6076
+#define CharactersCGBPal5c1 8935
+#define CharactersCGBPal5c2 6596
+#define CharactersCGBPal5c3 5344
+
+/* Gameboy Color palette 6 */
+#define CharactersCGBPal6c0 6076
+#define CharactersCGBPal6c1 8935
+#define CharactersCGBPal6c2 6596
+#define CharactersCGBPal6c3 5344
+
+/* Gameboy Color palette 7 */
+#define CharactersCGBPal7c0 6076
+#define CharactersCGBPal7c1 8935
+#define CharactersCGBPal7c2 6596
+#define CharactersCGBPal7c3 5344
 /* Start of tile array. */
 extern unsigned char Characters[];
 

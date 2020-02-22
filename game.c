@@ -11,7 +11,10 @@
 
 // Chars flags
 #define DOG1_FLAG    0x01U
-#define DOG2_FLAG    0x01U
+#define DOG2_FLAG    0x02U
+#define CAT_FLAG    0x04U
+#define HORSE_FLAG    0x08U
+#define WHUT_FLAG    0x10U
 
 
 // If by collecting this object the map is won.
@@ -22,6 +25,10 @@
 
 // If any character is in this object position, you lose the map.
 #define OBJECT_DEATH_FLAG     0x04U
+
+UBYTE characters_available;
+
+UBYTE can_move_flag;
 
 UBYTE running;
 UINT8 timer;
@@ -78,6 +85,7 @@ void timers() {
 
 void main(void)
 {
+  init();
   init_map1();
 
   while(running) {
@@ -96,6 +104,26 @@ void main(void)
   while (1) {
 
   }
+}
+
+void init() {
+  characters_available = 0x1u;
+
+  set_bkg_data(0,60,sprites_park);
+  set_bkg_tiles(0, 0, 20, 18, Map1);
+  
+  set_sprite_data(0,30,Characters);
+  
+  SHOW_BKG;
+
+  SHOW_SPRITES;
+  DISPLAY_ON;
+
+  input_timer = 0u;
+  running = 1u;
+  map = 1u;
+  timer = 1u;
+  player = &bunny;
 }
 
 // Update map 1 water
@@ -197,20 +225,8 @@ void map_1() {
 
 void init_map1() {
 
-  set_bkg_data(0,60,sprites_park);
-  set_bkg_tiles(0, 0, 20, 18, Map1);
+  instanciate_chars();
 
-  SHOW_BKG;
-
-  input_timer = 0u;
-  running = 1u;
-  map = 1u;
-  timer = 1u;
-  player = &bunny;
-  DISPLAY_ON;
-  SHOW_SPRITES;
-
-  set_sprite_data(0,15,Characters);
 
 
   key.x = 152;
@@ -219,12 +235,21 @@ void init_map1() {
   // key.y = 32;
   key.sprite_1 = 14;
 
+
+  set_character_sprite(&key);
+
+}
+
+void instanciate_chars() {
   // generate bunny
   bunny.x = 8;
   bunny.y = 40;
   bunny.sprite_1 = 0;
   bunny.sprite_2 = 1;
   bunny.sprite_3 = 2;
+  bunny.sprite_4 = 16;
+  bunny.sprite_5 = 17;
+  bunny.sprite_6 = 18;
   bunny.direction = 0;
   bunny.power_active = 0;
   bunny.type = 1;
@@ -235,6 +260,9 @@ void init_map1() {
   dog1.sprite_1 = 3;
   dog1.sprite_2 = 4;
   dog1.sprite_3 = 5;
+  dog1.sprite_4 = 19;
+  dog1.sprite_5 = 20;
+  dog1.sprite_6 = 21;
   dog1.direction = 0;
   dog1.power_active = 0;
   dog1.type = 2;
@@ -242,12 +270,6 @@ void init_map1() {
 
   set_character_sprite(&bunny);
   set_character_sprite(&dog1);
-  set_character_sprite(&key);
-
-}
-
-void instanciate_chars() {
-
 }
 
 
@@ -333,29 +355,38 @@ void player_input(CharacterController** c) {
         break;
 
       case J_LEFT:
-        (*c)->direction = 4; 
         if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
+          can_move_flag = 1;
           input_timer = 4;
+          (*c)->direction = 4; 
         }
         break;
       case J_RIGHT:
-        (*c)->direction = 2; 
+        
         if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
+          can_move_flag = 1;
           input_timer = 4;
+          (*c)->direction = 2; 
         }
         break;
       case J_UP:
-        (*c)->direction = 1; 
         if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
+          can_move_flag = 1;
           input_timer = 4;
+          (*c)->direction = 1; 
         }
         break;
       case J_DOWN:
-        (*c)->direction = 3; 
+        
         if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
+          can_move_flag = 1;
+          (*c)->direction = 3; 
           input_timer = 4;
         }
         break;
+      default:
+        (*c)->direction = 0; 
+
     }
   }
 
@@ -389,6 +420,8 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     case 3: // DOWN
       y += 8; 
       break;
+    case 0:
+      return 0;
   }
 
   _x = (((unsigned) x) / 8) -1;
@@ -424,7 +457,9 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     // case (UINT16)9:
     // case (UINT16)4:
     // case (UINT16)10:
-      // printf("PlayerNotMove\n");
+    // printf("PlayerNotMove\n");
+          can_move_flag = 0;
+
       return 0;
   }
 
@@ -451,7 +486,6 @@ void move_character(CharacterController* c) {
         c->power_timer = 16;
       }
 
-      set_sprite_tile(c->type, c->sprite_3);
 
       // Test once each time we are on a tile
       if (c->power_timer == 4 ||
@@ -459,27 +493,43 @@ void move_character(CharacterController* c) {
           c->power_timer == 12 || 
           c->power_timer == 16) 
       {
+
         if (!can_move(c->x, c->y, c->direction)) {
-          c->direction = 0;
+          can_move_flag = 0;
         }
       }
-
       switch(c->direction) {
-        case 4: //LEFT
-          c->x -= 2; 
-          set_sprite_prop(c->type, S_FLIPX);
-          break;
-        case 2: // RIGHT
-          c->x += 2; 
-          set_sprite_prop(c->type, 0);
-          break;
-        case 1: // UP
-          c->y -= 2; 
-          break;
-        case 3: // DOWN
-          c->y += 2; 
-          break;
-      }
+          case 4: //LEFT
+            if (can_move_flag) {
+              c->x -= 2; 
+            }
+            set_sprite_tile(c->type, c->sprite_3);
+            set_sprite_prop(c->type, S_FLIPX);
+            break;
+          case 2: // RIGHT
+            if (can_move_flag) {
+              c->x += 2; 
+            }
+            set_sprite_tile(c->type, c->sprite_3);
+            set_sprite_prop(c->type, 0);
+            break;
+          case 1: // UP
+            if (can_move_flag) {
+              c->y -= 2;
+            }
+            set_sprite_tile(c->type, c->sprite_6);
+            set_sprite_prop(c->type, 0);
+            break;
+          case 3: // DOWN
+            set_sprite_tile(c->type, c->sprite_6);
+            set_sprite_prop(c->type, S_FLIPY);
+            if (can_move_flag) {
+              c->y += 2; 
+            }
+            break;
+        }
+
+      
       c->power_timer -= 1;
 
       if (c->power_timer == 0) {
@@ -511,27 +561,55 @@ void move_character(CharacterController* c) {
     if (input_timer != 0) {
       switch(c->direction) {
         case 4: //LEFT
-          c->x -= 2; 
+          if (can_move_flag) {
+            c->x -= 2; 
+          }
           set_sprite_prop(c->type, S_FLIPX);
           break;
         case 2: // RIGHT
-          c->x += 2; 
+          if (can_move_flag) {
+            c->x += 2; 
+          }
           set_sprite_prop(c->type, 0);
           break;
         case 1: // UP
-          c->y -= 2; 
+          if (can_move_flag) {
+            c->y -= 2; 
+          }
+          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_prop(c->type, 0);
+          
           break;
         case 3: // DOWN
-          c->y += 2; 
+          if (can_move_flag) {
+            c->y += 2; 
+          }
+          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_prop(c->type, S_FLIPY);
           break;
       }
     }
-    if (input_timer == 4) {
+
+    // Up and down
+    if (c->direction == 1 || c->direction == 3) {
+      if (input_timer == 4) {
+        set_sprite_tile(c->type, c->sprite_5);
+      }
+      if (input_timer == 2) {
+        set_sprite_tile(c->type, c->sprite_4);
+      }
+    }
+
+    // left and right
+    if (c->direction == 2 || c->direction == 4) {
+      if (input_timer == 4) {
       set_sprite_tile(c->type, c->sprite_2);
+      }
+      if (input_timer == 2) {
+        set_sprite_tile(c->type, c->sprite_1);
+      }
     }
-    if (input_timer == 2) {
-      set_sprite_tile(c->type, c->sprite_1);
-    }
+    
   }
 
   move_sprite(c->type, c->x, c->y);
