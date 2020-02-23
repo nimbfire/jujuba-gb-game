@@ -16,6 +16,9 @@
 #define HORSE_FLAG    0x08U
 #define WHUT_FLAG    0x10U
 
+#define PLAYER_SPECIAL_POWER_ACTIVATED_FLAG 0x01U
+#define PLAYER_SPECIAL_POWER_RUNNING_FLAG 0x02U
+#define PLAYER_CHANGE_PLAYER_FLAG 0x04U
 
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U
@@ -27,8 +30,7 @@
 #define OBJECT_DEATH_FLAG     0x04U
 
 UBYTE characters_available;
-
-UBYTE can_move_flag;
+UBYTE player_status;
 
 UBYTE running;
 UINT8 timer;
@@ -343,46 +345,37 @@ void player_input(CharacterController** c) {
 
     switch (joypad()) {
       case J_A:
-        (*c)->power_active = 1;
+        player_status = PLAYER_SPECIAL_POWER_ACTIVATED_FLAG;
+        if ((*c)->type == 1) {
+          (*c)->power_timer = 16;
+        }
+        
         // input_timer needs to be updated inside the player stuff
         break;
 
       case J_B:
         // printf("troca\n");
-        input_timer = 10;
-        (*c)->direction = 0; 
+        player_status = PLAYER_CHANGE_PLAYER_FLAG;
+        (*c)->power_timer = 10;
+        
 
         break;
 
       case J_LEFT:
-        if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
-          can_move_flag = 1;
           input_timer = 4;
           (*c)->direction = 4; 
-        }
         break;
       case J_RIGHT:
-        
-        if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
-          can_move_flag = 1;
           input_timer = 4;
           (*c)->direction = 2; 
-        }
         break;
       case J_UP:
-        if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
-          can_move_flag = 1;
           input_timer = 4;
           (*c)->direction = 1; 
-        }
         break;
       case J_DOWN:
-        
-        if (can_move((*c)->x, (*c)->y, (*c)->direction)) {
-          can_move_flag = 1;
           (*c)->direction = 3; 
           input_timer = 4;
-        }
         break;
       default:
         (*c)->direction = 0; 
@@ -458,9 +451,9 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     // case (UINT16)4:
     // case (UINT16)10:
     // printf("PlayerNotMove\n");
-          can_move_flag = 0;
 
       return 0;
+      break;
   }
 
   // UINT8 x_map = (x * 20);
@@ -494,27 +487,24 @@ void move_character(CharacterController* c) {
           c->power_timer == 16) 
       {
 
-        if (!can_move(c->x, c->y, c->direction)) {
-          can_move_flag = 0;
-        }
-      }
-      switch(c->direction) {
+        switch(c->direction) {
           case 4: //LEFT
-            if (can_move_flag) {
+            if (can_move(c->x, c->y, c->direction)) {
               c->x -= 2; 
             }
+            
             set_sprite_tile(c->type, c->sprite_3);
             set_sprite_prop(c->type, S_FLIPX);
             break;
           case 2: // RIGHT
-            if (can_move_flag) {
+            if (can_move(c->x, c->y, c->direction)) {
               c->x += 2; 
             }
             set_sprite_tile(c->type, c->sprite_3);
             set_sprite_prop(c->type, 0);
             break;
           case 1: // UP
-            if (can_move_flag) {
+            if (can_move(c->x, c->y, c->direction)) {
               c->y -= 2;
             }
             set_sprite_tile(c->type, c->sprite_6);
@@ -523,11 +513,13 @@ void move_character(CharacterController* c) {
           case 3: // DOWN
             set_sprite_tile(c->type, c->sprite_6);
             set_sprite_prop(c->type, S_FLIPY);
-            if (can_move_flag) {
+            if (can_move(c->x, c->y, c->direction)) {
               c->y += 2; 
             }
+            
             break;
-        }
+        } 
+      }
 
       
       c->power_timer -= 1;
@@ -557,33 +549,35 @@ void move_character(CharacterController* c) {
     
   }
   else {
+    // The first time the player moves, the input timer is 4
+    // then we test if the player can move, if not, we cancel
+    // all other checks by setting the input timer as incatctive
+    if (input_timer == 4) {
+      if (!can_move(c->x, c->y, c->direction)) {
+        input_timer = 0;
+      }
+    }
+
     // Normal movement
     if (input_timer != 0) {
+      
       switch(c->direction) {
         case 4: //LEFT
-          if (can_move_flag) {
-            c->x -= 2; 
-          }
+          c->x -= 2;
           set_sprite_prop(c->type, S_FLIPX);
           break;
         case 2: // RIGHT
-          if (can_move_flag) {
-            c->x += 2; 
-          }
+          c->x += 2; 
           set_sprite_prop(c->type, 0);
           break;
         case 1: // UP
-          if (can_move_flag) {
-            c->y -= 2; 
-          }
+          c->y -= 2; 
           set_sprite_tile(c->type, c->sprite_4);
           set_sprite_prop(c->type, 0);
           
           break;
         case 3: // DOWN
-          if (can_move_flag) {
-            c->y += 2; 
-          }
+          c->y += 2; 
           set_sprite_tile(c->type, c->sprite_4);
           set_sprite_prop(c->type, S_FLIPY);
           break;
