@@ -555,8 +555,30 @@ void move_character(CharacterController* c) {
     if (input_timer == 4) {
       if (!can_move(c->x, c->y, c->direction)) {
         input_timer = 0;
+        // But, we still need to update the sprites accordingly, since
+        // the last direction is used by the powers.
       }
     }
+
+    // Handle the sprites. We have this separated from the movment
+    // because the movment can not happen in the end.
+    switch(c->direction) {
+        case 4: //LEFT
+          set_sprite_prop(c->type, S_FLIPX);
+          break;
+        case 2: // RIGHT
+          set_sprite_prop(c->type, 0);
+          break;
+        case 1: // UP
+          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_prop(c->type, S_FLIPX);
+          // set_sprite_prop(c->type, 0);
+          break;
+        case 3: // DOWN
+          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_prop(c->type, S_FLIPY);
+          break;
+      }
 
     // Normal movement
     if (input_timer != 0) {
@@ -564,22 +586,15 @@ void move_character(CharacterController* c) {
       switch(c->direction) {
         case 4: //LEFT
           c->x -= 2;
-          set_sprite_prop(c->type, S_FLIPX);
           break;
         case 2: // RIGHT
           c->x += 2; 
-          set_sprite_prop(c->type, 0);
           break;
         case 1: // UP
           c->y -= 2; 
-          set_sprite_tile(c->type, c->sprite_4);
-          set_sprite_prop(c->type, 0);
-          
           break;
         case 3: // DOWN
           c->y += 2; 
-          set_sprite_tile(c->type, c->sprite_4);
-          set_sprite_prop(c->type, S_FLIPY);
           break;
       }
     }
