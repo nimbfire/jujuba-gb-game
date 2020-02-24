@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include <gb/cgb.h>
 #include <stdio.h>
 
 #include "sprites/Characters.c"
@@ -28,6 +29,25 @@
 
 // If any character is in this object position, you lose the map.
 #define OBJECT_DEATH_FLAG     0x04U
+
+#define RGB_GREEN_1    RGB(28, 30, 26)
+#define RGB_GREEN_2    RGB(18, 22, 14)
+#define RGB_GREEN_3    RGB(7, 12, 10)
+#define RGB_GREEN_4    RGB(1, 3, 4)
+#define RGB_BLUE       RGB( 0,  0, 31)
+#define RGB_PURPLE     RGB(21,  0, 21)
+#define RGB_LIGHTFLESH RGB(30, 20, 15)
+
+#define RGB_RED        RGB(31,  0,  0)
+#define RGB_BLUE       RGB( 0,  0, 31)
+#define RGB_PURPLE     RGB(21,  0, 21)
+#define RGB_LIGHTFLESH RGB(30, 20, 15)
+
+UWORD spritePalette[] = {
+  RGB_GREEN_1, RGB_GREEN_2, RGB_GREEN_3, RGB_GREEN_4,
+  // 0, RGB_GREEN, RGB_BLUE, RGB_PURPLE,
+  // 0, RGB_BLACK, RGB_RED, RGB_WHITE
+};
 
 UBYTE characters_available;
 UBYTE player_status;
@@ -115,11 +135,23 @@ void init() {
   set_bkg_tiles(0, 0, 20, 18, Map1);
   
   set_sprite_data(0,30,Characters);
+  set_sprite_palette(0, 4, spritePalette);
+  // set_sprite_palette(0, 1, spritePalette[1]);
+  // set_sprite_palette(0, 2, spritePalette[2]);
+  // set_sprite_palette(0, 3, spritePalette[3]);
+  set_bkg_palette(0, 3, spritePalette);
+  set_sprite_prop(0, 0);
+
+  // BGP_REG = 0xF9U;
+  // BGP_REG = 0xFEU;
+  // BGP_REG = 0xFFU;
+  BGP_REG = 0xE4U;
+
+  DISPLAY_ON;
   
   SHOW_BKG;
 
   SHOW_SPRITES;
-  DISPLAY_ON;
 
   input_timer = 0u;
   running = 1u;
