@@ -389,6 +389,7 @@ void player_input(CharacterController** c) {
   // move_sprite(*c->type, *c->x, *c->y);
 }
 
+
 int can_move(INT8 x, INT8 y, UINT8 direction) {
   UINT8 _x;
   UINT8 _y;
@@ -494,6 +495,7 @@ void move_character(CharacterController* c) {
             }
             
             set_sprite_tile(c->type, c->sprite_3);
+            set_sprite_prop(c->type, 0);
             set_sprite_prop(c->type, S_FLIPX);
             break;
           case 2: // RIGHT
@@ -512,6 +514,7 @@ void move_character(CharacterController* c) {
             break;
           case 3: // DOWN
             set_sprite_tile(c->type, c->sprite_6);
+            set_sprite_prop(c->type, 0);
             set_sprite_prop(c->type, S_FLIPY);
             if (can_move(c->x, c->y, c->direction)) {
               c->y += 2; 
@@ -564,18 +567,49 @@ void move_character(CharacterController* c) {
     // because the movment can not happen in the end.
     switch(c->direction) {
         case 4: //LEFT
+          // Add the feet movement
+          set_sprite_tile(c->type, c->sprite_1); // Default in case the player cannot move to this direction
+          if (input_timer == 4) {
+            set_sprite_tile(c->type, c->sprite_2);
+          }
+          if (input_timer == 2) {
+            set_sprite_tile(c->type, c->sprite_1);
+          }
           set_sprite_prop(c->type, S_FLIPX);
           break;
         case 2: // RIGHT
+          // Add the feet movement
+          set_sprite_tile(c->type, c->sprite_1); // Default in case the player cannot move to this direction
+          if (input_timer == 4) {
+            set_sprite_tile(c->type, c->sprite_2);
+          }
+          if (input_timer == 2) {
+            set_sprite_tile(c->type, c->sprite_1);
+          }
+          // Unflip just to be sure
           set_sprite_prop(c->type, 0);
           break;
         case 1: // UP
-          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_tile(c->type, c->sprite_4); // Default in case the player cannot move to this direction
+          // Add the feet movement
+          if (input_timer == 4) {
+            set_sprite_tile(c->type, c->sprite_5);
+          }
+          if (input_timer == 2) {
+            set_sprite_tile(c->type, c->sprite_4);
+          }
+        
           set_sprite_prop(c->type, S_FLIPX);
-          // set_sprite_prop(c->type, 0);
           break;
         case 3: // DOWN
-          set_sprite_tile(c->type, c->sprite_4);
+          set_sprite_tile(c->type, c->sprite_4); // Default in case the player cannot move to this direction
+          // Add the feet movement
+          if (input_timer == 4) {
+            set_sprite_tile(c->type, c->sprite_5);
+          }
+          if (input_timer == 2) {
+            set_sprite_tile(c->type, c->sprite_4);
+          }
           set_sprite_prop(c->type, S_FLIPY);
           break;
       }
