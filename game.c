@@ -348,6 +348,7 @@ void player_input(CharacterController** c) {
         player_status = PLAYER_SPECIAL_POWER_ACTIVATED_FLAG;
         if ((*c)->type == 1) {
           (*c)->power_timer = 16;
+          (*c)->power_active = 1;
         }
         
         // input_timer needs to be updated inside the player stuff
@@ -357,8 +358,6 @@ void player_input(CharacterController** c) {
         // printf("troca\n");
         player_status = PLAYER_CHANGE_PLAYER_FLAG;
         (*c)->power_timer = 10;
-        
-
         break;
 
       case J_LEFT:
@@ -377,8 +376,7 @@ void player_input(CharacterController** c) {
           (*c)->direction = 3; 
           input_timer = 4;
         break;
-      default:
-        (*c)->direction = 0; 
+
 
     }
   }
@@ -425,7 +423,9 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   //printf("x:%u _ %u %u\n", (unsigned) x, (unsigned) _x, (unsigned) direction);
   // x logic
   // 8 -> 0 (because it starts at 8)
+  // Stops the player of leaving the map.
   if (_x < 0 || (unsigned) _x > 19 || _y < 0 || (unsigned) _y > 17) {
+    printf("1\n");
     return 0;
   }
 
@@ -438,6 +438,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
 
   if ((UINT16)Map1[map_position] > (UINT16)20 &&
     (UINT16)Map1[map_position] < (UINT16)41) {
+    printf("2\n");
     return 0;
   }
 
@@ -452,18 +453,18 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     // case (UINT16)4:
     // case (UINT16)10:
     // printf("PlayerNotMove\n");
-
+printf("3\n");
       return 0;
       break;
   }
-
+printf("4\n");
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
   return 1;
 }
 
 void move_character(CharacterController* c) {
-
+  UINT8 movement;
   // We only want this to run for the current active player.
   if (player->type != c->type){
     return;
@@ -474,12 +475,7 @@ void move_character(CharacterController* c) {
     // Bunny power  -----------------------------------------
     if (c->type == 1) {// bunny
       // First time running here
-      if (c->power_active == 1) {
-        // printf("Power active 1\n");
-        c->power_active = 2;
-        c->power_timer = 16;
-      }
-
+      movement = 2;
 
       // Test once each time we are on a tile
       if (c->power_timer == 4 ||
@@ -487,50 +483,75 @@ void move_character(CharacterController* c) {
           c->power_timer == 12 || 
           c->power_timer == 16) 
       {
-
+        if (!can_move(c->x, c->y, c->direction)) {
+          c->power_timer = 1; // 1 will make it end this loop.
+          // printf('cantmove\n');
+          movement = 0;
+        }
+      }
+      
+      // Do the movment 
+      switch(c->direction) {
+        case 4: //LEFT
+          c->x -= movement;
+          set_sprite_tile(c->type, c->sprite_3);
+          set_sprite_prop(c->type, S_FLIPX);
+          break;
+        case 2: // RIGHT
+          set_sprite_tile(c->type, c->sprite_3);
+          set_sprite_prop(c->type, 0);
+          c->x += movement; 
+          break;
+        case 1: // UP
+          set_sprite_tile(c->type, c->sprite_6);
+          set_sprite_prop(c->type, S_FLIPX);
+          c->y -= movement; 
+          break;
+        case 3: // DOWN
+          set_sprite_tile(c->type, c->sprite_6);
+          set_sprite_prop(c->type, S_FLIPY);
+          c->y += movement; 
+          break;
+        case 0:
+          set_sprite_tile(c->type, c->sprite_6);
+          set_sprite_prop(c->type, S_FLIPX);
+          performantDelay(5);
+          set_sprite_tile(c->type, c->sprite_3);
+          set_sprite_prop(c->type, S_FLIPX | S_FLIPY);
+          performantDelay(5);
+          set_sprite_tile(c->type, c->sprite_6);
+          set_sprite_prop(c->type, S_FLIPY);
+          performantDelay(5);
+          set_sprite_tile(c->type, c->sprite_3);
+          set_sprite_prop(c->type, 0);
+          // The player didn't chose a direction, so we just... do a loop!
+      }
+      
+      c->power_timer -= 1;
+      if (c->power_timer == 0) {
+        c->power_active = 0;
         switch(c->direction) {
           case 4: //LEFT
-            if (can_move(c->x, c->y, c->direction)) {
-              c->x -= 2; 
-            }
-            
-            set_sprite_tile(c->type, c->sprite_3);
-            set_sprite_prop(c->type, 0);
+            // Add the feet movement
+            set_sprite_tile(c->type, c->sprite_1); // Default in case the player cannot move to this direction
             set_sprite_prop(c->type, S_FLIPX);
             break;
           case 2: // RIGHT
-            if (can_move(c->x, c->y, c->direction)) {
-              c->x += 2; 
-            }
-            set_sprite_tile(c->type, c->sprite_3);
+            // Add the feet movement
+            set_sprite_tile(c->type, c->sprite_1); // Default in case the player cannot move to this direction
             set_sprite_prop(c->type, 0);
             break;
           case 1: // UP
-            if (can_move(c->x, c->y, c->direction)) {
-              c->y -= 2;
-            }
-            set_sprite_tile(c->type, c->sprite_6);
-            set_sprite_prop(c->type, 0);
+            set_sprite_tile(c->type, c->sprite_4); // Default in case the player cannot move to this direction
+            set_sprite_prop(c->type, S_FLIPX);
             break;
           case 3: // DOWN
-            set_sprite_tile(c->type, c->sprite_6);
-            set_sprite_prop(c->type, 0);
+            set_sprite_tile(c->type, c->sprite_4); // Default in case the player cannot move to this direction
             set_sprite_prop(c->type, S_FLIPY);
-            if (can_move(c->x, c->y, c->direction)) {
-              c->y += 2; 
-            }
-            
             break;
-        } 
+        }
       }
-
       
-      c->power_timer -= 1;
-
-      if (c->power_timer == 0) {
-        c->power_active = 0;
-        set_sprite_tile(c->type, c->sprite_1);
-      }
     }
 
     // Dog power -----------------------------------------
