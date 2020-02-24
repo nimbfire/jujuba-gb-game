@@ -425,7 +425,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   // 8 -> 0 (because it starts at 8)
   // Stops the player of leaving the map.
   if (_x < 0 || (unsigned) _x > 19 || _y < 0 || (unsigned) _y > 17) {
-    printf("1\n");
+    // printf("1\n");
     return 0;
   }
 
@@ -438,7 +438,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
 
   if ((UINT16)Map1[map_position] > (UINT16)20 &&
     (UINT16)Map1[map_position] < (UINT16)41) {
-    printf("2\n");
+    // printf("2\n");
     return 0;
   }
 
@@ -453,11 +453,11 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
     // case (UINT16)4:
     // case (UINT16)10:
     // printf("PlayerNotMove\n");
-printf("3\n");
+    // printf("3\n");
       return 0;
       break;
   }
-printf("4\n");
+  // printf("4\n");
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
   return 1;
