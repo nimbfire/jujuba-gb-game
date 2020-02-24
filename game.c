@@ -193,6 +193,28 @@ void map_1_water(){
   
 }
 
+void change_char() {
+// #define DOG1_FLAG    0x01U
+// #define DOG2_FLAG    0x02U
+// #define CAT_FLAG    0x04U
+// #define HORSE_FLAG    0x08U
+// #define WHUT_FLAG    0x10U
+  // if ()
+
+      // printf("TROCA\n");
+  player->direction = 0;
+  switch (player->type) {
+    case 1:
+      player = &dog1;
+      break;
+    case 2:
+      player = &bunny;
+      break;
+  }
+performantDelay(10);
+
+}
+
 void map_1() {
   
   if (is_ded(&player)) {
@@ -204,21 +226,7 @@ void map_1() {
   // generate_bunny();
   player_input(&player);
 
-  if (input_timer != 0) {
-    if (input_timer == 10) {
-      // printf("TROCA\n");
-      player->direction = 0;
-      switch (player->type) {
-        case 1:
-          player = &dog1;
-          break;
-        case 2:
-          player = &bunny;
-          break;
-      }
-
-    }
-  }
+ 
   move_character(&bunny);
   move_character(&dog1);
 
@@ -356,8 +364,7 @@ void player_input(CharacterController** c) {
 
       case J_B:
         // printf("troca\n");
-        player_status = PLAYER_CHANGE_PLAYER_FLAG;
-        (*c)->power_timer = 10;
+        change_char();
         break;
 
       case J_LEFT:
