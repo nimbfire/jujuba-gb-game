@@ -632,26 +632,6 @@ void move_character(CharacterController* c) {
           break;
       }
     }
-
-    // Up and down
-    if (c->direction == 1 || c->direction == 3) {
-      if (input_timer == 4) {
-        set_sprite_tile(c->type, c->sprite_5);
-      }
-      if (input_timer == 2) {
-        set_sprite_tile(c->type, c->sprite_4);
-      }
-    }
-
-    // left and right
-    if (c->direction == 2 || c->direction == 4) {
-      if (input_timer == 4) {
-      set_sprite_tile(c->type, c->sprite_2);
-      }
-      if (input_timer == 2) {
-        set_sprite_tile(c->type, c->sprite_1);
-      }
-    }
     
   }
 
