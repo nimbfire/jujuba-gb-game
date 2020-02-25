@@ -9,18 +9,6 @@
 #include "maps/map1.c"
 #include "sprites/SpritesPark.c"
 
-
-// Chars flags
-#define DOG1_FLAG    0x01U
-#define DOG2_FLAG    0x02U
-#define CAT_FLAG    0x04U
-#define HORSE_FLAG    0x08U
-#define WHUT_FLAG    0x10U
-
-#define PLAYER_SPECIAL_POWER_ACTIVATED_FLAG 0x01U
-#define PLAYER_SPECIAL_POWER_RUNNING_FLAG 0x02U
-#define PLAYER_CHANGE_PLAYER_FLAG 0x04U
-
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U
 
@@ -49,11 +37,9 @@ UWORD spritePalette[] = {
   // 0, RGB_BLACK, RGB_RED, RGB_WHITE
 };
 
-UBYTE characters_available;
-UBYTE player_status;
-
 UBYTE running;
 UINT8 timer;
+UINT8 characters_available;
 UBYTE input_timer;
 // UBYTE16 player_map_position;
 // UBYTE map
@@ -156,7 +142,7 @@ void main(void)
 }
 
 void init() {
-  characters_available = 0x1u;
+  characters_available = 4;
 
   set_bkg_data(0,60,sprites_park);
   set_bkg_tiles(0, 0, 20, 18, Map1);
@@ -252,7 +238,7 @@ void map_water(){
   
 }
 
-void change_char() {
+int change_char() {
 // #define DOG1_FLAG    0x01U
 // #define DOG2_FLAG    0x02U
 // #define CAT_FLAG    0x04U
@@ -260,18 +246,55 @@ void change_char() {
 // #define WHUT_FLAG    0x10U
   // if ()
 
-      // printf("TROCA\n");
-  player->direction = 0;
-  switch (player->type) {
-    case 1:
-      player = &dog1;
-      break;
-    case 2:
-      player = &bunny;
-      break;
+  if (characters_available == 1) {
+    return 0;
   }
+
+  player->direction = 0;
+
+  if (characters_available == 2) {
+    switch (player->type) {
+      case 1:
+        player = &dog1;
+        break;
+      case 2:
+        player = &bunny;
+        break;
+    }
+  }
+  if (characters_available == 3) {
+    switch (player->type) {
+      case 1:
+        player = &dog1;
+        break;
+      case 2:
+        player = &dog2;
+        break;
+      case 3:
+        player = &bunny;
+        break;
+    }
+  }
+  if (characters_available == 4) {
+    switch (player->type) {
+      case 1:
+        player = &dog1;
+        break;
+      case 2:
+        player = &dog2;
+        break;
+      case 3:
+        player = &cat;
+        break;
+      case 4:
+        player = &bunny;
+        break;
+    }
+  }
+  // This will make the player know which player char was 
+  // selected and give some time so it does not keep
+  // pressing and changing chars.
   rotate_player();
-// performantDelay(10);
 
 }
 
@@ -496,7 +519,6 @@ void player_input(CharacterController** c) {
 
     switch (joypad()) {
       case J_A:
-        player_status = PLAYER_SPECIAL_POWER_ACTIVATED_FLAG;
         if ((*c)->type == 1) {
           (*c)->power_timer = 16;
           (*c)->power_active = 1;
@@ -820,7 +842,9 @@ void move_character(CharacterController* c) {
 }
 
 void set_character_sprite(CharacterController* c) {
-  set_sprite_tile(c->type, c->sprite_1);
-  move_sprite(c->type, c->x, c->y);
+  if (c->type <= characters_available ) {
+    set_sprite_tile(c->type, c->sprite_1);
+    move_sprite(c->type, c->x, c->y);  
+  }
 }
 // 
