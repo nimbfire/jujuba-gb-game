@@ -72,12 +72,12 @@ void player_input(CharacterController** c);
 int is_ded(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
-void init_map();
+void map_init();
 
 int got_key(CharacterController** c);
 
 // Handles the first map logic.
-void map_1();
+void map_loop();
 
 void set_character_sprite(CharacterController* c);
 
@@ -95,42 +95,40 @@ void timers() {
   timer += 1;
 }
 
-void map_init() {
 
-}
 
 void map_run() {
-   if (is_ded(&player)) {
-    init_map();
-    // printf("you ded\n");
-  }
-  // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
-  got_key(&player);
+  //  if (is_ded(&player)) {
+  //   map_init();
+  //   // printf("you ded\n");
+  // }
+  // // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
+  // got_key(&player);
 
-  // generate_bunny();
-  player_input(&player);
+  // // generate_bunny();
+  // player_input(&player);
 
  
-  move_character(&bunny);
-  move_character(&dog1);
-  move_character(&dog2);
-  move_character(&cat);
-  // map_1();
-  performantDelay(2);
-  map_water();
+  // move_character(&bunny);
+  // move_character(&dog1);
+  // move_character(&dog2);
+  // move_character(&cat);
+  // // map_loop();
+  // performantDelay(2);
+  // map_water();
 }
 
 void main(void)
 {
   init();
-  init_map();
+  map_init();
 
   while(running) {
     // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
     // printf("%u %u\n", (unsigned) player->y, (((unsigned) player->y) / 8) -2);
 
     timers();
-    map_1();
+    map_loop();
     performantDelay(2);
     map_water();
   
@@ -294,11 +292,10 @@ int change_char() {
 
 }
 
-void map_1() {
+void map_loop() {
   
   if (is_ded(&player)) {
-    init_map();
-    // printf("you ded\n");
+    map_init();
   }
   // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
   got_key(&player);
@@ -330,12 +327,12 @@ void copy_map() {
     case 2:
       helper_copy_map(&Map2);
       break;
-      
+
   }
 
 }
 
-void init_map() {
+void map_init() {
   copy_map();
   instanciate_chars();
 
