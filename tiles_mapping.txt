@@ -24,3 +24,9 @@ Special
 41 - 50
 41 - key barrier
 42 - key barrier passing
+
+
+map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
+map 2 -> treino de pulo do coelho
+map 3 -> explica como dá pra ir e voltar em mapas?
+map 4 -> consegue brunio

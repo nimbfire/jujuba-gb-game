@@ -7,6 +7,7 @@
 #include "ObjectController.c"
 
 #include "maps/map1.c"
+#include "maps/map2.c"
 #include "sprites/SpritesPark.c"
 
 // If by collecting this object the map is won.
@@ -41,9 +42,10 @@ UBYTE running;
 UINT8 timer;
 UINT8 characters_available;
 UBYTE input_timer;
+UBYTE current_map;
 // UBYTE16 player_map_position;
 // UBYTE map
-UINT16 map; // Controlls which map we are seeing.
+unsigned char map[360]; // Controlls which map we are seeing.
 
 CharacterController bunny;  //1
 CharacterController dog1;   //2
@@ -70,7 +72,7 @@ void player_input(CharacterController** c);
 int is_ded(CharacterController** c);
 
 // Inits the game base variables, sprites, background.
-void init_map1();
+void init_map();
 
 int got_key(CharacterController** c);
 
@@ -99,7 +101,7 @@ void map_init() {
 
 void map_run() {
    if (is_ded(&player)) {
-    init_map1();
+    init_map();
     // printf("you ded\n");
   }
   // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
@@ -121,18 +123,17 @@ void map_run() {
 void main(void)
 {
   init();
-  init_map1();
+  init_map();
 
   while(running) {
     // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
     // printf("%u %u\n", (unsigned) player->y, (((unsigned) player->y) / 8) -2);
 
     timers();
-    if (map == 1) {
-      map_1();
-      performantDelay(2);
-      map_water();
-    }
+    map_1();
+    performantDelay(2);
+    map_water();
+  
   }
 
   printf("The end\n");
@@ -142,10 +143,12 @@ void main(void)
 }
 
 void init() {
+  current_map = 1;
   characters_available = 4;
 
+  copy_map();
   set_bkg_data(0,60,sprites_park);
-  set_bkg_tiles(0, 0, 20, 18, Map1);
+  set_bkg_tiles(0, 0, 20, 18, map);
   
   set_sprite_data(0,30,Characters);
   set_sprite_palette(0, 4, spritePalette);
@@ -168,7 +171,6 @@ void init() {
 
   input_timer = 0u;
   running = 1u;
-  map = 1u;
   timer = 1u;
   player = &bunny;
 }
@@ -222,29 +224,23 @@ void map_water(){
   //   while (map_position != 0) {
   //     map_position -= 1;
   //     // printf("%d\n", map_position);
-  //     switch((UINT16)Map1[map_position]) {
+  //     switch((UINT16)map[map_position]) {
   //       case (UINT16) 2:
-  //         Map1[map_position] = 3;
+  //         map[map_position] = 3;
   //         break;
   //       case (UINT16) 3:
-  //         Map1[map_position] = 2;
+  //         map[map_position] = 2;
   //         break;
 
   //     }
   //   }
-  //   set_bkg_tiles(0, 0, 20, 18, Map1);
+  //   set_bkg_tiles(0, 0, 20, 18, map);
 
   // }
   
 }
 
 int change_char() {
-// #define DOG1_FLAG    0x01U
-// #define DOG2_FLAG    0x02U
-// #define CAT_FLAG    0x04U
-// #define HORSE_FLAG    0x08U
-// #define WHUT_FLAG    0x10U
-  // if ()
 
   if (characters_available == 1) {
     return 0;
@@ -301,7 +297,7 @@ int change_char() {
 void map_1() {
   
   if (is_ded(&player)) {
-    init_map1();
+    init_map();
     // printf("you ded\n");
   }
   // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
@@ -319,8 +315,28 @@ void map_1() {
 
 }
 
-void init_map1() {
+void helper_copy_map(char *base_map) {
+  UINT16 i;
+  for(i = 0; i < 360; i++) {
+    map[i] = base_map[i];
+  }
 
+}
+void copy_map() {
+  switch (current_map) {
+    case 1:
+      helper_copy_map(&Map1);
+      break;
+    case 2:
+      helper_copy_map(&Map2);
+      break;
+      
+  }
+
+}
+
+void init_map() {
+  copy_map();
   instanciate_chars();
 
 
@@ -414,15 +430,15 @@ int got_key(CharacterController** c) {
     while (map_position != 0) {
       map_position -= 1;
       // printf("%d\n", map_position);
-      switch((UINT16)Map1[map_position]) {
+      switch((UINT16)map[map_position]) {
         case (UINT16) 41:
-          Map1[map_position] = 42;
+          map[map_position] = 42;
           break;
           break;
 
       }
     }
-    set_bkg_tiles(0, 0, 20, 18, Map1);
+    set_bkg_tiles(0, 0, 20, 18, map);
   }
 }
 
@@ -448,7 +464,7 @@ int is_ded(CharacterController** c) {
   map_position += (unsigned) _x;
   map_position += ((unsigned) _y) * 20;
 
-  switch((UINT16)Map1[map_position]) {
+  switch((UINT16)map[map_position]) {
     case (UINT16)11:
     // case (UINT16)3:
     // case (UINT16)7:
@@ -481,7 +497,7 @@ void dog1_power() {
       map_position_next = map_position_block - 1;
   }
   printf("%u %u\n", map_position_block, map_position_next);
-  switch((UINT16)Map1[map_position_block]) {
+  switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
       // move it!
       printf("BRUNIO POWER\n");
@@ -613,14 +629,14 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   map_position += (unsigned) _x;
   map_position += ((unsigned) _y) * 20;
 
-  if ((UINT16)Map1[map_position] > (UINT16)20 &&
-    (UINT16)Map1[map_position] < (UINT16)41) {
+  if ((UINT16)map[map_position] > (UINT16)20 &&
+    (UINT16)map[map_position] < (UINT16)41) {
     // printf("2\n");
     return 0;
   }
 
   // Or, test individual blocks
-  switch((UINT16)Map1[map_position]) {
+  switch((UINT16)map[map_position]) {
     case (UINT16)41:
     case (UINT16)45:// Brunio's block
     // case (UINT16)2:
