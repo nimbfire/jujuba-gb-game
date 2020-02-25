@@ -96,41 +96,16 @@ void timers() {
 }
 
 
-
-void map_run() {
-  //  if (is_ded(&player)) {
-  //   map_init();
-  //   // printf("you ded\n");
-  // }
-  // // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
-  // got_key(&player);
-
-  // // generate_bunny();
-  // player_input(&player);
-
- 
-  // move_character(&bunny);
-  // move_character(&dog1);
-  // move_character(&dog2);
-  // move_character(&cat);
-  // // map_loop();
-  // performantDelay(2);
-  // map_water();
-}
-
 void main(void)
 {
   init();
   map_init();
 
   while(running) {
-    // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
-    // printf("%u %u\n", (unsigned) player->y, (((unsigned) player->y) / 8) -2);
 
     timers();
     map_loop();
     performantDelay(2);
-    map_water();
   
   }
 
@@ -299,6 +274,7 @@ void map_loop() {
   }
   // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
   got_key(&player);
+  map_water();
 
   // generate_bunny();
   player_input(&player);
@@ -334,18 +310,19 @@ void copy_map() {
 
 void map_init() {
   copy_map();
+  set_bkg_tiles(0, 0, 20, 18, map);
   instanciate_chars();
 
 
 
-  key.x = 152;
-  key.y = 144;
-  // key.x = 8;
-  // key.y = 32;
-  key.sprite_1 = 14;
+  // key.x = 152;
+  // key.y = 144;
+  // // key.x = 8;
+  // // key.y = 32;
+  // key.sprite_1 = 14;
 
 
-  set_character_sprite(&key);
+  // set_character_sprite(&key);
 
 }
 
@@ -412,13 +389,12 @@ void instanciate_chars() {
 
 
 int got_key(CharacterController** c) {
+  UINT16 player_map_position = get_player_map_position(player->x, player->y);
   // printf("%u\n", player->x);
   // printf("%u\n", (&key)->x);
   // printf("%u - %u\n", (unsigned)(*c)->x, &key->x);
-  if (
-    player->x == (&key)->x &&
-    player->y == (&key)->y
-    ) {
+  // 46 is the key
+  if ((UINT16)map[player_map_position] == 46) {
     // update the block so you can pass it
     UINT16 map_position;
 
@@ -428,9 +404,11 @@ int got_key(CharacterController** c) {
       map_position -= 1;
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
-        case (UINT16) 41:
+        case (UINT16) 41: // The lock
           map[map_position] = 42;
           break;
+        case (UINT16) 46: // The lock
+          map[map_position] = 9;
           break;
 
       }
