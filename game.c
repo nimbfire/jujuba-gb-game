@@ -313,6 +313,8 @@ void map_1() {
  
   move_character(&bunny);
   move_character(&dog1);
+  move_character(&dog2);
+  move_character(&cat);
 
 
 }
