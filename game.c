@@ -97,6 +97,8 @@ void move_character(CharacterController* c);
 
 int can_move(INT8 x, INT8 y, UINT8 direction);
 
+int get_player_map_position(UINT8 x,UINT8 y) ;
+
 void timers() {
   // printf("%d\n", input_timer);
   if (input_timer != 0) {
@@ -254,6 +256,7 @@ void map_1() {
     init_map1();
     // printf("you ded\n");
   }
+  // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
   got_key(&player);
 
   // generate_bunny();
@@ -379,6 +382,58 @@ int is_ded(CharacterController** c) {
   return 0;
 }
 
+void dog1_power() {
+  UINT16 map_position_block;
+  UINT16 map_position_next;
+
+  map_position_block = get_player_map_position(player->x, player->y);
+  switch(player->direction) {
+    case 1: //up
+      map_position_block -= 20;
+      map_position_next = map_position_block - 20;
+    case 2: //right  
+      map_position_block += 1;
+      map_position_next = map_position_block + 1;
+    case 3: //down  
+      map_position_block += 20;
+      map_position_next = map_position_block + 20;
+    case 4: //left
+      map_position_block -= 1;
+      map_position_next = map_position_block - 1;
+  }
+  printf("%u %u\n", map_position_block, map_position_next);
+  switch((UINT16)Map1[map_position_block]) {
+    case (UINT16)45:// Brunio's block
+      // move it!
+      printf("BRUNIO POWER\n");
+      break;
+  }
+  // printf("4\n");
+  // UINT8 x_map = (x * 20);
+  // printf("%d %d\n", x, x_map );
+  // return 1;
+
+
+}
+int get_player_map_position(UINT8 x,UINT8 y) {
+  UINT8 _x;
+  UINT8 _y;
+  UINT16 map_position;
+
+  // Translate the xy to the map tile they are currently on.
+  // Resolution: 160x144 pixels (AKA 20x18 8x8-pixel tiles)
+  
+  _x = (((unsigned) x) / 8) -1;
+  _y = (((unsigned) y) / 8) -2;
+
+  // Map position
+  map_position = 0;
+  map_position += (unsigned) _x;
+  map_position += ((unsigned) _y) * 20;
+
+  return map_position;
+}
+
 void player_input(CharacterController** c) {
   // printf("%d %d %d\n", input_timer, (*c)->power_timer, (*c)->power_active);
 
@@ -390,6 +445,9 @@ void player_input(CharacterController** c) {
         if ((*c)->type == 1) {
           (*c)->power_timer = 16;
           (*c)->power_active = 1;
+        }
+        if ((*c)->type == 2) {
+          dog1_power();
         }
         
         // input_timer needs to be updated inside the player stuff
@@ -485,6 +543,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   // Or, test individual blocks
   switch((UINT16)Map1[map_position]) {
     case (UINT16)41:
+    case (UINT16)45:// Brunio's block
     // case (UINT16)2:
     // case (UINT16)3:
     // case (UINT16)4:
