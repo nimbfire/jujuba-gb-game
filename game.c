@@ -243,7 +243,8 @@ void change_char() {
       player = &bunny;
       break;
   }
-performantDelay(10);
+  rotate_player();
+// performantDelay(10);
 
 }
 
@@ -501,7 +502,23 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   // printf("%d %d\n", x, x_map );
   return 1;
 }
+void rotate_player() {
+  set_sprite_tile(player->type, player->sprite_6);
+  set_sprite_prop(player->type, S_FLIPX);
+  performantDelay(5);
+  set_sprite_tile(player->type, player->sprite_3);
+  set_sprite_prop(player->type, S_FLIPX | S_FLIPY);
+  performantDelay(5);
+  set_sprite_tile(player->type, player->sprite_6);
+  set_sprite_prop(player->type, S_FLIPY);
+  performantDelay(5);
+  set_sprite_tile(player->type, player->sprite_3);
+  set_sprite_prop(player->type, 0);
+  performantDelay(5);
+  set_sprite_tile(player->type, player->sprite_1);
+  set_sprite_prop(player->type, 0);
 
+}
 void move_character(CharacterController* c) {
   UINT8 movement;
   // We only want this to run for the current active player.
@@ -552,17 +569,7 @@ void move_character(CharacterController* c) {
           c->y += movement; 
           break;
         case 0:
-          set_sprite_tile(c->type, c->sprite_6);
-          set_sprite_prop(c->type, S_FLIPX);
-          performantDelay(5);
-          set_sprite_tile(c->type, c->sprite_3);
-          set_sprite_prop(c->type, S_FLIPX | S_FLIPY);
-          performantDelay(5);
-          set_sprite_tile(c->type, c->sprite_6);
-          set_sprite_prop(c->type, S_FLIPY);
-          performantDelay(5);
-          set_sprite_tile(c->type, c->sprite_3);
-          set_sprite_prop(c->type, 0);
+          rotate_player();
           // The player didn't chose a direction, so we just... do a loop!
       }
       
