@@ -107,6 +107,31 @@ void timers() {
   timer += 1;
 }
 
+void map_init() {
+
+}
+
+void map_run() {
+   if (is_ded(&player)) {
+    init_map1();
+    // printf("you ded\n");
+  }
+  // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
+  got_key(&player);
+
+  // generate_bunny();
+  player_input(&player);
+
+ 
+  move_character(&bunny);
+  move_character(&dog1);
+  move_character(&dog2);
+  move_character(&cat);
+  // map_1();
+  performantDelay(2);
+  map_water();
+}
+
 void main(void)
 {
   init();
@@ -120,7 +145,7 @@ void main(void)
     if (map == 1) {
       map_1();
       performantDelay(2);
-      map_1_water();
+      map_water();
     }
   }
 
@@ -163,7 +188,7 @@ void init() {
 }
 
 // Update map 1 water
-void map_1_water(){
+void map_water(){
   unsigned char sprite_water_1[] =
   {
     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
@@ -289,7 +314,7 @@ void init_map1() {
 void instanciate_chars() {
   // generate bunny
   bunny.x = 8;
-  bunny.y = 40;
+  bunny.y = 16;
   bunny.sprite_1 = 0;
   bunny.sprite_2 = 1;
   bunny.sprite_3 = 2;
@@ -299,10 +324,10 @@ void instanciate_chars() {
   bunny.direction = 0;
   bunny.power_active = 0;
   bunny.type = 1;
-  bunny.is_the_active = 1;
+  bunny.is_active = 1;
 
-  dog1.x = 40;
-  dog1.y = 48;
+  dog1.x = 16;
+  dog1.y = 16;
   dog1.sprite_1 = 3;
   dog1.sprite_2 = 4;
   dog1.sprite_3 = 5;
@@ -312,10 +337,39 @@ void instanciate_chars() {
   dog1.direction = 0;
   dog1.power_active = 0;
   dog1.type = 2;
-  dog1.is_the_active = 0;
+  dog1.is_active = 0;
+
+  dog2.x = 8;
+  dog2.y = 24;
+  dog2.sprite_1 = 6;
+  dog2.sprite_2 = 7;
+  dog2.sprite_3 = 8;
+  dog2.sprite_4 = 19;
+  dog2.sprite_5 = 20;
+  dog2.sprite_6 = 21;
+  dog2.direction = 0;
+  dog2.power_active = 0;
+  dog2.type = 3;
+  dog2.is_active = 0;
+
+  cat.x = 16;
+  cat.y = 24;
+  cat.sprite_1 = 9;
+  cat.sprite_2 = 10;
+  cat.sprite_3 = 5;
+  cat.sprite_4 = 19;
+  cat.sprite_5 = 20;
+  cat.sprite_6 = 21;
+  cat.direction = 0;
+  cat.power_active = 0;
+  cat.type = 4;
+  cat.is_active = 0;
+
 
   set_character_sprite(&bunny);
   set_character_sprite(&dog1);
+  set_character_sprite(&dog2);
+  set_character_sprite(&cat);
 }
 
 
