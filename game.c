@@ -57,7 +57,7 @@ UINT8 timer;
 UBYTE input_timer;
 // UBYTE16 player_map_position;
 // UBYTE map
-UBYTE map; // Controlls which map we are seeing.
+UINT16 map; // Controlls which map we are seeing.
 
 CharacterController bunny;  //1
 CharacterController dog1;   //2
@@ -406,6 +406,7 @@ void dog1_power() {
     case (UINT16)45:// Brunio's block
       // move it!
       printf("BRUNIO POWER\n");
+
       break;
   }
   // printf("4\n");
