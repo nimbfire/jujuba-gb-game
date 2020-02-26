@@ -487,6 +487,8 @@ void dog1_power() {
   UINT16 map_position_block;
   UINT16 map_position_next;
 
+  set_sprite_tile(player->type, player->sprite_3);
+
   map_position_block = get_player_map_position(player->x, player->y);
   switch(player->direction) {
     case 1: //up
@@ -515,7 +517,7 @@ void dog1_power() {
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < (UINT16)12) {
+      if ((UINT16)map[map_position_next] < (UINT16)12 || (UINT16)map[map_position_next] == 47) {
         map[map_position_block] = 47;
         set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
@@ -530,7 +532,7 @@ void dog1_power() {
   // UINT8 x_map = (x * 20);
   // printf("%d %d\n", x, x_map );
   // return 1;
-
+  set_sprite_tile(player->type, player->sprite_1);
 }
 
 void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next) {
@@ -575,6 +577,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
   }
   set_bkg_tiles(0, 0, 20, 18, map); 
   move_sprite(5, 0, 0);  
+  
 
 
 }
