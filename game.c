@@ -87,6 +87,8 @@ int can_move(INT8 x, INT8 y, UINT8 direction);
 
 int get_player_map_position(UINT8 x,UINT8 y) ;
 
+void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next);
+
 void timers() {
   // printf("%d\n", input_timer);
   if (input_timer != 0) {
@@ -461,21 +463,37 @@ void dog1_power() {
     case 1: //up
       map_position_block -= 20;
       map_position_next = map_position_block - 20;
+      break;
     case 2: //right  
       map_position_block += 1;
       map_position_next = map_position_block + 1;
+      break;
     case 3: //down  
       map_position_block += 20;
       map_position_next = map_position_block + 20;
+      break;
     case 4: //left
       map_position_block -= 1;
       map_position_next = map_position_block - 1;
+      break;
+
   }
-  printf("%u %u\n", map_position_block, map_position_next);
+  // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
+      // Update the position on the map to be the block after the block movment 47
+      map[map_position_block] = 47;
+      set_bkg_tiles(0, 0, 20, 18, map);
+
       // move it!
-      printf("BRUNIO POWER\n");
+
+      if ((UINT16)map[map_position_next] < 12) {
+        // printf(" - AND THIS");
+        dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
+      }
+      // switch ((UINT16)map[map_position_next]) {
+        
+      // }
 
       break;
   }
@@ -484,8 +502,48 @@ void dog1_power() {
   // printf("%d %d\n", x, x_map );
   // return 1;
 
+}
+
+void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next) {
+  UINT8 x;
+  UINT8 y;
+  UINT8 i;
+
+  // Creates the sprite block
+  y = ((map_position_block / 20 )*8) + 16;
+  x = ((map_position_block % 20 )*8) + 8;
+  set_sprite_tile(5, 15);
+  
+  // move the sprite
+  i = 4;
+  move_sprite(5, x, y);   
+  
+  while(i != 0) {
+    switch (direction) {
+      case 1:
+        y -= 2;
+        break;
+      case 2:
+        x += 2;
+        break;
+      case 3:
+        y += 2;
+        break;
+      case 4:
+        x -= 2;
+        break;
+    }
+    performantDelay(2);
+    move_sprite(5, x, y);  
+    i -=1;
+  }
+  map[map_position_next] = 45;
+  set_bkg_tiles(0, 0, 20, 18, map); 
+  move_sprite(5, 0, 0);  
+
 
 }
+
 int get_player_map_position(UINT8 x,UINT8 y) {
   UINT8 _x;
   UINT8 _y;

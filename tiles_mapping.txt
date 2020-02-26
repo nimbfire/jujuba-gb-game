@@ -1,3 +1,6 @@
+tiles_chars
+15 - rock
+
 tiles_mapping
 
 
@@ -24,6 +27,7 @@ Special
 41 - 50
 41 - key barrier
 42 - key barrier passing
+47 - after the block movment
 
 
 map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
