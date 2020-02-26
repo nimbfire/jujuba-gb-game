@@ -8,6 +8,7 @@
 
 #include "maps/map1.c"
 #include "maps/map2.c"
+#include "maps/map3.c"
 #include "maps/mapTest.c"
 #include "sprites/SpritesPark.c"
 
@@ -66,6 +67,8 @@ void performantDelay(UINT8 numLoops) {
   }
 }
 
+int got_door(CharacterController** c);
+
 // Check player controls.
 void player_input(CharacterController** c);
 
@@ -119,11 +122,11 @@ void main(void)
 }
 
 void init() {
-  current_map = 2;
-  characters_available = 4;
+  current_map = 3;
+  characters_available = 2;
 
   copy_map();
-  set_bkg_data(0,60,sprites_park);
+  set_bkg_data(0,120,sprites_park);
   set_bkg_tiles(0, 0, 20, 18, map);
   
   set_sprite_data(0,30,Characters);
@@ -275,6 +278,7 @@ void map_loop() {
   if (is_ded(&player)) {
     map_init();
   }
+  got_door(&player);
   // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
   got_key(&player);
   map_water();
@@ -305,6 +309,9 @@ void copy_map() {
       break;
     case 2:
       helper_copy_map(&Map2);
+      break;
+    case 3:
+      helper_copy_map(&Map3);
       break;
     case 200:
       helper_copy_map(&MapTest);
@@ -396,9 +403,7 @@ void instanciate_chars() {
 
 int got_key(CharacterController** c) {
   UINT16 player_map_position = get_player_map_position(player->x, player->y);
-  // printf("%u\n", player->x);
-  // printf("%u\n", (&key)->x);
-  // printf("%u - %u\n", (unsigned)(*c)->x, &key->x);
+
   // 46 is the key
   if ((UINT16)map[player_map_position] == 46) {
     // update the block so you can pass it
@@ -421,6 +426,26 @@ int got_key(CharacterController** c) {
     }
     set_bkg_tiles(0, 0, 20, 18, map);
   }
+}
+
+int got_door(CharacterController** c) {
+  UINT16 player_map_position = get_player_map_position(player->x, player->y);
+
+  switch ((UINT16)map[player_map_position]) {
+    case 101:
+      current_map = 1;
+      map_init();
+      break;
+    case 102:
+      current_map = 2;
+      map_init();
+      break;
+    case 103:
+      current_map = 3;
+      map_init();
+      break;
+  }
+
 }
 
 
