@@ -8,6 +8,7 @@
 
 #include "maps/map1.c"
 #include "maps/map2.c"
+#include "maps/mapTest.c"
 #include "sprites/SpritesPark.c"
 
 // If by collecting this object the map is won.
@@ -118,7 +119,7 @@ void main(void)
 }
 
 void init() {
-  current_map = 1;
+  current_map = 2;
   characters_available = 4;
 
   copy_map();
@@ -305,6 +306,9 @@ void copy_map() {
     case 2:
       helper_copy_map(&Map2);
       break;
+    case 200:
+      helper_copy_map(&MapTest);
+      break;
 
   }
 
@@ -482,13 +486,13 @@ void dog1_power() {
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
       // Update the position on the map to be the block after the block movment 47
-      map[map_position_block] = 47;
-      set_bkg_tiles(0, 0, 20, 18, map);
+      
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < 12) {
-        // printf(" - AND THIS");
+      if ((UINT16)map[map_position_next] < (UINT16)12) {
+        map[map_position_block] = 47;
+        set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
       }
       // switch ((UINT16)map[map_position_next]) {
@@ -537,7 +541,13 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
     move_sprite(5, x, y);  
     i -=1;
   }
-  map[map_position_next] = 45;
+  // If its water.
+  if (map[map_position_next] == 11) {
+    map[map_position_next] = 48;
+  }
+  else {
+    map[map_position_next] = 45;
+  }
   set_bkg_tiles(0, 0, 20, 18, map); 
   move_sprite(5, 0, 0);  
 
