@@ -9,6 +9,13 @@
 #include "maps/map1.c"
 #include "maps/map2.c"
 #include "maps/map3.c"
+#include "maps/map4.c"
+#include "maps/map5.c"
+#include "maps/map6.c"
+#include "maps/map7.c"
+#include "maps/map8.c"
+#include "maps/map9.c"
+#include "maps/map10.c"
 #include "maps/mapTest.c"
 #include "sprites/SpritesPark.c"
 
@@ -122,7 +129,7 @@ void main(void)
 }
 
 void init() {
-  current_map = 3;
+  current_map = 200;
   characters_available = 2;
 
   copy_map();
@@ -313,7 +320,28 @@ void copy_map() {
     case 3:
       helper_copy_map(&Map3);
       break;
-    case 200:
+    case 4:
+      helper_copy_map(&Map4);
+      break;
+    case 5:
+      helper_copy_map(&Map5);
+      break;
+    case 6:
+      helper_copy_map(&Map6);
+      break;
+    case 7:
+      helper_copy_map(&Map7);
+      break;
+    case 8:
+      helper_copy_map(&Map8);
+      break;
+    case 9:
+      helper_copy_map(&Map9);
+      break;
+    case 10:
+      helper_copy_map(&Map10);
+      break;
+    default:
       helper_copy_map(&MapTest);
       break;
 
@@ -444,6 +472,74 @@ int got_door(CharacterController** c) {
       current_map = 3;
       map_init();
       break;
+    case 104:
+      current_map = 4;
+      map_init();
+      break;
+    case 105:
+      current_map = 5;
+      map_init();
+      break;
+    case 106:
+      current_map = 6;
+      map_init();
+      break;
+    case 107:
+      current_map = 7;
+      map_init();
+      break;
+    case 108:
+      current_map = 8;
+      map_init();
+      break;
+    case 109:
+      current_map = 9;
+      map_init();
+      break;
+    case 110:
+      current_map =10;
+      map_init();
+      break;
+    case 111:
+      current_map =11;
+      map_init();
+      break;
+    case 112:
+      current_map =12;
+      map_init();
+      break;
+    case 113:
+      current_map =13;
+      map_init();
+      break;
+    case 114:
+      current_map =14;
+      map_init();
+      break;
+    case 115:
+      current_map =15;
+      map_init();
+      break;
+    case 116:
+      current_map =16;
+      map_init();
+      break;
+    case 117:
+      current_map =17;
+      map_init();
+      break;
+    case 118:
+      current_map =18;
+      map_init();
+      break;
+    case 119:
+      current_map =19;
+      map_init();
+      break;
+    case 120:
+      current_map =20;
+      map_init();
+      break;
   }
 
 }
@@ -471,13 +567,9 @@ int is_ded(CharacterController** c) {
   map_position += ((unsigned) _y) * 20;
 
   switch((UINT16)map[map_position]) {
-    case (UINT16)11:
-    // case (UINT16)3:
-    // case (UINT16)7:
-    // case (UINT16)9:
-    // case (UINT16)4:
-    // case (UINT16)10:
-      // printf("PlayerNotMove\n");
+    case (UINT16)11: // Wata
+    // case (UINT16)12: // abism
+
       return 1;
   }
   return 0;
@@ -517,7 +609,10 @@ void dog1_power() {
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < (UINT16)12 || (UINT16)map[map_position_next] == 47 || (UINT16)map[map_position_next] == 48) {
+      if ((UINT16)map[map_position_next] < (UINT16)12 || 
+        (UINT16)map[map_position_next] == 47 || 
+        (UINT16)map[map_position_next] == 48 ||
+        (UINT16)map[map_position_next] == 42) {
         map[map_position_block] = 47;
         set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
