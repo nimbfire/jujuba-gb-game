@@ -517,7 +517,7 @@ void dog1_power() {
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < (UINT16)12 || (UINT16)map[map_position_next] == 47) {
+      if ((UINT16)map[map_position_next] < (UINT16)12 || (UINT16)map[map_position_next] == 47 || (UINT16)map[map_position_next] == 48) {
         map[map_position_block] = 47;
         set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);

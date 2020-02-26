@@ -28,6 +28,7 @@ Special
 41 - key barrier
 42 - key barrier passing
 47 - after the block movment
+48 - after the block falls in the water
 
 
 map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
