@@ -577,6 +577,15 @@ int is_ded(CharacterController** c) {
   return 0;
 }
 
+// Return 1 if from the map_pos on the direction there are more ice
+// or something that would make it slide
+int ice_should_slide(UINT16 map_pos, UINT8 direction) {
+  UINT16 next_map_pos;
+  if ((UINT16)map[map_pos] == 13 || (UINT16)map[map_pos] == 14) {
+    next_map_pos =_get_next_map_position(map_pos, direction);
+  }
+}
+
 void dog1_power() {
   UINT16 map_position_block;
   UINT16 map_position_next;
@@ -587,25 +596,7 @@ void dog1_power() {
   
   map_position_block = _get_next_map_position(map_position_block,player->direction );
   map_position_next = _get_next_map_position(map_position_block, player->direction);
-  // switch(player->direction) {
-  //   case 1: //up
-  //     map_position_block -= 20;
-  //     map_position_next = map_position_block - 20;
-  //     break;
-  //   case 2: //right  
-  //     map_position_block += 1;
-  //     map_position_next = map_position_block + 1;
-  //     break;
-  //   case 3: //down  
-  //     map_position_block += 20;
-  //     map_position_next = map_position_block + 20;
-  //     break;
-  //   case 4: //left
-  //     map_position_block -= 1;
-  //     map_position_next = map_position_block - 1;
-  //     break;
 
-  // }
   // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
@@ -642,16 +633,25 @@ void dog1_power() {
 UINT16 _get_next_map_position(UINT16 map_pos, UINT8 direction) {
     switch(direction) {
     case 1: //up
-      map_pos -= 20;
+      if (map_pos > 20) {
+        map_pos -= 20;
+      }
       break;
     case 2: //right  
-      map_pos += 1;
+      if (((map_pos + 1) % 20) != 0) {
+        map_pos += 1;
+      }
       break;
     case 3: //down  
-      map_pos += 20;
+      if (map_pos < 340) {
+        map_pos += 20;
+      }
       break;
     case 4: //left
-      map_pos -= 1;
+      if (((map_pos) % 20) != 0) {
+        map_pos -= 1;
+      }
+      // map_pos -= 1;
       break;
   }
   return map_pos;
