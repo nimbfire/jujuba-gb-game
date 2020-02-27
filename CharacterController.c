@@ -13,5 +13,5 @@ typedef struct CharacterController{
     UBYTE power_active;
     UINT8 power_timer;
     UBYTE type; // 1 bunny, 2 dog1, 3 dog2, 4cat, 5horse
-    UBYTE is_active; // If its the char that the player is controlling now.
+    UINT16 map_position; // If its the char that the player is controlling now.
 } CharacterController;

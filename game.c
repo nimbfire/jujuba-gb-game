@@ -74,6 +74,8 @@ void performantDelay(UINT8 numLoops) {
   }
 }
 
+int can_move_to_map_pos(UINT16 map_position);
+
 int got_door(CharacterController** c);
 
 // Check player controls.
@@ -98,7 +100,7 @@ void move_character(CharacterController* c);
 
 int can_move(INT8 x, INT8 y, UINT8 direction);
 
-int get_player_map_position(UINT8 x,UINT8 y) ;
+UINT16 get_player_map_position(UINT8 x,UINT8 y) ;
 
 void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next);
 
@@ -382,7 +384,7 @@ void instanciate_chars() {
   bunny.direction = 0;
   bunny.power_active = 0;
   bunny.type = 1;
-  bunny.is_active = 1;
+  bunny.map_position = 400;
 
   dog1.x = 16;
   dog1.y = 16;
@@ -395,7 +397,7 @@ void instanciate_chars() {
   dog1.direction = 0;
   dog1.power_active = 0;
   dog1.type = 2;
-  dog1.is_active = 0;
+  dog1.map_position = 400;
 
   dog2.x = 8;
   dog2.y = 24;
@@ -408,7 +410,7 @@ void instanciate_chars() {
   dog2.direction = 0;
   dog2.power_active = 0;
   dog2.type = 3;
-  dog2.is_active = 0;
+  dog2.map_position = 400;
 
   cat.x = 16;
   cat.y = 24;
@@ -421,7 +423,7 @@ void instanciate_chars() {
   cat.direction = 0;
   cat.power_active = 0;
   cat.type = 4;
-  cat.is_active = 0;
+  cat.map_position = 400;
 
 
   set_character_sprite(&bunny);
@@ -581,9 +583,18 @@ int is_ded(CharacterController** c) {
 // or something that would make it slide
 int ice_should_slide(UINT16 map_pos, UINT8 direction) {
   UINT16 next_map_pos;
+  UINT8 i;
+  i = 20;
   if ((UINT16)map[map_pos] == 13 || (UINT16)map[map_pos] == 14) {
-    next_map_pos =_get_next_map_position(map_pos, direction);
+    next_map_pos =_get_next_map_position(map_pos, direction); // handles colision
+    if(map_pos == next_map_pos) {
+      return 0;
+    }
+    return 1;
   }
+  
+  
+  return 0;
 }
 
 void dog1_power() {
@@ -602,6 +613,10 @@ void dog1_power() {
     case (UINT16)45:// Brunio's block
       // Update the position on the map to be the block after the block movment 47
       
+      // Is there something there, like a player, that should make it notmove?
+      if (can_move_to_map_pos(map_position_next) == 0) {
+        break;
+      }
 
       // move it!
 
@@ -615,7 +630,7 @@ void dog1_power() {
       }
       if ((UINT16)map[map_position_next] < (UINT16)13) {
         // Ice
-
+        // ice_should_slide
       }
       // switch ((UINT16)map[map_position_next]) {
         
@@ -707,7 +722,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
 
 }
 
-int get_player_map_position(UINT8 x,UINT8 y) {
+UINT16 get_player_map_position(UINT8 x,UINT8 y) {
   UINT8 _x;
   UINT8 _y;
   UINT16 map_position;
@@ -776,6 +791,41 @@ void player_input(CharacterController** c) {
   // move_sprite(*c->type, *c->x, *c->y);
 }
 
+int can_move_to_map_pos(UINT16 map_position) {
+  // printf("%u\n", map_position);
+  if ((UINT16)map[map_position] > (UINT16)20 &&
+    (UINT16)map[map_position] < (UINT16)41) {
+    // printf("2\n");
+    return 0;
+  }
+
+  // Or, test individual blocks
+  switch((UINT16)map[map_position]) {
+    case (UINT16)41:
+    case (UINT16)45:// Brunio's block
+    // case (UINT16)2:
+    // case (UINT16)3:
+    // case (UINT16)4:
+    // case (UINT16)7:
+    // case (UINT16)9:
+    // case (UINT16)4:
+    // case (UINT16)10:
+    // printf("PlayerNotMove\n");
+    // printf("3\n");
+      return 0;
+      break;
+  }
+
+  if ((UINT16)map_position == bunny.map_position 
+    || (UINT16)map_position == dog1.map_position 
+    || (UINT16)map_position == dog2.map_position 
+    || (UINT16)map_position == cat.map_position ) {
+    // printf("3\n");
+    return 0;
+  }
+  // printf("4\n");
+  return 1;
+}
 
 int can_move(INT8 x, INT8 y, UINT8 direction) {
   UINT8 _x;
@@ -825,33 +875,13 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   map_position += (unsigned) _x;
   map_position += ((unsigned) _y) * 20;
 
-  if ((UINT16)map[map_position] > (UINT16)20 &&
-    (UINT16)map[map_position] < (UINT16)41) {
-    // printf("2\n");
-    return 0;
+  if (can_move_to_map_pos(map_position)) {
+    return 1;
   }
 
-  // Or, test individual blocks
-  switch((UINT16)map[map_position]) {
-    case (UINT16)41:
-    case (UINT16)45:// Brunio's block
-    // case (UINT16)2:
-    // case (UINT16)3:
-    // case (UINT16)4:
-    // case (UINT16)7:
-    // case (UINT16)9:
-    // case (UINT16)4:
-    // case (UINT16)10:
-    // printf("PlayerNotMove\n");
-    // printf("3\n");
-      return 0;
-      break;
-  }
-  // printf("4\n");
-  // UINT8 x_map = (x * 20);
-  // printf("%d %d\n", x, x_map );
-  return 1;
+  return 0;
 }
+
 void rotate_player() {
   set_sprite_tile(player->type, player->sprite_6);
   set_sprite_prop(player->type, S_FLIPX);
@@ -867,8 +897,8 @@ void rotate_player() {
   performantDelay(5);
   set_sprite_tile(player->type, player->sprite_1);
   set_sprite_prop(player->type, 0);
-
 }
+
 void move_character(CharacterController* c) {
   UINT8 movement;
   // We only want this to run for the current active player.
@@ -1053,12 +1083,14 @@ void move_character(CharacterController* c) {
   }
 
   move_sprite(c->type, c->x, c->y);
+  c->map_position = get_player_map_position(c->x, c->y);
 }
 
 void set_character_sprite(CharacterController* c) {
   if (c->type <= characters_available ) {
     set_sprite_tile(c->type, c->sprite_1);
     move_sprite(c->type, c->x, c->y);  
+    c->map_position = get_player_map_position(c->x, c->y);
   }
 }
 // 
