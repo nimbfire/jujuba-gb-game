@@ -581,21 +581,21 @@ int is_ded(CharacterController** c) {
 
 // Return 1 if from the map_pos on the direction there are more ice
 // or something that would make it slide
-int ice_should_slide(UINT16 map_pos, UINT8 direction) {
-  UINT16 next_map_pos;
-  UINT8 i;
-  i = 20;
-  if ((UINT16)map[map_pos] == 13 || (UINT16)map[map_pos] == 14) {
-    next_map_pos =_get_next_map_position(map_pos, direction); // handles colision
-    if(map_pos == next_map_pos) {
-      return 0;
-    }
-    return 1;
-  }
+// int can_slide_to_map_pos(UINT16 map_pos) {
+//   UINT16 next_map_pos;
+//   UINT8 i;
+//   i = 20;
+//   if ((UINT16)map[map_pos] == 13 || (UINT16)map[map_pos] == 14) {
+//     next_map_pos =_get_next_map_position(map_pos, direction); // handles colision
+//     if(map_pos == next_map_pos) {
+//       return 0;
+//     }
+//     return 1;
+//   }
   
   
-  return 0;
-}
+//   return 0;
+// }
 
 void dog1_power() {
   UINT16 map_position_block;
@@ -611,16 +611,26 @@ void dog1_power() {
   // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
+    case (UINT16)15:// Brunio's block
       // Update the position on the map to be the block after the block movment 47
       
       // Is there something there, like a player, that should make it notmove?
       if (can_move_to_map_pos(map_position_next) == 0) {
         break;
       }
+      
+      if ((UINT16)map[map_position_block] == 45) {
+        map[map_position_block] = 47;
+        set_bkg_tiles(0, 0, 20, 18, map);
+      }
+      if ((UINT16)map[map_position_block] == 15) {
+        map[map_position_block] = 13;
+        set_bkg_tiles(0, 0, 20, 18, map);
+      }
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < (UINT16)15 || 
+      if ((UINT16)map[map_position_next] < (UINT16)13 || 
         (UINT16)map[map_position_next] == 47 || 
         (UINT16)map[map_position_next] == 48 ||
         (UINT16)map[map_position_next] == 42) {
@@ -628,7 +638,18 @@ void dog1_power() {
         set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
       }
-      if ((UINT16)map[map_position_next] < (UINT16)13) {
+      if ((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
+        
+        while((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
+          // set_bkg_tiles(0, 0, 20, 18, map);
+          if ((UINT16)map[map_position_block] == 15) {
+            map[map_position_block] = 13;
+          }
+          dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
+          map_position_block = map_position_next;
+          map_position_next = _get_next_map_position(map_position_block, player->direction);
+        }
+       
         // Ice
         // ice_should_slide
       }
@@ -710,6 +731,12 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
       map[map_position_next] = 48;
       break;
     case 12: // abism, does nothing;
+      break;
+    case 13: // abism, does nothing;
+      map[map_position_next] = 15;
+      break;
+    case 14: // abism, does nothing;
+      map[map_position_next] = 12;
       break;
     default:
       map[map_position_next] = 45;

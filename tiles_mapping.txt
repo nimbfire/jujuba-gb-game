@@ -26,6 +26,7 @@ Barriers
 21 - tree
 22 - block
 23 - block slider
+24 - ice + block
 
 Special
 41 - 50
@@ -33,7 +34,6 @@ Special
 42 - key barrier passing
 47 - after the block movment
 48 - after the block falls in the water
-49 - 
 
 map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
 map 2 -> treino de pulo do coelho
