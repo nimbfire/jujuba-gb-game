@@ -85,6 +85,8 @@ int is_ded(CharacterController** c);
 // Inits the game base variables, sprites, background.
 void map_init();
 
+UINT16 _get_next_map_position(UINT16 map_pos, UINT8 direction);
+
 int got_key(CharacterController** c);
 
 // Handles the first map logic.
@@ -324,22 +326,22 @@ void copy_map() {
       helper_copy_map(&Map4);
       break;
     case 5:
-      helper_copy_map(&Map5);
+      helper_copy_map(&MapTest);
       break;
     case 6:
-      helper_copy_map(&Map6);
+      helper_copy_map(&MapTest);
       break;
     case 7:
-      helper_copy_map(&Map7);
+      helper_copy_map(&MapTest);
       break;
     case 8:
-      helper_copy_map(&Map8);
+      helper_copy_map(&MapTest);
       break;
     case 9:
-      helper_copy_map(&Map9);
+      helper_copy_map(&MapTest);
       break;
     case 10:
-      helper_copy_map(&Map10);
+      helper_copy_map(&MapTest);
       break;
     default:
       helper_copy_map(&MapTest);
@@ -582,25 +584,28 @@ void dog1_power() {
   set_sprite_tile(player->type, player->sprite_3);
 
   map_position_block = get_player_map_position(player->x, player->y);
-  switch(player->direction) {
-    case 1: //up
-      map_position_block -= 20;
-      map_position_next = map_position_block - 20;
-      break;
-    case 2: //right  
-      map_position_block += 1;
-      map_position_next = map_position_block + 1;
-      break;
-    case 3: //down  
-      map_position_block += 20;
-      map_position_next = map_position_block + 20;
-      break;
-    case 4: //left
-      map_position_block -= 1;
-      map_position_next = map_position_block - 1;
-      break;
+  
+  map_position_block = _get_next_map_position(map_position_block,player->direction );
+  map_position_next = _get_next_map_position(map_position_block, player->direction);
+  // switch(player->direction) {
+  //   case 1: //up
+  //     map_position_block -= 20;
+  //     map_position_next = map_position_block - 20;
+  //     break;
+  //   case 2: //right  
+  //     map_position_block += 1;
+  //     map_position_next = map_position_block + 1;
+  //     break;
+  //   case 3: //down  
+  //     map_position_block += 20;
+  //     map_position_next = map_position_block + 20;
+  //     break;
+  //   case 4: //left
+  //     map_position_block -= 1;
+  //     map_position_next = map_position_block - 1;
+  //     break;
 
-  }
+  // }
   // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
@@ -632,6 +637,24 @@ void dog1_power() {
   // printf("%d %d\n", x, x_map );
   // return 1;
   set_sprite_tile(player->type, player->sprite_1);
+}
+
+UINT16 _get_next_map_position(UINT16 map_pos, UINT8 direction) {
+    switch(direction) {
+    case 1: //up
+      map_pos -= 20;
+      break;
+    case 2: //right  
+      map_pos += 1;
+      break;
+    case 3: //down  
+      map_pos += 20;
+      break;
+    case 4: //left
+      map_pos -= 1;
+      break;
+  }
+  return map_pos;
 }
 
 void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next) {
