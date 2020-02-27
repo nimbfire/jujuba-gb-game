@@ -609,13 +609,17 @@ void dog1_power() {
 
       // move it!
 
-      if ((UINT16)map[map_position_next] < (UINT16)12 || 
+      if ((UINT16)map[map_position_next] < (UINT16)15 || 
         (UINT16)map[map_position_next] == 47 || 
         (UINT16)map[map_position_next] == 48 ||
         (UINT16)map[map_position_next] == 42) {
         map[map_position_block] = 47;
         set_bkg_tiles(0, 0, 20, 18, map);
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
+      }
+      if ((UINT16)map[map_position_next] < (UINT16)13) {
+        // Ice
+
       }
       // switch ((UINT16)map[map_position_next]) {
         
@@ -663,12 +667,15 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
     move_sprite(5, x, y);  
     i -=1;
   }
-  // If its water.
-  if (map[map_position_next] == 11) {
-    map[map_position_next] = 48;
-  }
-  else {
-    map[map_position_next] = 45;
+  switch (map[map_position_next]) {
+    case 11: // Water
+      map[map_position_next] = 48;
+      break;
+    case 12: // abism, does nothing;
+      break;
+    default:
+      map[map_position_next] = 45;
+      break;
   }
   set_bkg_tiles(0, 0, 20, 18, map); 
   move_sprite(5, 0, 0);  

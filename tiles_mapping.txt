@@ -18,11 +18,14 @@ water 2
   0xFF,0x00,0xBB,0x00,0x55,0x00,0xFF,0x00,
   0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
 12 - abism
+13 - ice
+14 - cracked ice
 
 Barriers
 21 - 40
 21 - tree
 22 - block
+23 - block slider
 
 Special
 41 - 50
@@ -30,7 +33,7 @@ Special
 42 - key barrier passing
 47 - after the block movment
 48 - after the block falls in the water
-
+49 - 
 
 map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
 map 2 -> treino de pulo do coelho
