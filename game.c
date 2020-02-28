@@ -224,7 +224,7 @@ int change_char() {
     return 0;
   }
 
-  player->direction = 0;
+  // player->direction = 0;
 
   if (characters_available == 2) {
     switch (player->type) {
@@ -317,7 +317,7 @@ void copy_map() {
       helper_copy_map(&Map4);
       break;
     case 5:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&Map5);
       break;
     case 6:
       helper_copy_map(&MapTest);
