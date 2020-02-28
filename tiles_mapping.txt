@@ -20,13 +20,15 @@ water 2
 12 - abism
 13 - ice
 14 - cracked ice
-
+15 - ice + block
+16 - ice craced + block
+17 - ice cracking 
 Barriers
 21 - 40
 21 - tree
 22 - block
 23 - block slider
-15 - ice + block
+
 
 Special
 41 - 50

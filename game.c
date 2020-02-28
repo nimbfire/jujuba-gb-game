@@ -106,9 +106,9 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
 
 void timers() {
   // printf("%d\n", input_timer);
-  if (input_timer != 0) {
-    input_timer -= 1;
-  }
+  // if (input_timer != 0) {
+    // input_timer -= 1;
+  // }
   timer += 1;
 }
 
@@ -166,7 +166,10 @@ void init() {
 }
 
 // Update map 1 water
-void map_water(){
+// Update super cracked ice to be abism
+void map_enviroment_tiles(){
+  UINT16 map_position;
+
   unsigned char sprite_water_1[] =
   {
     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
@@ -207,26 +210,24 @@ void map_water(){
   //   sprites_park[90] = 0xBB;
   // }
 
-  // UINT16 map_position;
+  // We dont want to run this always to not create too much processing.
+  if (timer % 8 == 0) {
+    map_position = 360;
+    while (map_position != 0) {
+      map_position -= 1;
+      // printf("%d\n", map_position);
+      switch((UINT16)map[map_position]) {
+        case (UINT16) 17:
+          if (input_timer == 0) { // The player isn't moving.
+            map[map_position] = 12;
 
-  // if (timer % 32 == 0) {
-  //   map_position = 360;
-  //   while (map_position != 0) {
-  //     map_position -= 1;
-  //     // printf("%d\n", map_position);
-  //     switch((UINT16)map[map_position]) {
-  //       case (UINT16) 2:
-  //         map[map_position] = 3;
-  //         break;
-  //       case (UINT16) 3:
-  //         map[map_position] = 2;
-  //         break;
+          }
+          break;
 
-  //     }
-  //   }
-  //   set_bkg_tiles(0, 0, 20, 18, map);
-
-  // }
+      }
+    }
+    set_bkg_tiles(0, 0, 20, 18, map);
+  }
   
 }
 
@@ -293,7 +294,7 @@ void map_loop() {
   got_door(&player);
   // printf("%u\n", (UINT16)_get_map_position_from_xy(player->x, player->y));
   got_key(&player);
-  map_water();
+  map_enviroment_tiles();
 
   // generate_bunny();
   player_input(&player);
@@ -700,7 +701,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
     map[map_position_block] = 13;               // update to ice again
   }
   if ((UINT16)map[map_position_block] == 16) {  // If its a craced ice with block
-    map[map_position_block] = 12;               // now its abism
+    map[map_position_block] = 17;               // now its more cracked ice and it will be abism
   }
   // set_bkg_tiles(0, 0, 20, 18, map);
 
@@ -787,7 +788,9 @@ void player_input(CharacterController** c) {
       case J_A:
         if ((*c)->type == 1) {
           (*c)->power_timer = 16;
+          // input_timer = 16;
           (*c)->power_active = 1;
+          // input_timer = 4;
         }
         if ((*c)->type == 2) {
           dog1_power();
@@ -820,13 +823,13 @@ void player_input(CharacterController** c) {
 
 
     }
-    if (input_timer != 0) { // Ie, the player is going to move
-      if (map[(*c)->map_position] == 14) { // Cracked ice
-        map[(*c)->map_position] = 16; // Cracked ice even more cracked
-        set_bkg_tiles(0, 0, 20, 18, map); 
+    // if (input_timer != 0) { // Ie, the player is going to move
+    //   if (map[(*c)->map_position] == 14) { // Cracked ice
+    //     map[(*c)->map_position] = 17; // Cracked ice even more cracked
+    //     set_bkg_tiles(0, 0, 20, 18, map); 
 
-      }
-    }
+    //   }
+    // }
   }
 
 
@@ -1120,11 +1123,28 @@ void move_character(CharacterController* c) {
           break;
       }
     }
+
+    if (map[c->map_position] == 14) { // Cracked ice
+      map[c->map_position] = 17; // Cracked ice even more cracked
+      set_bkg_tiles(0, 0, 20, 18, map); 
+    }
     
+      // printf("%d\n", input_timer);
+    c->map_position = _get_map_position_from_xy(c->x, c->y);
+    if (map[c->map_position] == 13 || map[c->map_position] == 14) {
+      if (can_move(c->x, c->y, c->direction) && input_timer == 0) {
+        input_timer = 4;
+      }
+    }
   }
 
-  move_sprite(c->type, c->x, c->y);
   c->map_position = _get_map_position_from_xy(c->x, c->y);
+  move_sprite(c->type, c->x, c->y);
+
+  if (input_timer != 0) {
+    input_timer -= 1;
+  }
+
 }
 
 void set_character_sprite(CharacterController* c) {
