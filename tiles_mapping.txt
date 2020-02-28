@@ -26,7 +26,7 @@ Barriers
 21 - tree
 22 - block
 23 - block slider
-24 - ice + block
+15 - ice + block
 
 Special
 41 - 50

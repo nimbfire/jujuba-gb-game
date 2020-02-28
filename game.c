@@ -619,14 +619,7 @@ void dog1_power() {
         break;
       }
       
-      if ((UINT16)map[map_position_block] == 45) {
-        map[map_position_block] = 47;
-        set_bkg_tiles(0, 0, 20, 18, map);
-      }
-      if ((UINT16)map[map_position_block] == 15) {
-        map[map_position_block] = 13;
-        set_bkg_tiles(0, 0, 20, 18, map);
-      }
+
 
       // move it!
 
@@ -634,10 +627,10 @@ void dog1_power() {
         (UINT16)map[map_position_next] == 47 || 
         (UINT16)map[map_position_next] == 48 ||
         (UINT16)map[map_position_next] == 42) {
-        map[map_position_block] = 47;
-        set_bkg_tiles(0, 0, 20, 18, map);
+
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
       }
+
       if ((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
         
         while((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
@@ -649,7 +642,16 @@ void dog1_power() {
           map_position_block = map_position_next;
           map_position_next = _get_next_map_position(map_position_block, player->direction);
         }
-       
+        // Now that sliding through the ice is over, lets test if it can do once more
+        map_position_block = map_position_next;
+        map_position_next = _get_next_map_position(map_position_block, player->direction);
+        if (can_move_to_map_pos(map_position_next)) {
+          if ((UINT16)map[map_position_block] == 15) {
+            map[map_position_block] = 13;
+            set_bkg_tiles(0, 0, 20, 18, map);
+            dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
+          }
+        }
         // Ice
         // ice_should_slide
       }
@@ -698,6 +700,15 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
   UINT8 y;
   UINT8 i;
 
+  // Update the current tile
+  if ((UINT16)map[map_position_block] == 45) {  // If its a normal block
+    map[map_position_block] = 47;               // update to dirt
+  }
+  if ((UINT16)map[map_position_block] == 15) {  // If its a block on ice
+    map[map_position_block] = 13;               // update to ice again
+  }
+  set_bkg_tiles(0, 0, 20, 18, map);
+
   // Creates the sprite block
   y = ((map_position_block / 20 )*8) + 16;
   x = ((map_position_block % 20 )*8) + 8;
@@ -726,26 +737,28 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
     move_sprite(5, x, y);  
     i -=1;
   }
+
+  // Now that the block has stopped moving,
+  // we update the tile it got to
   switch (map[map_position_next]) {
     case 11: // Water
-      map[map_position_next] = 48;
+      map[map_position_next] = 48; // wet dirt
       break;
-    case 12: // abism, does nothing;
+    case 12: // abism, does nothing, it felt
       break;
-    case 13: // abism, does nothing;
-      map[map_position_next] = 15;
+    case 13: // ice
+      map[map_position_next] = 15; // ice with block
       break;
-    case 14: // abism, does nothing;
-      map[map_position_next] = 12;
+    case 14: // cracked_ice
+      map[map_position_next] = 12; // now it is an abism
       break;
     default:
-      map[map_position_next] = 45;
+      map[map_position_next] = 45; // normal dog1 block
       break;
   }
   set_bkg_tiles(0, 0, 20, 18, map); 
   move_sprite(5, 0, 0);  
   
-
 
 }
 
@@ -830,6 +843,8 @@ int can_move_to_map_pos(UINT16 map_position) {
   switch((UINT16)map[map_position]) {
     case (UINT16)41:
     case (UINT16)45:// Brunio's block
+    case (UINT16)15:// Brunio's block on ice
+    // case (UINT16)45:// Brunio's block
     // case (UINT16)2:
     // case (UINT16)3:
     // case (UINT16)4:
