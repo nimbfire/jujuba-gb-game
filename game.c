@@ -289,6 +289,7 @@ void map_loop() {
   if (is_ded(&player)) {
     map_init();
   }
+
   got_door(&player);
   // printf("%u\n", (UINT16)_get_map_position_from_xy(player->x, player->y));
   got_key(&player);
@@ -701,7 +702,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
   if ((UINT16)map[map_position_block] == 16) {  // If its a craced ice with block
     map[map_position_block] = 12;               // now its abism
   }
-  set_bkg_tiles(0, 0, 20, 18, map);
+  // set_bkg_tiles(0, 0, 20, 18, map);
 
   // Creates the sprite block
   y = ((map_position_block / 20 )*8) + 16;
@@ -756,6 +757,8 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
 
 }
 
+// Given x an y coordinates, get the correponding map 
+// position integer.
 UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) {
   UINT8 _x;
   UINT8 _y;
@@ -817,7 +820,15 @@ void player_input(CharacterController** c) {
 
 
     }
+    if (input_timer != 0) { // Ie, the player is going to move
+      if (map[(*c)->map_position] == 14) { // Cracked ice
+        map[(*c)->map_position] = 16; // Cracked ice even more cracked
+        set_bkg_tiles(0, 0, 20, 18, map); 
+
+      }
+    }
   }
+
 
   // move_sprite((*c)->type, (*c)->x, (*c)->y);
 
