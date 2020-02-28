@@ -21,8 +21,11 @@ water 2
 13 - ice
 14 - cracked ice
 15 - ice + block
-16 - ice craced + block
+16 - ice crakced + block
 17 - ice cracking 
+18 - ground cracked 
+19 - ground cracking (will be abism when the player stops)
+
 Barriers
 21 - 40
 21 - tree

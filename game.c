@@ -192,35 +192,22 @@ void map_enviroment_tiles(){
       
     }
   }
-  // sprites_park[90] = 0xA3;
-  // sprites_park[91] = 0xA3;
-  // sprites_park[92] = 0xA3;
-  // sprites_park[93] = 0xA3;
-  // sprites_park[94] = 0xA3;
-  // unsigned char sprite[] =
-  //   {
-  //     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
-  //     0xFF,0x00,0xBB,0x00,0x55,0x00,0xFF,0x00,
-  //   };
-  // // sprites_park[0] = 0xA3;
-  // set_bkg_data(11,1,sprite);
-
-  // tile 11, position 88
-  // if (sprites_park[90] == 0xDD) {
-  //   sprites_park[90] = 0xBB;
-  // }
-
-  // We dont want to run this always to not create too much processing.
+  
+  // Update any tile that needs updating
   if (timer % 8 == 0) {
     map_position = 360;
     while (map_position != 0) {
       map_position -= 1;
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
-        case (UINT16) 17:
+        case (UINT16) 17: // Cracked ice
           if (input_timer == 0) { // The player isn't moving.
             map[map_position] = 12;
-
+          }
+          break;
+        case (UINT16) 19: // Cracked ground
+          if (input_timer == 0) { // The player isn't moving.
+            map[map_position] = 12;
           }
           break;
 
@@ -823,13 +810,14 @@ void player_input(CharacterController** c) {
 
 
     }
-    // if (input_timer != 0) { // Ie, the player is going to move
-    //   if (map[(*c)->map_position] == 14) { // Cracked ice
-    //     map[(*c)->map_position] = 17; // Cracked ice even more cracked
-    //     set_bkg_tiles(0, 0, 20, 18, map); 
+    // Update cracked ground
+    if (input_timer != 0) { // Ie, the player is going to move
+      if (map[(*c)->map_position] == 18) { // Cracked ice
+        map[(*c)->map_position] = 19; // Cracked ice even more cracked
+        set_bkg_tiles(0, 0, 20, 18, map); 
 
-    //   }
-    // }
+      }
+    }
   }
 
 
