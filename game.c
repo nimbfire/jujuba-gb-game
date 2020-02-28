@@ -100,7 +100,7 @@ void move_character(CharacterController* c);
 
 int can_move(INT8 x, INT8 y, UINT8 direction);
 
-UINT16 get_player_map_position(UINT8 x,UINT8 y) ;
+UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) ;
 
 void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next);
 
@@ -290,7 +290,7 @@ void map_loop() {
     map_init();
   }
   got_door(&player);
-  // printf("%u\n", (UINT16)get_player_map_position(player->x, player->y));
+  // printf("%u\n", (UINT16)_get_map_position_from_xy(player->x, player->y));
   got_key(&player);
   map_water();
 
@@ -434,7 +434,7 @@ void instanciate_chars() {
 
 
 int got_key(CharacterController** c) {
-  UINT16 player_map_position = get_player_map_position(player->x, player->y);
+  UINT16 player_map_position = _get_map_position_from_xy(player->x, player->y);
 
   // 46 is the key
   if ((UINT16)map[player_map_position] == 46) {
@@ -461,7 +461,7 @@ int got_key(CharacterController** c) {
 }
 
 int got_door(CharacterController** c) {
-  UINT16 player_map_position = get_player_map_position(player->x, player->y);
+  UINT16 player_map_position = _get_map_position_from_xy(player->x, player->y);
 
   switch ((UINT16)map[player_map_position]) {
     case 101:
@@ -551,28 +551,20 @@ int got_door(CharacterController** c) {
 
 int is_ded(CharacterController** c) {
 
-  UINT8 _x;
-  UINT8 _y;
   UINT16 map_position;
 
   if ((*c)->power_active && (*c)->type == 1) {
+    // The bunny is jumping!.
     return 0;
   }
 
       // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
+  map_position = _get_map_position_from_xy((*c)->x, (*c)->y);
 
-  _x = (((unsigned) (*c)->x) / 8) -1;
-  _y = (((unsigned) (*c)->y) / 8) -2;
-
-
-  // Map position
-  map_position = 0;
-  map_position += (unsigned) _x;
-  map_position += ((unsigned) _y) * 20;
 
   switch((UINT16)map[map_position]) {
     case (UINT16)11: // Wata
-    // case (UINT16)12: // abism
+    case (UINT16)12: // abism
 
       return 1;
   }
@@ -603,7 +595,7 @@ void dog1_power() {
 
   set_sprite_tile(player->type, player->sprite_3);
 
-  map_position_block = get_player_map_position(player->x, player->y);
+  map_position_block = _get_map_position_from_xy(player->x, player->y);
   
   map_position_block = _get_next_map_position(map_position_block,player->direction );
   map_position_next = _get_next_map_position(map_position_block, player->direction);
@@ -611,7 +603,8 @@ void dog1_power() {
   // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
-    case (UINT16)15:// Brunio's block
+    case (UINT16)15:// Brunio's block on ice
+    case (UINT16)16:// Brunio's block on cracked ice
       // Update the position on the map to be the block after the block movment 47
       
       // Is there something there, like a player, that should make it notmove?
@@ -631,29 +624,27 @@ void dog1_power() {
         dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
       }
 
+      // The ice makes the block go way further, so we have a loop here to handle that.
       if ((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
         
-        while((UINT16)map[map_position_next] == 13 || (UINT16)map[map_position_next] == 14) {
-          // set_bkg_tiles(0, 0, 20, 18, map);
-          if ((UINT16)map[map_position_block] == 15) {
-            map[map_position_block] = 13;
+        dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
+        map_position_block = map_position_next;
+          map_position_next = _get_next_map_position(map_position_block, player->direction);
+
+        while((UINT16)map[map_position_block] == 13
+            || (UINT16)map[map_position_block] == 14
+            || (UINT16)map[map_position_block] == 15
+            || (UINT16)map[map_position_block] == 16) {
+
+          if (can_move_to_map_pos(map_position_next) == 0) {
+            break;
           }
           dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
           map_position_block = map_position_next;
           map_position_next = _get_next_map_position(map_position_block, player->direction);
         }
-        // Now that sliding through the ice is over, lets test if it can do once more
-        map_position_block = map_position_next;
-        map_position_next = _get_next_map_position(map_position_block, player->direction);
-        if (can_move_to_map_pos(map_position_next)) {
-          if ((UINT16)map[map_position_block] == 15) {
-            map[map_position_block] = 13;
-            set_bkg_tiles(0, 0, 20, 18, map);
-            dog1_power_apply((UINT16)map_position_block, (UINT8)player->direction, map_position_next);
-          }
-        }
-        // Ice
-        // ice_should_slide
+        
+
       }
       // switch ((UINT16)map[map_position_next]) {
         
@@ -707,6 +698,9 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
   if ((UINT16)map[map_position_block] == 15) {  // If its a block on ice
     map[map_position_block] = 13;               // update to ice again
   }
+  if ((UINT16)map[map_position_block] == 16) {  // If its a craced ice with block
+    map[map_position_block] = 12;               // now its abism
+  }
   set_bkg_tiles(0, 0, 20, 18, map);
 
   // Creates the sprite block
@@ -750,7 +744,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
       map[map_position_next] = 15; // ice with block
       break;
     case 14: // cracked_ice
-      map[map_position_next] = 12; // now it is an abism
+      map[map_position_next] = 16; // now it is an abism
       break;
     default:
       map[map_position_next] = 45; // normal dog1 block
@@ -762,7 +756,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
 
 }
 
-UINT16 get_player_map_position(UINT8 x,UINT8 y) {
+UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) {
   UINT8 _x;
   UINT8 _y;
   UINT16 map_position;
@@ -844,14 +838,8 @@ int can_move_to_map_pos(UINT16 map_position) {
     case (UINT16)41:
     case (UINT16)45:// Brunio's block
     case (UINT16)15:// Brunio's block on ice
-    // case (UINT16)45:// Brunio's block
-    // case (UINT16)2:
-    // case (UINT16)3:
-    // case (UINT16)4:
-    // case (UINT16)7:
-    // case (UINT16)9:
-    // case (UINT16)4:
-    // case (UINT16)10:
+    case (UINT16)16:// Brunio's block on cracked ice
+
     // printf("PlayerNotMove\n");
     // printf("3\n");
       return 0;
@@ -1125,14 +1113,14 @@ void move_character(CharacterController* c) {
   }
 
   move_sprite(c->type, c->x, c->y);
-  c->map_position = get_player_map_position(c->x, c->y);
+  c->map_position = _get_map_position_from_xy(c->x, c->y);
 }
 
 void set_character_sprite(CharacterController* c) {
   if (c->type <= characters_available ) {
     set_sprite_tile(c->type, c->sprite_1);
     move_sprite(c->type, c->x, c->y);  
-    c->map_position = get_player_map_position(c->x, c->y);
+    c->map_position = _get_map_position_from_xy(c->x, c->y);
   }
 }
 // 
