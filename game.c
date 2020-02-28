@@ -1021,7 +1021,10 @@ void move_character(CharacterController* c) {
             break;
         }
       }
-      
+      // Update the input timer!
+      if (input_timer != 0) {
+        input_timer -= 1;
+      }
     }
 
     // Dog power -----------------------------------------
@@ -1043,6 +1046,8 @@ void move_character(CharacterController* c) {
     
   }
   else {
+
+
     // The first time the player moves, the input timer is 4
     // then we test if the player can move, if not, we cancel
     // all other checks by setting the input timer as incatctive
@@ -1129,21 +1134,24 @@ void move_character(CharacterController* c) {
       set_bkg_tiles(0, 0, 20, 18, map); 
     }
     
-      // printf("%d\n", input_timer);
-    c->map_position = _get_map_position_from_xy(c->x, c->y);
-    if (map[c->map_position] == 13 || map[c->map_position] == 14) {
-      if (can_move(c->x, c->y, c->direction) && input_timer == 0) {
-        input_timer = 4;
+    // Update the input timer!
+    if (input_timer != 0) {
+      input_timer -= 1;
+      // We only test if the ice should slide IF the player WAS moving this turn.
+      c->map_position = _get_map_position_from_xy(c->x, c->y);
+      if (map[c->map_position] == 13 || map[c->map_position] == 14 || map[c->map_position] == 17 ) {
+        if (can_move(c->x, c->y, c->direction) && input_timer == 0) {
+          input_timer = 4;
+        }
       }
     }
+
   }
 
   c->map_position = _get_map_position_from_xy(c->x, c->y);
   move_sprite(c->type, c->x, c->y);
 
-  if (input_timer != 0) {
-    input_timer -= 1;
-  }
+  
 
 }
 
