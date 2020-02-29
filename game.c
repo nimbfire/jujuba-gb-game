@@ -320,7 +320,7 @@ void copy_map() {
       helper_copy_map(&Map5);
       break;
     case 6:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&Map6);
       break;
     case 7:
       helper_copy_map(&MapTest);
