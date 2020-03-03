@@ -9,10 +9,12 @@ jump
 showing ice
 get dog
 
+bunny - explain jump
+bunny - explain ice and key, uses jump
+4 - bunny + dog1 -> waters hard - can be made bunny only -> lets make bunny only
 1 - bunny + dog1 -> easy
 2 - bunny + dog1 -> water+blocks medium 
 3 - bunny + dog1 -> blocks hard
-4 - bunny + dog1 -> waters hard - can be made bunny only
 5 - bunny + dog1 -> ice extreme?
 6 - bunny - medium/hard?
 
