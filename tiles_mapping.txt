@@ -9,10 +9,17 @@ jump
 showing ice
 get dog
 
+game front screen
+ - historia - inicio
 bunny - explain jump
+bunny - train jump, uses key
 bunny - explain ice and key, uses jump
 4 - bunny + dog1 -> waters hard - can be made bunny only -> lets make bunny only
-1 - bunny + dog1 -> easy
+
+ - historia - get dog1
+1 - bunny + dog1 -> review jump, uses block and key, easy
+bunny + dog1 -> train push, uses key, review 
+
 2 - bunny + dog1 -> water+blocks medium 
 3 - bunny + dog1 -> blocks hard
 5 - bunny + dog1 -> ice extreme?
@@ -45,7 +52,9 @@ Barriers
 21 - tree
 22 - block
 23 - block slider
-
+24 - burned
+25 - fire 1
+26 - fire 2
 
 Special
 41 - 50

@@ -170,6 +170,7 @@ void init() {
 void map_enviroment_tiles(){
   UINT16 map_position;
 
+  // Water sprites
   unsigned char sprite_water_1[] =
   {
     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00,
@@ -182,6 +183,24 @@ void map_enviroment_tiles(){
     0xFF,0x00,0xDD,0x00,0xAA,0x00,0xFF,0x00
   };
 
+  // Fire sprites
+  unsigned char sprite_fire_1[] = // big
+  {
+    0x18,0x00,0x28,0x10,0x6C,0x10,0x56,0x28,
+    0x5A,0x24,0x5A,0x24,0x66,0x18,0x3C,0x00,
+  };
+
+  unsigned char sprite_fire_2[] = //small
+  {
+    0x00,0x00,0x10,0x00,0x28,0x10,0x2C,0x10,
+    0x56,0x28,0x5A,0x24,0x66,0x18,0x3C,0x00
+  };
+
+
+    
+  
+
+  // Update water
   if (timer % 32 == 0) {
     if (timer % 64 == 0) {
       set_bkg_data(11,1,sprite_water_1);
@@ -193,6 +212,18 @@ void map_enviroment_tiles(){
     }
   }
   
+  // Update fire
+  if (timer % 32 == 0) {
+    if (timer % 64 == 0) {
+      set_bkg_data(25,1,sprite_fire_1);
+      
+    }
+    else {
+      set_bkg_data(25,1,sprite_fire_2);
+
+    }
+  }
+
   // Update any tile that needs updating
   if (timer % 8 == 0) {
     map_position = 360;
