@@ -172,7 +172,7 @@ void spread_fire(UINT16 map_position) {
   if ((map_position+1) % 20 != 0) {
     map_test = map_position +1;
     if (map[map_test] == 21 || map[map_test] == 23) {
-      map[map_test] = 25;
+      map[map_test] = 27;
     }
   }
 
@@ -180,7 +180,7 @@ void spread_fire(UINT16 map_position) {
   if ((map_position) % 20 != 0) {
     map_test = map_position -1;
     if (map[map_test] == 21 || map[map_test] == 23) {
-      map[map_test] = 25;
+      map[map_test] = 27;
     }
   }
 
@@ -188,7 +188,7 @@ void spread_fire(UINT16 map_position) {
   if (map_position > 19) {
     map_test = map_position -20;
     if (map[map_test] == 21 || map[map_test] == 23) {
-      map[map_test] = 25;
+      map[map_test] = 27;
     }
   }
 
@@ -196,7 +196,7 @@ void spread_fire(UINT16 map_position) {
   if (map_position < 340) {
     map_test = map_position +20;
     if (map[map_test] == 21 || map[map_test] == 23) {
-      map[map_test] = 25;
+      map[map_test] = 27;
     }
   }
 }
@@ -336,7 +336,7 @@ void map_enviroment_tiles(){
   // Update any tile that needs updating
   if (timer % 8 == 0) {
     map_position = 360;
-    while (map_position != 240) {
+    while (map_position != 0) {
       map_position -= 1;
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
@@ -350,11 +350,14 @@ void map_enviroment_tiles(){
             map[map_position] = 12;
           }
           break;
+        case (UINT16) 27: // Started fire!
+          map[map_position] = 25; // big fire
 
       }
     }
-    set_bkg_tiles(0, 0, 20, 18, map);
   }
+  
+  set_bkg_tiles(0, 0, 20, 18, map);
   
 }
 
