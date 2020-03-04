@@ -196,6 +196,11 @@ void map_enviroment_tiles(){
     0x56,0x28,0x5A,0x24,0x66,0x18,0x3C,0x00
   };
 
+  unsigned char sprite_fire_3[] = //small
+  {
+    0x00,0x00,0x00,0x00,0x10,0x00,0x28,0x10,
+    0x2C,0x10,0x56,0x28,0x66,0x18,0x3C,0x00,
+  };
 
     
   
@@ -216,11 +221,34 @@ void map_enviroment_tiles(){
   if (timer % 32 == 0) {
     if (timer % 64 == 0) {
       set_bkg_data(25,1,sprite_fire_1);
+      set_bkg_data(26,1,sprite_fire_3);
       
     }
     else {
       set_bkg_data(25,1,sprite_fire_2);
+      set_bkg_data(26,1,sprite_fire_2);
 
+    }
+  }
+  if (timer == 0) {
+    //spread fire
+    map_position = 360;
+    while (map_position != 0) {
+      map_position -= 1;
+      // printf("%d\n", map_position);
+      switch((UINT16)map[map_position]) {
+        case (UINT16) 25: // big fire
+          if (input_timer == 0) { // The player isn't moving.
+            map[map_position] = 26; // little fire
+          }
+          break;
+        case (UINT16) 26: // little fire
+          if (input_timer == 0) { // The player isn't moving.
+            map[map_position] = 24; // burned tile
+          }
+          break;
+
+      }
     }
   }
 

@@ -53,8 +53,8 @@ Barriers
 22 - block
 23 - block slider
 24 - burned
-25 - fire 1
-26 - fire 2
+25 - fire 1 - big, will became little next 
+26 - fire 2 - little, will became nothing next
 
 Special
 41 - 50
