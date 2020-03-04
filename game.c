@@ -165,6 +165,26 @@ void init() {
   player = &bunny;
 }
 
+void spread_fire(UINT16 map_position) {
+  UINT16 map_test;
+  
+  // right
+  if ((map_position+1) % 20 != 0) {
+    map_test = map_position +1;
+    if (map[map_test] == 21 || map[map_test] == 23) {
+      map[map_test] = 25;
+    }
+  }
+
+  // left
+  if ((map_position) % 20 != 0) {
+    map_test = map_position -1;
+    if (map[map_test] == 21 || map[map_test] == 23) {
+      map[map_test] = 25;
+    }
+  }
+}
+
 // Update map 1 water
 // Update super cracked ice to be abism
 void map_enviroment_tiles(){
@@ -230,7 +250,26 @@ void map_enviroment_tiles(){
 
     }
   }
+  // Update fire tiles
   if (timer == 0) {
+    map_position = 360;
+    while (map_position != 0) {
+      map_position -= 1;
+      // printf("%d\n", map_position);
+      switch((UINT16)map[map_position]) {
+        case (UINT16) 25: // big fire
+          map[map_position] = 26; // little fire
+          break;
+
+        case (UINT16) 26: // little fire
+          map[map_position] = 49; // burned tile
+          break;
+
+      }
+    }
+  }
+  // spread fire!
+  if (timer % 8 == 0) {
     //spread fire
     map_position = 360;
     while (map_position != 0) {
@@ -238,14 +277,8 @@ void map_enviroment_tiles(){
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
         case (UINT16) 25: // big fire
-          if (input_timer == 0) { // The player isn't moving.
-            map[map_position] = 26; // little fire
-          }
-          break;
         case (UINT16) 26: // little fire
-          if (input_timer == 0) { // The player isn't moving.
-            map[map_position] = 24; // burned tile
-          }
+          spread_fire(map_position);
           break;
 
       }

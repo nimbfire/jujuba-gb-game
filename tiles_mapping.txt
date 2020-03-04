@@ -51,8 +51,8 @@ Barriers
 21 - 40
 21 - tree
 22 - block
-23 - block slider
-24 - burned
+23 - tree 2
+49 - burned
 25 - fire 1 - big, will became little next 
 26 - fire 2 - little, will became nothing next
 
