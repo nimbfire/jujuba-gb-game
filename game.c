@@ -183,6 +183,22 @@ void spread_fire(UINT16 map_position) {
       map[map_test] = 25;
     }
   }
+
+  // up
+  if (map_position > 19) {
+    map_test = map_position -20;
+    if (map[map_test] == 21 || map[map_test] == 23) {
+      map[map_test] = 25;
+    }
+  }
+
+    // down
+  if (map_position < 340) {
+    map_test = map_position +20;
+    if (map[map_test] == 21 || map[map_test] == 23) {
+      map[map_test] = 25;
+    }
+  }
 }
 
 // Update map 1 water
