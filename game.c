@@ -341,21 +341,19 @@ void map_enviroment_tiles(){
   }
 
   // Update any tile that needs updating
-  if (timer % 8 == 0) {
+  // only if the player isn't moving
+  if (input_timer == 0 && timer % 32 == 0) {
     map_position = 360;
     while (map_position != 0) {
       map_position -= 1;
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
         case (UINT16) 17: // Cracked ice
-          if (input_timer == 0) { // The player isn't moving.
-            map[map_position] = 12;
-          }
+          map[map_position] = 12;
           break;
         case (UINT16) 19: // Cracked ground
-          if (input_timer == 0) { // The player isn't moving.
-            map[map_position] = 12;
-          }
+          map[map_position] = 12;
+          
           break;
         case (UINT16) 27: // Started fire!
           map[map_position] = 25; // big fire
@@ -584,7 +582,7 @@ int got_key(CharacterController** c) {
     map_position = 360;
     while (map_position != 0) {
       map_position -= 1;
-      // printf("%d\n", map_position);
+      // Update locks and keys tiles.
       switch((UINT16)map[map_position]) {
         case (UINT16) 41: // The lock
           map[map_position] = 42;
