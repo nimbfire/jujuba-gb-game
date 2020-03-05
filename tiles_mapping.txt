@@ -62,7 +62,7 @@ Special
 42 - key barrier passing
 47 - after the block movment
 48 - after the block falls in the water
-
+55 - wood block
 map 1 -> explicação (com a porta de exemplo levando pra mapa ester egg)
 map 2 -> treino de pulo do coelho
 map 3 -> explica como dá pra ir e voltar em mapas?
