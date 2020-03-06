@@ -16,6 +16,7 @@
 #include "maps/map8.c"
 #include "maps/map9.c"
 #include "maps/map10.c"
+#include "maps/mapTestSmallGrid.c"
 #include "maps/mapTest.c"
 #include "sprites/SpritesPark.c"
 
@@ -448,8 +449,46 @@ void helper_copy_map(char *base_map) {
   for(i = 0; i < 360; i++) {
     map[i] = base_map[i];
   }
+}
+
+void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
+  UINT8 gap_width = (20 - width) / 2;
+  UINT8 gap_height = (height / 2 )* 20;
+  UINT16 i;
+  UINT16 j;
+  UINT16 k;// The line
+  i = 0;
+  j = 0;
+  width = gap_width + width + 1;
+
+  while(i < 360) {
+    map[i] = 12;
+    // && ((i+1)%20) < (gap_width + width)
+    // if (((i+1)%20) > gap_width ) {
+
+    if (i > 80) {
+      k = (i+1)%20;
+      if (k > gap_width && k < width) {
+        map[i] = base_map[j];
+        j++;
+      }
+    }
+    
+    i += 1;
+  }
+  // printf(" \n");
+  // printf(" \n");
+  // printf(" \n");
+  // printf("%u\n", width);
+  // printf("%u\n", height);
+  // printf("%u\n", gap_width);
+  // printf("%u\n", gap_height);
+
+performantDelay(500);
+
 
 }
+
 void copy_map() {
   switch (current_map) {
     case 1:
@@ -480,7 +519,10 @@ void copy_map() {
       helper_copy_map(&MapTest);
       break;
     case 10:
-      helper_copy_map(&MapTest);
+      //   helper_copy_map(&MapTest);
+      // case 11:
+      helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
+      
       break;
     default:
       helper_copy_map(&MapTest);

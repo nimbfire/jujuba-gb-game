@@ -1,13 +1,13 @@
 /*
 
- MAP6.H
+ MAPTESTSMALLGRID.H
 
  Map Include File.
 
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 11 x 10
+   Map size      : 10 x 9
    Tile set      : parque_sprites.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -18,10 +18,10 @@
 
 */
 
-#define Map6Width 11
-#define Map6Height 10
-#define Map6Bank 0
+#define mapTestSmallGridWidth 10
+#define mapTestSmallGridHeight 9
+#define mapTestSmallGridBank 0
 
-extern unsigned char Map6[];
+extern unsigned char mapTestSmallGrid[];
 
-/* End of MAP6.H */
+/* End of MAPTESTSMALLGRID.H */
