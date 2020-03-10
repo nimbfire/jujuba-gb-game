@@ -453,29 +453,106 @@ void helper_copy_map(char *base_map) {
 
 void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
   UINT8 gap_width = (20 - width) / 2;
-  UINT8 gap_height = (height / 2 )* 20;
+  UINT8 gap_height = (20 - height) / 2;
   UINT16 i;
-  UINT16 j;
+  UINT16 base_map_i;
+  UINT8 col; // small col counter
+  UINT8 line; // small col counter
   UINT16 k;// The line
   i = 0;
-  j = 0;
-  width = gap_width + width + 1;
+  line = 0;
+  base_map_i = 0;
+  width = gap_width + width;
 
-  while(i < 360) {
+  // if the widht of the map is 10, it will have 5 on the left 
+  //   and 5 on the right
+  // also, if the height is 10, it will have 5 lines before
+  // 0                                        19
+  //   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  // |                                         | 19
+  // |                                         | 39
+  // |                                         | 59
+  // |                                         | 79
+  // |                                         | 99
+  // |           X O O O O O O O O O O         |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+  // |
+
+  // So, the X will be gap_height * 20 - 1 (so, 99 in this case)
+  // and the X will be the gap_widht on the first run, and double the gap on the next ones
+
+  // Put the first blank lines:
+  // We don't use the i beind decremented because of bugs on the gameboy
+  // and the gbdk library
+  i = 0;
+  k = (gap_height * 20);
+  while(i != k) {
     map[i] = 12;
-    // && ((i+1)%20) < (gap_width + width)
-    // if (((i+1)%20) > gap_width ) {
-
-    if (i > 80) {
-      k = (i+1)%20;
-      if (k > gap_width && k < width) {
-        map[i] = base_map[j];
-        j++;
-      }
-    }
-    
     i += 1;
   }
+
+  while (line < height) {
+    col = 0;
+    while (col < gap_width) {
+      map[i] = 12;
+      i += 1;
+      col += 1;
+    }
+
+    while (col < width) {
+      map[i] = base_map[base_map_i];
+      i += 1;
+      col += 1;
+      base_map_i += 1;
+    }
+    while (col < 20) {
+      map[i] = 12;
+      i += 1;
+      col += 1;
+    }
+    line += 1;
+  }
+
+  // Now we fill the last blocks!
+  while(i != 360) {
+    map[i] = 12;
+    i += 1;
+  }
+  
+
+  // printf(" \n");
+  // printf(" \n");
+  // printf(" \n");
+  // printf("%u\n", width);
+  set_bkg_tiles(0, 0, 20, 18, map);
+
+
+  // while(i != 0) {
+  //   map[i] = 12;
+  //   // && ((i+1)%20) < (gap_width + width)
+  //   // if (((i+1)%20) > gap_width ) {
+
+  //   if (i > 80) {
+  //     k = i%20;
+  //     if (k > gap_width && k < width) {
+  //       map[i] = base_map[j];
+  //       j -= 1;
+  //     }
+  //   }
+    
+  //   i -= 1;
+  // }
   // printf(" \n");
   // printf(" \n");
   // printf(" \n");
@@ -484,7 +561,10 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
   // printf("%u\n", gap_width);
   // printf("%u\n", gap_height);
 
-performantDelay(500);
+  performantDelay(500);
+  performantDelay(500);
+  performantDelay(500);
+  performantDelay(500);
 
 
 }
