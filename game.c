@@ -778,6 +778,11 @@ int got_key(CharacterController** c) {
 int got_door(CharacterController** c) {
   UINT16 player_map_position = _get_map_position_from_xy(player->x, player->y);
 
+  if (player->power_active && player->type == 1) {
+    // The bunny is jumping!.
+    return 0;
+  }
+  
   switch ((UINT16)map[player_map_position]) {
     case 101:
       current_map = 1;
