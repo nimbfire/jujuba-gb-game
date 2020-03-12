@@ -377,58 +377,72 @@ void map_enviroment_tiles(){
   
 }
 
+// Rotate char based on available chars on this map.
+// IE: chars that do not have their x as 0
 int change_char() {
+  UINT8 type = player->type;
 
-  if (characters_available == 1) {
-    return 0;
-  }
-
-  // player->direction = 0;
-
-  if (characters_available == 2) {
-    switch (player->type) {
-      case 1:
-        player = &dog1;
-        break;
-      case 2:
-        player = &bunny;
-        break;
+  if (type == 1) { // bunny
+    if(dog1.x != 0) {
+      player = &dog1;
+      return 0;
+    }
+    if(dog2.x != 0) {
+      player = &dog2;
+      return 0;
+    }
+    if(cat.x != 0) {
+      player = &cat;
+      return 0;
     }
   }
-  if (characters_available == 3) {
-    switch (player->type) {
-      case 1:
-        player = &dog1;
-        break;
-      case 2:
-        player = &dog2;
-        break;
-      case 3:
-        player = &bunny;
-        break;
-    }
-  }
-  if (characters_available == 4) {
-    switch (player->type) {
-      case 1:
-        player = &dog1;
-        break;
-      case 2:
-        player = &dog2;
-        break;
-      case 3:
-        player = &cat;
-        break;
-      case 4:
-        player = &bunny;
-        break;
-    }
-  }
-  // This will make the player know which player char was 
-  // selected and give some time so it does not keep
-  // pressing and changing chars.
-  rotate_player();
 
+  if (type == 2) { // dog1
+    if(dog2.x != 0) {
+      player = &dog2;
+      return 0;
+    }
+    if(cat.x != 0) {
+      player = &cat;
+      return 0;
+    }
+    if(bunny.x != 0) {
+      player = &bunny;
+      return 0;
+    }
+  }
+
+  if (type == 3) { // dog2
+    if(cat.x != 0) {
+      player = &cat;
+      return 0;
+    }
+    if(bunny.x != 0) {
+      player = &bunny;
+      return 0;
+    }
+    if(dog1.x != 0) {
+      player = &dog1;
+      return 0;
+    }
+  }
+
+  if (type == 4) { // dog2
+    if(bunny.x != 0) {
+      player = &bunny;
+      return 0;
+    }
+    if(dog1.x != 0) {
+      player = &dog1;
+      return 0;
+    }
+    if(dog2.x != 0) {
+      player = &dog2;
+      return 0;
+    }
+  }
+
+  // Only one char available, so we just return 0;
 }
 
 void map_loop() {
@@ -691,8 +705,14 @@ void instanciate_chars() {
         map[i] = 0;
         break;
       case 52: // dog2
+        dog2.y = _get_y_from_map_position(i);
+        dog2.x = _get_x_from_map_position(i);
+        map[i] = 0;
         break;
       case 53: // cat
+        cat.y = _get_y_from_map_position(i);
+        cat.x = _get_x_from_map_position(i);
+        map[i] = 0;
         break;
       default:
         map[i] = 0;
@@ -705,6 +725,26 @@ void instanciate_chars() {
   set_character_sprite(&dog1);
   set_character_sprite(&dog2);
   set_character_sprite(&cat);
+
+  // Update player char (in case we don't have 
+  // the bunny, for example, get the next available
+  // character)
+  if(bunny.x != 0) {
+    player = &bunny;
+    return;
+  }
+  if(dog1.x != 0) {
+    player = &dog1;
+    return;
+  }
+  if(dog2.x != 0) {
+    player = &dog2;
+    return;
+  }
+  if(cat.x != 0) {
+    player = &cat;
+    return;
+  }
 }
 
 
@@ -1077,6 +1117,11 @@ void player_input(CharacterController** c) {
       case J_B:
         // printf("troca\n");
         change_char();
+
+        // This will make the player know which player char was 
+        // selected and give some time so it does not keep
+        // pressing and changing chars.
+        rotate_player();
         break;
 
       case J_LEFT:
@@ -1432,7 +1477,8 @@ void move_character(CharacterController* c) {
 }
 
 void set_character_sprite(CharacterController* c) {
-  if (c->type <= characters_available ) {
+  // We use the x as the way to know if the char is set
+  if (c->x != 0 ) {
     set_sprite_tile(c->type, c->sprite_1);
     move_sprite(c->type, c->x, c->y);  
     c->map_position = _get_map_position_from_xy(c->x, c->y);
