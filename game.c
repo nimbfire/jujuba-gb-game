@@ -75,6 +75,16 @@ void performantDelay(UINT8 numLoops) {
   }
 }
 
+UINT8 _get_y_from_map_position(UINT16 map_position) {
+  // return 16;
+  return ((map_position / 20) + 2) * 8;
+}
+
+UINT8 _get_x_from_map_position(UINT16 map_position) {
+  // return 8;
+  return ((map_position % 20) + 1) * 8;
+}
+
 int can_move_to_map_pos(UINT16 map_position);
 
 int got_door(CharacterController** c);
@@ -531,40 +541,18 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
   }
   
 
-  // printf(" \n");
-  // printf(" \n");
-  // printf(" \n");
-  // printf("%u\n", width);
-  set_bkg_tiles(0, 0, 20, 18, map);
 
 
-  // while(i != 0) {
-  //   map[i] = 12;
-  //   // && ((i+1)%20) < (gap_width + width)
-  //   // if (((i+1)%20) > gap_width ) {
 
-  //   if (i > 80) {
-  //     k = i%20;
-  //     if (k > gap_width && k < width) {
-  //       map[i] = base_map[j];
-  //       j -= 1;
-  //     }
-  //   }
-    
-  //   i -= 1;
-  // }
-  // printf(" \n");
-  // printf(" \n");
-  // printf(" \n");
-  // printf("%u\n", width);
-  // printf("%u\n", height);
-  // printf("%u\n", gap_width);
-  // printf("%u\n", gap_height);
+  // set_bkg_tiles(0, 0, 20, 18, map);
 
-  performantDelay(500);
-  performantDelay(500);
-  performantDelay(500);
-  performantDelay(500);
+
+
+
+  // performantDelay(500);
+  // performantDelay(500);
+  // performantDelay(500);
+  // performantDelay(500);
 
 
 }
@@ -614,9 +602,8 @@ void copy_map() {
 
 void map_init() {
   copy_map();
-  set_bkg_tiles(0, 0, 20, 18, map);
   instanciate_chars();
-
+  set_bkg_tiles(0, 0, 20, 18, map);
 
 
   // key.x = 152;
@@ -631,9 +618,11 @@ void map_init() {
 }
 
 void instanciate_chars() {
+  UINT16 i;
+
   // generate bunny
-  bunny.x = 8;
-  bunny.y = 16;
+  bunny.x = 0;//8
+  bunny.y = 0;//16
   bunny.sprite_1 = 0;
   bunny.sprite_2 = 1;
   bunny.sprite_3 = 2;
@@ -645,8 +634,8 @@ void instanciate_chars() {
   bunny.type = 1;
   bunny.map_position = 400;
 
-  dog1.x = 16;
-  dog1.y = 16;
+  dog1.x = 0;
+  dog1.y = 0;
   dog1.sprite_1 = 3;
   dog1.sprite_2 = 4;
   dog1.sprite_3 = 5;
@@ -658,8 +647,8 @@ void instanciate_chars() {
   dog1.type = 2;
   dog1.map_position = 400;
 
-  dog2.x = 8;
-  dog2.y = 24;
+  dog2.x = 0;
+  dog2.y = 0;
   dog2.sprite_1 = 6;
   dog2.sprite_2 = 7;
   dog2.sprite_3 = 8;
@@ -671,8 +660,8 @@ void instanciate_chars() {
   dog2.type = 3;
   dog2.map_position = 400;
 
-  cat.x = 16;
-  cat.y = 24;
+  cat.x = 0;
+  cat.y = 0;
   cat.sprite_1 = 9;
   cat.sprite_2 = 10;
   cat.sprite_3 = 5;
@@ -684,6 +673,33 @@ void instanciate_chars() {
   cat.type = 4;
   cat.map_position = 400;
 
+  // Update players positions.
+  i = 0;
+  while(i != 360) {
+    // printf("%u - %u\n", i, map[i]);
+    // performantDelay(2);
+    switch (map[i]) {
+      case 50: // bunny
+        bunny.y = _get_y_from_map_position(i);
+        bunny.x = _get_x_from_map_position(i);
+        map[i] = 0;
+
+        break;
+      case 51: // dog1
+        dog1.y = _get_y_from_map_position(i);
+        dog1.x = _get_x_from_map_position(i);
+        map[i] = 0;
+        break;
+      case 52: // dog2
+        break;
+      case 53: // cat
+        break;
+      default:
+        map[i] = 0;
+    }
+
+    i += 1;
+  }
 
   set_character_sprite(&bunny);
   set_character_sprite(&dog1);
@@ -919,7 +935,7 @@ void dog1_power() {
 }
 
 UINT16 _get_next_map_position(UINT16 map_pos, UINT8 direction) {
-    switch(direction) {
+  switch(direction) {
     case 1: //up
       if (map_pos > 20) {
         map_pos -= 20;
@@ -1035,6 +1051,8 @@ UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) {
 
   return map_position;
 }
+
+
 
 void player_input(CharacterController** c) {
   // printf("%d %d %d\n", input_timer, (*c)->power_timer, (*c)->power_active);
