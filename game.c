@@ -714,8 +714,8 @@ void instanciate_chars() {
         cat.x = _get_x_from_map_position(i);
         map[i] = 0;
         break;
-      default:
-        map[i] = 0;
+      // default:
+        // map[i] = 0;
     }
 
     i += 1;

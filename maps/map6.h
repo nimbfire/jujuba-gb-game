@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 11 x 10
+   Map size      : 20 x 18
    Tile set      : parque_sprites.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -18,8 +18,8 @@
 
 */
 
-#define Map6Width 11
-#define Map6Height 10
+#define Map6Width 20
+#define Map6Height 18
 #define Map6Bank 0
 
 extern unsigned char Map6[];
