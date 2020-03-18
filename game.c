@@ -1483,10 +1483,10 @@ void move_character(CharacterController* c) {
 
 void set_character_sprite(CharacterController* c) {
   // We use the x as the way to know if the char is set
-  if (c->x != 0 ) {
+  // if (c->x != 0 ) {
     set_sprite_tile(c->type, c->sprite_1);
     move_sprite(c->type, c->x, c->y);  
     c->map_position = _get_map_position_from_xy(c->x, c->y);
-  }
+  // }
 }
 // 
