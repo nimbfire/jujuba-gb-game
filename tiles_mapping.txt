@@ -11,7 +11,9 @@ get dog
 
 game front screen
  - historia - inicio
-bunny - explain jump
+bunny - explain door
+bunny - explain jump with water
+bunny - explain jump and door
 bunny - train jump, uses key
 bunny - explain ice and key, uses jump
 4 - bunny + dog1 -> waters hard - can be made bunny only -> lets make bunny only
