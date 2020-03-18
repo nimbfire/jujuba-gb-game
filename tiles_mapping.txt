@@ -57,6 +57,7 @@ Barriers
 49 - burned
 25 - fire 1 - big, will became little next 
 26 - fire 2 - little, will became nothing next
+30 - void, not a map tile
 
 Special
 41 - 50

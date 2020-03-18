@@ -522,14 +522,14 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
   i = 0;
   k = (gap_height * 20);
   while(i != k) {
-    map[i] = 12;
+    map[i] = 30;
     i += 1;
   }
 
   while (line < height) {
     col = 0;
     while (col < gap_width) {
-      map[i] = 12;
+      map[i] = 30;
       i += 1;
       col += 1;
     }
@@ -541,7 +541,7 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
       base_map_i += 1;
     }
     while (col < 20) {
-      map[i] = 12;
+      map[i] = 30;
       i += 1;
       col += 1;
     }
@@ -550,7 +550,7 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
 
   // Now we fill the last blocks!
   while(i != 360) {
-    map[i] = 12;
+    map[i] = 30;
     i += 1;
   }
   
