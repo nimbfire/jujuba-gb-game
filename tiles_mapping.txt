@@ -11,7 +11,12 @@ get dog
 
 game front screen
  - historia - inicio
-bunny - explain door
+bunny - explain door - sometimes life gives you doors
+sometimes they are windows
+either way, you always have to be willing to jump
+
+a locker path may be bad
+but if you use your 
 bunny - explain jump with water
 bunny - explain jump and door
 bunny - train jump, uses key
