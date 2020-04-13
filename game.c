@@ -2,7 +2,8 @@
 #include <gb/cgb.h>
 #include <stdio.h>
 
-#include "sprites/Characters.c"
+#include "sprites.c"
+
 #include "CharacterController.c"
 #include "ObjectController.c"
 
@@ -18,7 +19,23 @@
 #include "maps/map10.c"
 #include "maps/mapTestSmallGrid.c"
 #include "maps/mapTest.c"
+#include "maps/mapTeachJumpOverIce.c"
 #include "sprites/SpritesPark.c"
+
+
+// -------------------------------------------------------
+// -------------------------------------------------------
+// Maps!!!!
+// -------------------------------------------------------
+// -------------------------------------------------------
+
+#define MAP_DEV 0
+
+
+#define MAP_TEACH_JUMP_OVER_ICE 15
+#define MAP_TEACH_JUMP_OVER_ICE_NAME 'mapTeachJumpOverIce'
+
+
 
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U
@@ -360,10 +377,10 @@ void map_enviroment_tiles(){
       // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
         case (UINT16) 17: // Cracked ice
-          map[map_position] = 12;
+          map[map_position] = SPRITE_VOID;
           break;
         case (UINT16) 19: // Cracked ground
-          map[map_position] = 12;
+          map[map_position] = SPRITE_VOID;
           
           break;
         case (UINT16) 27: // Started fire!
@@ -605,6 +622,18 @@ void copy_map() {
       // case 11:
       helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
       
+      break;
+    case MAP_TEACH_JUMP_OVER_ICE:
+      //   helper_copy_map(&MapTest);
+      // case 11:
+      // helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
+      helper_copy_map(&MapTest);
+      // set_bkg_tiles(0, 0, 20, 18, map);
+
+      printf("Mapa QUINZE");
+
+      performantDelay(500);
+
       break;
     default:
       helper_copy_map(&MapTest);
@@ -884,7 +913,7 @@ int is_ded(CharacterController** c) {
 
   switch((UINT16)map[map_position]) {
     case (UINT16)11: // Wata
-    case (UINT16)12: // abism
+    case (UINT16)SPRITE_VOID: // abism
 
       return 1;
   }
@@ -1058,7 +1087,7 @@ void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_pos
     case 11: // Water
       map[map_position_next] = 48; // wet dirt
       break;
-    case 12: // abism, does nothing, it felt
+    case SPRITE_VOID: // abism, does nothing, it felt
       break;
     case 13: // ice
       map[map_position_next] = 15; // ice with block
