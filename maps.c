@@ -26,6 +26,9 @@
 #include "tilemaps/MapTeachJumpOverIce.c"
 #define MAP_TEACH_JUMP_OVER_ICE 15
 
+#include "tilemaps/MapForestKeyEasy.c"
+#define MAP_FOREST_KEY_EASY 1
+
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -49,10 +52,10 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
   // printf("%d\n", x);
   switch(current_map) {
     case MAP_DEV: 
+      if (x == 13 && y == 2) {
+        return MAP_FOREST_KEY_EASY;
+      }
       if (x == 13 && y == 4) {
-        // printf("MAP TEACH JUMP OVER ICE\n");
-        // fperformantDelay(500);
-        //  printf("%d - %d\n", x, y);
         return MAP_TEACH_JUMP_OVER_ICE;
       }
       // printf("MAP DEV BUT NOT POSITIONING\n");
@@ -173,8 +176,8 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
 
 void copy_map(UINT8 current_map) {
   switch (current_map) {
-    case 1:
-      helper_copy_map(&Map1);
+    case MAP_FOREST_KEY_EASY:
+      helper_copy_map(&MapForestKeyEasy);
       break;
     case 2:
       helper_copy_map(&Map2);
