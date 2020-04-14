@@ -21,15 +21,15 @@ AREA .  .ABS.
 		s__CODE	0200
 		l__HOME	04AD
 		l__BASE	1013
-		l__GSINIT	1223
+		l__GSINIT	1296
 		l__DATA	1BF1
 		l__CODE	2D35
 		s__HOME	2F35
 		s__BASE	33E2
 		s__LIT	43F5
 		s__GSINIT	43F5
-		s__GSINITTAIL	5618
-		s__GSFINAL	5619
+		s__GSINITTAIL	568B
+		s__GSFINAL	568C
 		.OAM	C000
 		s__DATA	C0A0
 		s__BSS	DC91
@@ -256,18 +256,18 @@ AREA _LIT
 AREA _GSINIT
 	RADIX HEX
 	BASE 43F5
-	SIZE 1223
+	SIZE 1296
 	ATTRIB REL CON
 	GLOBALS
 		gsinit	43F5
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 5618
+	BASE 568B
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 5619
+	BASE 568C
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
@@ -288,7 +288,7 @@ AREA _DATA
 		_Map9	CDD0
 		_Map10	CF38
 		_mapTestSmallGrid	D0A0
-		_MapTest	D0FA
+		_MapDev	D0FA
 		_mapTeachJumpOverIce	D262
 		_sprites_park	D2BC
 		_spritePalette	DABC
@@ -366,7 +366,7 @@ MODULES
 	FILE /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE game.o
-		NAME lcc83770
+		NAME lcc127320
 LIBRARIES
 	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE crt0_rle.o

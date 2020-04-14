@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "sprites.c"
+#include "maps.c"
 
 #include "CharacterController.c"
 #include "ObjectController.c"
@@ -18,7 +19,7 @@
 #include "maps/map9.c"
 #include "maps/map10.c"
 #include "maps/mapTestSmallGrid.c"
-#include "maps/mapTest.c"
+#include "maps/MapDev.c"
 #include "maps/mapTeachJumpOverIce.c"
 #include "sprites/SpritesPark.c"
 
@@ -609,25 +610,25 @@ void copy_map() {
       helper_copy_map(&Map6);
       break;
     case 7:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&MapDev);
       break;
     case 8:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&MapDev);
       break;
     case 9:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&MapDev);
       break;
     case 10:
-      //   helper_copy_map(&MapTest);
+      //   helper_copy_map(&MapDev);
       // case 11:
       helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
       
       break;
     case MAP_TEACH_JUMP_OVER_ICE:
-      //   helper_copy_map(&MapTest);
+      //   helper_copy_map(&MapDev);
       // case 11:
       // helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
-      helper_copy_map(&MapTest);
+      helper_copy_map(&MapDev);
       // set_bkg_tiles(0, 0, 20, 18, map);
 
       printf("Mapa QUINZE");
@@ -636,7 +637,7 @@ void copy_map() {
 
       break;
     default:
-      helper_copy_map(&MapTest);
+      helper_copy_map(&MapDev);
       break;
 
   }
