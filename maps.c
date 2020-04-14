@@ -29,6 +29,10 @@
 #include "tilemaps/MapForestKeyEasy.c"
 #define MAP_FOREST_KEY_EASY 1
 
+#include "tilemaps/MapBunnyWaterHard.c"
+#define MAP_BUNNY_WATER_HARD 2
+
+
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -42,14 +46,7 @@ void fperformantDelay(UINT8 numLoops) {
 // If a map has a door, this is the switch that decides to where
 // the player should jump to
 int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
-  // printf("%d - %d\n", x, y);
-  // fperformantDelay(500);
-  // printf("%d - %d\n", x, y);
 
-
-
-
-  // printf("%d\n", x);
   switch(current_map) {
     case MAP_DEV: 
       if (x == 13 && y == 2) {
@@ -57,6 +54,9 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       }
       if (x == 13 && y == 4) {
         return MAP_TEACH_JUMP_OVER_ICE;
+      }
+      if (x == 13 && y == 6) {
+        return MAP_BUNNY_WATER_HARD;
       }
       // printf("MAP DEV BUT NOT POSITIONING\n");
       // fperformantDelay(500);
@@ -179,8 +179,8 @@ void copy_map(UINT8 current_map) {
     case MAP_FOREST_KEY_EASY:
       helper_copy_map(&MapForestKeyEasy);
       break;
-    case 2:
-      helper_copy_map(&Map2);
+    case MAP_BUNNY_WATER_HARD:
+      helper_copy_map(&MapBunnyWaterHard);
       break;
     case 3:
       helper_copy_map(&Map3);
