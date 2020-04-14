@@ -8,33 +8,12 @@
 #include "CharacterController.c"
 #include "ObjectController.c"
 
-#include "maps/map1.c"
-#include "maps/map2.c"
-#include "maps/map3.c"
-#include "maps/map4.c"
-#include "maps/map5.c"
-#include "maps/map6.c"
-#include "maps/map7.c"
-#include "maps/map8.c"
-#include "maps/map9.c"
-#include "maps/map10.c"
-#include "maps/mapTestSmallGrid.c"
-#include "maps/MapDev.c"
-#include "maps/mapTeachJumpOverIce.c"
-#include "sprites/SpritesPark.c"
 
 
-// -------------------------------------------------------
-// -------------------------------------------------------
-// Maps!!!!
-// -------------------------------------------------------
-// -------------------------------------------------------
-
-#define MAP_DEV 0
+#include "sprites/Sprites.c"
 
 
-#define MAP_TEACH_JUMP_OVER_ICE 15
-#define MAP_TEACH_JUMP_OVER_ICE_NAME 'mapTeachJumpOverIce'
+
 
 
 
@@ -166,7 +145,7 @@ void init() {
   characters_available = 2;
 
   copy_map();
-  set_bkg_data(0,120,sprites_park);
+  set_bkg_data(0,120,Sprites);
   set_bkg_tiles(0, 0, 20, 18, map);
   
   set_sprite_data(0,30,Characters);

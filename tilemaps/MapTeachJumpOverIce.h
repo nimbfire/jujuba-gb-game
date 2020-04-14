@@ -1,13 +1,13 @@
 /*
 
- MAPDEV.H
+ MAPTEACHJUMPOVERICE.H
 
  Map Include File.
 
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 20 x 18
+   Map size      : 10 x 9
    Tile set      : sprites.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -18,10 +18,10 @@
 
 */
 
-#define MapDevWidth 20
-#define MapDevHeight 18
-#define MapDevBank 0
+#define MapTeachJumpOverIceWidth 10
+#define MapTeachJumpOverIceHeight 9
+#define MapTeachJumpOverIceBank 0
 
-extern unsigned char MapDev[];
+extern unsigned char MapTeachJumpOverIce[];
 
-/* End of MAPDEV.H */
+/* End of MAPTEACHJUMPOVERICE.H */
