@@ -39,7 +39,7 @@ void fperformantDelay(UINT8 numLoops) {
 // If a map has a door, this is the switch that decides to where
 // the player should jump to
 int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
-  printf("%d - %d\n", x, y);
+  // printf("%d - %d\n", x, y);
   // fperformantDelay(500);
   // printf("%d - %d\n", x, y);
 
@@ -50,18 +50,18 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
   switch(current_map) {
     case MAP_DEV: 
       if (x == 13 && y == 4) {
-        printf("MAP TEACH JUMP OVER ICE\n");
-        fperformantDelay(500);
-         printf("%d - %d\n", x, y);
+        // printf("MAP TEACH JUMP OVER ICE\n");
+        // fperformantDelay(500);
+        //  printf("%d - %d\n", x, y);
         return MAP_TEACH_JUMP_OVER_ICE;
       }
-      printf("MAP DEV BUT NOT POSITIONING\n");
-      fperformantDelay(500);
+      // printf("MAP DEV BUT NOT POSITIONING\n");
+      // fperformantDelay(500);
 
 
     default:
-      printf("DEFAULT FUUUCK\n");
-      fperformantDelay(500);
+      // printf("DEFAULT FUUUCK\n");
+      // fperformantDelay(500);
       
       return MAP_DEV;
   }
@@ -209,11 +209,11 @@ void copy_map(UINT8 current_map) {
     case MAP_TEACH_JUMP_OVER_ICE:
       //   helper_copy_map(&MapDev);
       // case 11:
-      // helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
-      helper_copy_map(&MapDev);
+      helper_copy_map_smaller(MapTeachJumpOverIce, MapTeachJumpOverIceWidth, MapTeachJumpOverIceHeight);
+      // helper_copy_map(&MapDev);
       // set_bkg_tiles(0, 0, 20, 18, map);
 
-      printf("Mapa QUINZE");
+      // printf("Mapa QUINZE");
 
       // performantDelay(500);
 
