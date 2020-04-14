@@ -2,6 +2,16 @@
 #include <gb/cgb.h>
 #include <stdio.h>
 
+
+UBYTE running;
+UINT8 timer;
+UINT8 characters_available;
+UBYTE input_timer;
+UBYTE current_map;
+// UBYTE16 player_map_position;
+// UBYTE map
+unsigned char map[360]; // Controlls which map we are seeing.
+
 #include "sprites.c"
 #include "maps.c"
 
@@ -45,14 +55,7 @@ UWORD spritePalette[] = {
   // 0, RGB_BLACK, RGB_RED, RGB_WHITE
 };
 
-UBYTE running;
-UINT8 timer;
-UINT8 characters_available;
-UBYTE input_timer;
-UBYTE current_map;
-// UBYTE16 player_map_position;
-// UBYTE map
-unsigned char map[360]; // Controlls which map we are seeing.
+
 
 CharacterController bunny;  //1
 CharacterController dog1;   //2
@@ -141,10 +144,11 @@ void main(void)
 }
 
 void init() {
-  current_map = 200;
+  current_map = MAP_DEV;
+  // current_map = MAP_;
   characters_available = 2;
 
-  copy_map();
+  copy_map(current_map);
   set_bkg_data(0,120,Sprites);
   set_bkg_tiles(0, 0, 20, 18, map);
   
@@ -465,166 +469,9 @@ void map_loop() {
 
 }
 
-void helper_copy_map(char *base_map) {
-  UINT16 i;
-  for(i = 0; i < 360; i++) {
-    map[i] = base_map[i];
-  }
-}
-
-void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
-  UINT8 gap_width = (20 - width) / 2;
-  UINT8 gap_height = (20 - height) / 2;
-  UINT16 i;
-  UINT16 base_map_i;
-  UINT8 col; // small col counter
-  UINT8 line; // small col counter
-  UINT16 k;// The line
-  i = 0;
-  line = 0;
-  base_map_i = 0;
-  width = gap_width + width;
-
-  // if the widht of the map is 10, it will have 5 on the left 
-  //   and 5 on the right
-  // also, if the height is 10, it will have 5 lines before
-  // 0                                        19
-  //   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-  // |                                         | 19
-  // |                                         | 39
-  // |                                         | 59
-  // |                                         | 79
-  // |                                         | 99
-  // |           X O O O O O O O O O O         |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-  // |
-
-  // So, the X will be gap_height * 20 - 1 (so, 99 in this case)
-  // and the X will be the gap_widht on the first run, and double the gap on the next ones
-
-  // Put the first blank lines:
-  // We don't use the i beind decremented because of bugs on the gameboy
-  // and the gbdk library
-  i = 0;
-  k = (gap_height * 20);
-  while(i != k) {
-    map[i] = 30;
-    i += 1;
-  }
-
-  while (line < height) {
-    col = 0;
-    while (col < gap_width) {
-      map[i] = 30;
-      i += 1;
-      col += 1;
-    }
-
-    while (col < width) {
-      map[i] = base_map[base_map_i];
-      i += 1;
-      col += 1;
-      base_map_i += 1;
-    }
-    while (col < 20) {
-      map[i] = 30;
-      i += 1;
-      col += 1;
-    }
-    line += 1;
-  }
-
-  // Now we fill the last blocks!
-  while(i != 360) {
-    map[i] = 30;
-    i += 1;
-  }
-  
-
-
-
-
-  // set_bkg_tiles(0, 0, 20, 18, map);
-
-
-
-
-  // performantDelay(500);
-  // performantDelay(500);
-  // performantDelay(500);
-  // performantDelay(500);
-
-
-}
-
-void copy_map() {
-  switch (current_map) {
-    case 1:
-      helper_copy_map(&Map1);
-      break;
-    case 2:
-      helper_copy_map(&Map2);
-      break;
-    case 3:
-      helper_copy_map(&Map3);
-      break;
-    case 4:
-      helper_copy_map(&Map4);
-      break;
-    case 5:
-      helper_copy_map(&Map5);
-      break;
-    case 6:
-      helper_copy_map(&Map6);
-      break;
-    case 7:
-      helper_copy_map(&MapDev);
-      break;
-    case 8:
-      helper_copy_map(&MapDev);
-      break;
-    case 9:
-      helper_copy_map(&MapDev);
-      break;
-    case 10:
-      //   helper_copy_map(&MapDev);
-      // case 11:
-      helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
-      
-      break;
-    case MAP_TEACH_JUMP_OVER_ICE:
-      //   helper_copy_map(&MapDev);
-      // case 11:
-      // helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
-      helper_copy_map(&MapDev);
-      // set_bkg_tiles(0, 0, 20, 18, map);
-
-      printf("Mapa QUINZE");
-
-      performantDelay(500);
-
-      break;
-    default:
-      helper_copy_map(&MapDev);
-      break;
-
-  }
-
-}
 
 void map_init() {
-  copy_map();
+  copy_map(current_map);
   instanciate_chars();
   set_bkg_tiles(0, 0, 20, 18, map);
 
@@ -784,6 +631,17 @@ int got_key(CharacterController** c) {
   }
 }
 
+// the x position on the map has an extra 8 pixels positioning
+int fix_x(UINT16 x) {
+  return (x - 8) / 8;
+}
+
+int fix_y(UINT16 x) {
+  return (x - 16) / 8;
+}
+
+
+
 int got_door(CharacterController** c) {
   UINT16 player_map_position = _get_map_position_from_xy(player->x, player->y);
 
@@ -792,89 +650,17 @@ int got_door(CharacterController** c) {
     return 0;
   }
   
-  switch ((UINT16)map[player_map_position]) {
-    case 101:
-      current_map = 1;
-      map_init();
-      break;
-    case 102:
-      current_map = 2;
-      map_init();
-      break;
-    case 103:
-      current_map = 3;
-      map_init();
-      break;
-    case 104:
-      current_map = 4;
-      map_init();
-      break;
-    case 105:
-      current_map = 5;
-      map_init();
-      break;
-    case 106:
-      current_map = 6;
-      map_init();
-      break;
-    case 107:
-      current_map = 7;
-      map_init();
-      break;
-    case 108:
-      current_map = 8;
-      map_init();
-      break;
-    case 109:
-      current_map = 9;
-      map_init();
-      break;
-    case 110:
-      current_map =10;
-      map_init();
-      break;
-    case 111:
-      current_map =11;
-      map_init();
-      break;
-    case 112:
-      current_map =12;
-      map_init();
-      break;
-    case 113:
-      current_map =13;
-      map_init();
-      break;
-    case 114:
-      current_map =14;
-      map_init();
-      break;
-    case 115:
-      current_map =15;
-      map_init();
-      break;
-    case 116:
-      current_map =16;
-      map_init();
-      break;
-    case 117:
-      current_map =17;
-      map_init();
-      break;
-    case 118:
-      current_map =18;
-      map_init();
-      break;
-    case 119:
-      current_map =19;
-      map_init();
-      break;
-    case 120:
-      current_map =20;
-      map_init();
-      break;
-  }
+  // printf("%d - %d\n", player->x, player->y);
+  // printf("%d - %d\n", fix_x(player->x), fix_y(player->y));
 
+  if ((UINT16)map[player_map_position] == SPRITE_DOOR) {
+        //     cat.y = _get_y_from_map_position(i);
+        // cat.x = _get_x_from_map_position(i);
+    current_map = got_door_switch(
+      fix_x(_get_x_from_map_position(player_map_position)),
+      fix_y(_get_y_from_map_position(player_map_position)), current_map);
+    map_init();  
+  }
 }
 
 
