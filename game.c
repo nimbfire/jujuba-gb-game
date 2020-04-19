@@ -8,6 +8,7 @@ UINT8 timer;
 UINT8 characters_available;
 UBYTE input_timer;
 UBYTE current_map;
+
 // UBYTE16 player_map_position;
 // UBYTE map
 unsigned char map[360]; // Controlls which map we are seeing.
@@ -18,14 +19,7 @@ unsigned char map[360]; // Controlls which map we are seeing.
 #include "CharacterController.c"
 #include "ObjectController.c"
 
-
-
 #include "sprites/Sprites.c"
-
-
-
-
-
 
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U

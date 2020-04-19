@@ -32,9 +32,13 @@
 #include "tilemaps/MapBunnyWaterHard.c"
 #define MAP_BUNNY_WATER_HARD 2
 
+#include "tilemaps/MapStonesInWater.c"
+#define MAP_STONE_IN_WATER_MEDIUM 3
 
 
-void fperformantDelay(UINT8 numLoops) {
+
+
+void fperformantDelay(UINT8 numLoops) NONBANKED {
   UINT8 i;
   for (i = 0; i != numLoops; i++) {
     wait_vbl_done();
@@ -45,7 +49,7 @@ void fperformantDelay(UINT8 numLoops) {
 // jump to after getting inside a door
 // If a map has a door, this is the switch that decides to where
 // the player should jump to
-int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
+int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) NONBANKED {
 
   switch(current_map) {
     case MAP_DEV: 
@@ -55,12 +59,14 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 13 && y == 4) {
         return MAP_TEACH_JUMP_OVER_ICE;
       }
+
+      // Water levels
       if (x == 13 && y == 6) {
         return MAP_BUNNY_WATER_HARD;
       }
-      // printf("MAP DEV BUT NOT POSITIONING\n");
-      // fperformantDelay(500);
-
+      if (x == 15 && y == 6) {
+        return MAP_STONE_IN_WATER_MEDIUM;
+      }
 
     default:
       // printf("DEFAULT FUUUCK\n");
@@ -71,7 +77,7 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
 }
 
 
-void helper_copy_map(char *base_map) {
+void helper_copy_map(char *base_map) NONBANKED {
   UINT16 i;
   for(i = 0; i < 360; i++) {
     map[i] = base_map[i];
@@ -174,7 +180,7 @@ void helper_copy_map_smaller(char *base_map, UINT8 width, UINT8 height) {
 
 }
 
-void copy_map(UINT8 current_map) {
+void copy_map(UINT8 current_map) NONBANKED {
   switch (current_map) {
     case MAP_FOREST_KEY_EASY:
       helper_copy_map(&MapForestKeyEasy);
@@ -182,8 +188,8 @@ void copy_map(UINT8 current_map) {
     case MAP_BUNNY_WATER_HARD:
       helper_copy_map(&MapBunnyWaterHard);
       break;
-    case 3:
-      helper_copy_map(&Map3);
+    case MAP_STONE_IN_WATER_MEDIUM:
+      helper_copy_map(&MapStonesInWater);
       break;
     case 4:
       helper_copy_map(&Map4);
@@ -192,7 +198,7 @@ void copy_map(UINT8 current_map) {
       helper_copy_map(&Map5);
       break;
     case 6:
-      helper_copy_map(&Map6);
+      // helper_copy_map(&Map6);
       break;
     case 7:
       helper_copy_map(&MapDev);
