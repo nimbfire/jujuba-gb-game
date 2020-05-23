@@ -1,6 +1,6 @@
 /*
 
- MAP1_1.H
+ MAPBUNNYWATEREASY.H
 
  Map Include File.
 
@@ -18,10 +18,10 @@
 
 */
 
-#define Map1_1Width 20
-#define Map1_1Height 18
-#define Map1_1Bank 0
+#define MapBunnyWaterEasyWidth 20
+#define MapBunnyWaterEasyHeight 18
+#define MapBunnyWaterEasyBank 0
 
-extern unsigned char Map1_1[];
+extern unsigned char MapBunnyWaterEasy[];
 
-/* End of MAP1_1.H */
+/* End of MAPBUNNYWATEREASY.H */

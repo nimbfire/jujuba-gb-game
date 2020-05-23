@@ -1,7 +1,7 @@
 // Handles maps logic
 
 // old maps
-#include "maps/map1.c"
+// #include "maps/map1.c"
 #include "maps/map2.c"
 #include "maps/map3.c"
 #include "maps/map4.c"
@@ -32,6 +32,8 @@
 #include "tilemaps/MapBunnyWaterHard.c"
 #define MAP_BUNNY_WATER_HARD 2
 
+#include "tilemaps/MapBunnyWaterEasy.c"
+#define MAP_BUNNY_WATER_EASY 3
 
 
 void fperformantDelay(UINT8 numLoops) {
@@ -57,6 +59,9 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       }
       if (x == 13 && y == 6) {
         return MAP_BUNNY_WATER_HARD;
+      }
+      if (x == 15 && y == 6) {
+        return MAP_BUNNY_WATER_EASY;
       }
       // // printf("MAP DEV BUT NOT POSITIONING\n");
       // fperformantDelay(500);
@@ -182,8 +187,8 @@ void copy_map(UINT8 current_map) {
     case MAP_BUNNY_WATER_HARD:
       helper_copy_map(&MapBunnyWaterHard);
       break;
-    case 3:
-      helper_copy_map(&Map3);
+    case MAP_BUNNY_WATER_EASY:
+      helper_copy_map(&MapBunnyWaterEasy);
       break;
     case 4:
       helper_copy_map(&Map4);
