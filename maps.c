@@ -35,6 +35,7 @@
 #include "tilemaps/MapBunnyWaterEasy.c"
 #define MAP_BUNNY_WATER_EASY 3
 
+void get_map_1();
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -42,6 +43,10 @@ void fperformantDelay(UINT8 numLoops) {
     wait_vbl_done();
   }
 }
+
+
+
+
 
 // Handles the logic behind to which new map the player should
 // jump to after getting inside a door

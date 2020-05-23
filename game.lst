@@ -1,9 +1,9 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : FreeWare ANSI-C Compiler
-                              3 ; Version 2.3.1 Fri May 22 22:32:04 2020
+                              3 ; Version 2.3.1 Sat May 23 20:30:57 2020
                               4 
                               5 ;--------------------------------------------------------
-                              6 	.module lcc288930
+                              6 	.module lcc309390
                               7 	
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
@@ -1795,7 +1795,7 @@
                            1288 ; code
                            1289 ;--------------------------------------------------------
                            1290 	.area _CODE
-                           1291 ;	maps.c 39
+                           1291 ;	maps.c 40
                            1292 ;	genLabel
                            1293 ;	genFunction
                            1294 ;	---------------------------------
@@ -1804,7 +1804,7 @@
    0000                    1297 ___fperformantDelay_start:
    0000                    1298 _fperformantDelay:
                            1299 	
-                           1300 ;	maps.c 41
+                           1300 ;	maps.c 42
                            1301 ;	genAssign
    0000 0E 00              1302 	ld	c,#0x00
                            1303 ;	genLabel
@@ -1818,14 +1818,14 @@
    0006 20 03              1311 	jr	nz,00109$
    0008 C3 15 00           1312 	jp	00105$
    000B                    1313 00109$:
-                           1314 ;	maps.c 42
+                           1314 ;	maps.c 43
                            1315 ;	genCall
                            1316 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
    000B C5                 1317 	push	bc
    000C CD 00 00           1318 	call	_wait_vbl_done
    000F E1                 1319 	pop	hl
    0010 4D                 1320 	ld	c,l
-                           1321 ;	maps.c 41
+                           1321 ;	maps.c 42
                            1322 ;	genPlus
                            1323 ;	genPlusIncr
                            1324 ; Removed redundent load
@@ -1838,7 +1838,7 @@
                            1331 	
    0015 C9                 1332 	ret
    0016                    1333 ___fperformantDelay_end:
-                           1334 ;	maps.c 50
+                           1334 ;	maps.c 55
                            1335 ;	genLabel
                            1336 ;	genFunction
                            1337 ;	---------------------------------
@@ -1847,7 +1847,7 @@
    0016                    1340 ___got_door_switch_start:
    0016                    1341 _got_door_switch:
                            1342 	
-                           1343 ;	maps.c 52
+                           1343 ;	maps.c 57
                            1344 ;	genCmpEq
                            1345 ;	AOP_STK for 
                            1346 ; genCmpEq: left 1, right 1, result 0
@@ -1859,7 +1859,7 @@
    001F                    1352 00127$:
    001F C3 98 00           1353 	jp	00114$
    0022                    1354 00128$:
-                           1355 ;	maps.c 54
+                           1355 ;	maps.c 59
                            1356 ;	genCmpEq
                            1357 ;	AOP_STK for 
                            1358 ; genCmpEq: left 1, right 1, result 1
@@ -1888,13 +1888,13 @@
    003F                    1381 00131$:
    003F C3 48 00           1382 	jp	00102$
    0042                    1383 00132$:
-                           1384 ;	maps.c 55
+                           1384 ;	maps.c 60
                            1385 ;	genRet
    0042 11 01 00           1386 	ld	de,#0x0001
    0045 C3 9B 00           1387 	jp	00116$
                            1388 ;	genLabel
    0048                    1389 00102$:
-                           1390 ;	maps.c 57
+                           1390 ;	maps.c 62
                            1391 ;	genIfx
    0048 AF                 1392 	xor	a,a
    0049 B1                 1393 	or	a,c
@@ -1910,13 +1910,13 @@
    0057                    1403 00133$:
    0057 C3 60 00           1404 	jp	00106$
    005A                    1405 00134$:
-                           1406 ;	maps.c 58
+                           1406 ;	maps.c 63
                            1407 ;	genRet
    005A 11 0F 00           1408 	ld	de,#0x000F
    005D C3 9B 00           1409 	jp	00116$
                            1410 ;	genLabel
    0060                    1411 00106$:
-                           1412 ;	maps.c 60
+                           1412 ;	maps.c 65
                            1413 ;	genIfx
    0060 AF                 1414 	xor	a,a
    0061 B1                 1415 	or	a,c
@@ -1932,13 +1932,13 @@
    006F                    1425 00135$:
    006F C3 78 00           1426 	jp	00109$
    0072                    1427 00136$:
-                           1428 ;	maps.c 61
+                           1428 ;	maps.c 66
                            1429 ;	genRet
    0072 11 02 00           1430 	ld	de,#0x0002
    0075 C3 9B 00           1431 	jp	00116$
                            1432 ;	genLabel
    0078                    1433 00109$:
-                           1434 ;	maps.c 63
+                           1434 ;	maps.c 68
                            1435 ;	genCmpEq
                            1436 ;	AOP_STK for 
                            1437 ; genCmpEq: left 1, right 1, result 0
@@ -1961,23 +1961,23 @@
    008F                    1454 00139$:
    008F C3 98 00           1455 	jp	00114$
    0092                    1456 00140$:
-                           1457 ;	maps.c 64
+                           1457 ;	maps.c 69
                            1458 ;	genRet
    0092 11 03 00           1459 	ld	de,#0x0003
    0095 C3 9B 00           1460 	jp	00116$
-                           1461 ;	maps.c 74
+                           1461 ;	maps.c 79
                            1462 ;	genLabel
    0098                    1463 00114$:
                            1464 ;	genRet
    0098 11 00 00           1465 	ld	de,#0x0000
-                           1466 ;	maps.c 75
+                           1466 ;	maps.c 80
                            1467 ;	genLabel
    009B                    1468 00116$:
                            1469 ;	genEndFunction
                            1470 	
    009B C9                 1471 	ret
    009C                    1472 ___got_door_switch_end:
-                           1473 ;	maps.c 79
+                           1473 ;	maps.c 84
                            1474 ;	genLabel
                            1475 ;	genFunction
                            1476 ;	---------------------------------
@@ -1986,7 +1986,7 @@
    009C                    1479 ___helper_copy_map_start:
    009C                    1480 _helper_copy_map:
    009C E8 FC              1481 	lda	sp,-4(sp)
-                           1482 ;	maps.c 81
+                           1482 ;	maps.c 86
                            1483 ;	genAssign
    009E 01 00 00           1484 	ld	bc,#0x0000
                            1485 ;	genLabel
@@ -1997,7 +1997,7 @@
    00A4 78                 1490 	ld	a,b
    00A5 DE 01              1491 	sbc	a,#0x01
    00A7 D2 CB 00           1492 	jp	nc,00105$
-                           1493 ;	maps.c 82
+                           1493 ;	maps.c 87
                            1494 ;	genPlus
                            1495 ;	AOP_STK for _helper_copy_map_sloc0_1_0
                            1496 ;	Can't optimise plus by inc, falling back to the normal way
@@ -2033,7 +2033,7 @@
    00C4 23                 1526 	inc	hl
    00C5 56                 1527 	ld	d,(hl)
    00C6 12                 1528 	ld	(de),a
-                           1529 ;	maps.c 81
+                           1529 ;	maps.c 86
                            1530 ;	genPlus
                            1531 ;	genPlusIncr
    00C7 03                 1532 	inc	bc
@@ -2045,7 +2045,7 @@
    00CB E8 04              1538 	lda	sp,4(sp)
    00CD C9                 1539 	ret
    00CE                    1540 ___helper_copy_map_end:
-                           1541 ;	maps.c 86
+                           1541 ;	maps.c 91
                            1542 ;	genLabel
                            1543 ;	genFunction
                            1544 ;	---------------------------------
@@ -2054,7 +2054,7 @@
    00CE                    1547 ___helper_copy_map_smaller_start:
    00CE                    1548 _helper_copy_map_smaller:
    00CE E8 ED              1549 	lda	sp,-19(sp)
-                           1550 ;	maps.c 87
+                           1550 ;	maps.c 92
                            1551 ;	genMinus
                            1552 ;	AOP_STK for 
    00D0 3E 14              1553 	ld	a,#0x14
@@ -2066,7 +2066,7 @@
    00D6 CB 3F              1559 	srl	a
    00D8 F8 12              1560 	lda	hl,18(sp)
    00DA 77                 1561 	ld	(hl),a
-                           1562 ;	maps.c 88
+                           1562 ;	maps.c 93
                            1563 ;	genMinus
                            1564 ;	AOP_STK for 
    00DB 3E 14              1565 	ld	a,#0x14
@@ -2078,12 +2078,12 @@
    00E1 CB 3F              1571 	srl	a
    00E3 F8 11              1572 	lda	hl,17(sp)
    00E5 77                 1573 	ld	(hl),a
-                           1574 ;	maps.c 95
+                           1574 ;	maps.c 100
                            1575 ;	genAssign
                            1576 ;	AOP_STK for _helper_copy_map_smaller_line_1_1
    00E6 F8 0B              1577 	lda	hl,11(sp)
    00E8 36 00              1578 	ld	(hl),#0x00
-                           1579 ;	maps.c 96
+                           1579 ;	maps.c 101
                            1580 ;	genAssign
                            1581 ;	AOP_STK for _helper_copy_map_smaller_base_map_i_1_1
    00EA 23                 1582 	inc	hl
@@ -2091,7 +2091,7 @@
    00EC 36 00              1584 	ld	(hl),#0x00
    00EE 23                 1585 	inc	hl
    00EF 36 00              1586 	ld	(hl),#0x00
-                           1587 ;	maps.c 97
+                           1587 ;	maps.c 102
                            1588 ;	genPlus
                            1589 ;	AOP_STK for _helper_copy_map_smaller_gap_width_1_1
                            1590 ;	AOP_STK for 
@@ -2101,14 +2101,14 @@
    00F4 F8 17              1594 	lda	hl,23(sp)
    00F6 86                 1595 	add	a,(hl)
    00F7 77                 1596 	ld	(hl),a
-                           1597 ;	maps.c 130
+                           1597 ;	maps.c 135
                            1598 ;	genAssign
                            1599 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
    00F8 F8 0F              1600 	lda	hl,15(sp)
    00FA 36 00              1601 	ld	(hl),#0x00
    00FC 23                 1602 	inc	hl
    00FD 36 00              1603 	ld	(hl),#0x00
-                           1604 ;	maps.c 131
+                           1604 ;	maps.c 136
                            1605 ;	genMult
                            1606 ;	AOP_STK for _helper_copy_map_smaller_gap_height_1_1
                            1607 ;	AOP_STK for _helper_copy_map_smaller_k_1_1
@@ -2127,7 +2127,7 @@
    010C F8 09              1620 	lda	hl,9(sp)
    010E 22                 1621 	ld	(hl+),a
    010F 72                 1622 	ld	(hl),d
-                           1623 ;	maps.c 132
+                           1623 ;	maps.c 137
                            1624 ;	genLabel
    0110                    1625 00101$:
                            1626 ;	genCmpEq
@@ -2146,7 +2146,7 @@
    011E 20 03              1639 	jr	nz,00133$
    0120 C3 43 01           1640 	jp	00113$
    0123                    1641 00133$:
-                           1642 ;	maps.c 133
+                           1642 ;	maps.c 138
                            1643 ;	genPlus
                            1644 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1645 ;	AOP_STK for _helper_copy_map_smaller_sloc0_1_0
@@ -2170,7 +2170,7 @@
    0135 56                 1663 	ld	d,(hl)
    0136 3E 1E              1664 	ld	a,#0x1E
    0138 12                 1665 	ld	(de),a
-                           1666 ;	maps.c 134
+                           1666 ;	maps.c 139
                            1667 ;	genPlus
                            1668 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1669 ;	genPlusIncr
@@ -2182,7 +2182,7 @@
    0140                    1675 00134$:
                            1676 ;	genGoto
    0140 C3 10 01           1677 	jp	00101$
-                           1678 ;	maps.c 137
+                           1678 ;	maps.c 142
                            1679 ;	genLabel
    0143                    1680 00113$:
                            1681 ;	genCmpLt
@@ -2193,12 +2193,12 @@
    0146 F8 18              1686 	lda	hl,24(sp)
    0148 96                 1687 	sub	a,(hl)
    0149 D2 4B 02           1688 	jp	nc,00116$
-                           1689 ;	maps.c 138
+                           1689 ;	maps.c 143
                            1690 ;	genAssign
                            1691 ;	AOP_STK for _helper_copy_map_smaller_col_1_1
    014C F8 0C              1692 	lda	hl,12(sp)
    014E 36 00              1693 	ld	(hl),#0x00
-                           1694 ;	maps.c 139
+                           1694 ;	maps.c 144
                            1695 ;	genLabel
    0150                    1696 00104$:
                            1697 ;	genCmpLt
@@ -2215,7 +2215,7 @@
    015A AF                 1708 	xor	a,a
    015B B1                 1709 	or	a,c
    015C CA 93 01           1710 	jp	z,00107$
-                           1711 ;	maps.c 140
+                           1711 ;	maps.c 145
                            1712 ;	genPlus
                            1713 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1714 ;	AOP_STK for _helper_copy_map_smaller_sloc0_1_0
@@ -2239,7 +2239,7 @@
    0171 56                 1732 	ld	d,(hl)
    0172 3E 1E              1733 	ld	a,#0x1E
    0174 12                 1734 	ld	(de),a
-                           1735 ;	maps.c 141
+                           1735 ;	maps.c 146
                            1736 ;	genPlus
                            1737 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1738 ;	AOP_STK for _helper_copy_map_smaller_sloc1_1_0
@@ -2265,7 +2265,7 @@
    0187 F8 0F              1758 	lda	hl,15(sp)
    0189 22                 1759 	ld	(hl+),a
    018A 73                 1760 	ld	(hl),e
-                           1761 ;	maps.c 142
+                           1761 ;	maps.c 147
                            1762 ;	genPlus
                            1763 ;	AOP_STK for _helper_copy_map_smaller_col_1_1
                            1764 ;	genPlusIncr
@@ -2277,7 +2277,7 @@
    018F 70                 1770 	ld	(hl),b
                            1771 ;	genGoto
    0190 C3 50 01           1772 	jp	00104$
-                           1773 ;	maps.c 145
+                           1773 ;	maps.c 150
                            1774 ;	genLabel
    0193                    1775 00107$:
                            1776 ;	genCmpLt
@@ -2294,7 +2294,7 @@
    019D AF                 1787 	xor	a,a
    019E B1                 1788 	or	a,c
    019F CA 03 02           1789 	jp	z,00110$
-                           1790 ;	maps.c 146
+                           1790 ;	maps.c 151
                            1791 ;	genPlus
                            1792 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1793 ;	AOP_STK for _helper_copy_map_smaller_sloc1_1_0
@@ -2342,7 +2342,7 @@
    01C8 23                 1835 	inc	hl
    01C9 56                 1836 	ld	d,(hl)
    01CA 12                 1837 	ld	(de),a
-                           1838 ;	maps.c 147
+                           1838 ;	maps.c 152
                            1839 ;	genPlus
                            1840 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1841 ;	AOP_STK for _helper_copy_map_smaller_sloc2_1_0
@@ -2368,7 +2368,7 @@
    01DD F8 0F              1861 	lda	hl,15(sp)
    01DF 22                 1862 	ld	(hl+),a
    01E0 73                 1863 	ld	(hl),e
-                           1864 ;	maps.c 148
+                           1864 ;	maps.c 153
                            1865 ;	genPlus
                            1866 ;	AOP_STK for _helper_copy_map_smaller_col_1_1
                            1867 ;	AOP_STK for _helper_copy_map_smaller_sloc3_1_0
@@ -2384,7 +2384,7 @@
    01E8 77                 1877 	ld      (hl),a
                            1878 ; Removed redundent load
    01E9 F8 0C              1879 	lda	hl,12(sp)
-                           1880 ;	maps.c 149
+                           1880 ;	maps.c 154
                            1881 ;	genPlus
                            1882 ;	AOP_STK for _helper_copy_map_smaller_base_map_i_1_1
                            1883 ;	AOP_STK for _helper_copy_map_smaller_sloc4_1_0
@@ -2412,7 +2412,7 @@
    01FF 73                 1905 	ld	(hl),e
                            1906 ;	genGoto
    0200 C3 93 01           1907 	jp	00107$
-                           1908 ;	maps.c 151
+                           1908 ;	maps.c 156
                            1909 ;	genLabel
    0203                    1910 00110$:
                            1911 ;	genCmpLt
@@ -2427,7 +2427,7 @@
    020C AF                 1920 	xor	a,a
    020D B1                 1921 	or	a,c
    020E CA 45 02           1922 	jp	z,00112$
-                           1923 ;	maps.c 152
+                           1923 ;	maps.c 157
                            1924 ;	genPlus
                            1925 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1926 ;	AOP_STK for _helper_copy_map_smaller_sloc4_1_0
@@ -2451,7 +2451,7 @@
    0223 56                 1944 	ld	d,(hl)
    0224 3E 1E              1945 	ld	a,#0x1E
    0226 12                 1946 	ld	(de),a
-                           1947 ;	maps.c 153
+                           1947 ;	maps.c 158
                            1948 ;	genPlus
                            1949 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            1950 ;	AOP_STK for _helper_copy_map_smaller_sloc2_1_0
@@ -2477,7 +2477,7 @@
    0239 F8 0F              1970 	lda	hl,15(sp)
    023B 22                 1971 	ld	(hl+),a
    023C 73                 1972 	ld	(hl),e
-                           1973 ;	maps.c 154
+                           1973 ;	maps.c 159
                            1974 ;	genPlus
                            1975 ;	AOP_STK for _helper_copy_map_smaller_col_1_1
                            1976 ;	genPlusIncr
@@ -2491,7 +2491,7 @@
    0242 C3 03 02           1984 	jp	00110$
                            1985 ;	genLabel
    0245                    1986 00112$:
-                           1987 ;	maps.c 156
+                           1987 ;	maps.c 161
                            1988 ;	genPlus
                            1989 ;	AOP_STK for _helper_copy_map_smaller_line_1_1
                            1990 ;	genPlusIncr
@@ -2499,7 +2499,7 @@
    0247 34                 1992 	inc	(hl)
                            1993 ;	genGoto
    0248 C3 43 01           1994 	jp	00113$
-                           1995 ;	maps.c 160
+                           1995 ;	maps.c 165
                            1996 ;	genLabel
    024B                    1997 00116$:
                            1998 ;	genCmpEq
@@ -2514,7 +2514,7 @@
    0255 FE 01              2007 	cp	a,#0x01
    0257 CA 72 02           2008 	jp	z,00119$
    025A                    2009 00135$:
-                           2010 ;	maps.c 161
+                           2010 ;	maps.c 166
                            2011 ;	genPlus
                            2012 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            2013 ;	Can't optimise plus by inc, falling back to the normal way
@@ -2529,7 +2529,7 @@
                            2022 ;	genAssign (pointer)
    0265 3E 1E              2023 	ld	a,#0x1E
    0267 02                 2024 	ld	(bc),a
-                           2025 ;	maps.c 162
+                           2025 ;	maps.c 167
                            2026 ;	genPlus
                            2027 ;	AOP_STK for _helper_copy_map_smaller_i_1_1
                            2028 ;	genPlusIncr
@@ -2547,7 +2547,7 @@
    0272 E8 13              2040 	lda	sp,19(sp)
    0274 C9                 2041 	ret
    0275                    2042 ___helper_copy_map_smaller_end:
-                           2043 ;	maps.c 182
+                           2043 ;	maps.c 187
                            2044 ;	genLabel
                            2045 ;	genFunction
                            2046 ;	---------------------------------
@@ -2556,7 +2556,7 @@
    0275                    2049 ___copy_map_start:
    0275                    2050 _copy_map:
                            2051 	
-                           2052 ;	maps.c 183
+                           2052 ;	maps.c 188
                            2053 ;	genCmpEq
                            2054 ;	AOP_STK for 
                            2055 ; genCmpEq: left 1, right 1, result 0
@@ -2647,7 +2647,7 @@
    02CD                    2140 00137$:
                            2141 ;	genGoto
    02CD C3 5C 03           2142 	jp	00112$
-                           2143 ;	maps.c 185
+                           2143 ;	maps.c 190
                            2144 ;	genLabel
    02D0                    2145 00101$:
                            2146 ;	genIpush
@@ -2657,10 +2657,10 @@
                            2150 ;	genCall
    02D4 CD 9C 00           2151 	call	_helper_copy_map
    02D7 E8 02              2152 	lda	sp,2(sp)
-                           2153 ;	maps.c 186
+                           2153 ;	maps.c 191
                            2154 ;	genGoto
    02D9 C3 65 03           2155 	jp	00114$
-                           2156 ;	maps.c 188
+                           2156 ;	maps.c 193
                            2157 ;	genLabel
    02DC                    2158 00102$:
                            2159 ;	genIpush
@@ -2670,10 +2670,10 @@
                            2163 ;	genCall
    02E0 CD 9C 00           2164 	call	_helper_copy_map
    02E3 E8 02              2165 	lda	sp,2(sp)
-                           2166 ;	maps.c 189
+                           2166 ;	maps.c 194
                            2167 ;	genGoto
    02E5 C3 65 03           2168 	jp	00114$
-                           2169 ;	maps.c 191
+                           2169 ;	maps.c 196
                            2170 ;	genLabel
    02E8                    2171 00103$:
                            2172 ;	genIpush
@@ -2683,10 +2683,10 @@
                            2176 ;	genCall
    02EC CD 9C 00           2177 	call	_helper_copy_map
    02EF E8 02              2178 	lda	sp,2(sp)
-                           2179 ;	maps.c 192
+                           2179 ;	maps.c 197
                            2180 ;	genGoto
    02F1 C3 65 03           2181 	jp	00114$
-                           2182 ;	maps.c 194
+                           2182 ;	maps.c 199
                            2183 ;	genLabel
    02F4                    2184 00104$:
                            2185 ;	genIpush
@@ -2696,10 +2696,10 @@
                            2189 ;	genCall
    02F8 CD 9C 00           2190 	call	_helper_copy_map
    02FB E8 02              2191 	lda	sp,2(sp)
-                           2192 ;	maps.c 195
+                           2192 ;	maps.c 200
                            2193 ;	genGoto
    02FD C3 65 03           2194 	jp	00114$
-                           2195 ;	maps.c 197
+                           2195 ;	maps.c 202
                            2196 ;	genLabel
    0300                    2197 00105$:
                            2198 ;	genIpush
@@ -2709,10 +2709,10 @@
                            2202 ;	genCall
    0304 CD 9C 00           2203 	call	_helper_copy_map
    0307 E8 02              2204 	lda	sp,2(sp)
-                           2205 ;	maps.c 198
+                           2205 ;	maps.c 203
                            2206 ;	genGoto
    0309 C3 65 03           2207 	jp	00114$
-                           2208 ;	maps.c 200
+                           2208 ;	maps.c 205
                            2209 ;	genLabel
    030C                    2210 00106$:
                            2211 ;	genIpush
@@ -2722,10 +2722,10 @@
                            2215 ;	genCall
    0310 CD 9C 00           2216 	call	_helper_copy_map
    0313 E8 02              2217 	lda	sp,2(sp)
-                           2218 ;	maps.c 201
+                           2218 ;	maps.c 206
                            2219 ;	genGoto
    0315 C3 65 03           2220 	jp	00114$
-                           2221 ;	maps.c 203
+                           2221 ;	maps.c 208
                            2222 ;	genLabel
    0318                    2223 00107$:
                            2224 ;	genIpush
@@ -2735,10 +2735,10 @@
                            2228 ;	genCall
    031C CD 9C 00           2229 	call	_helper_copy_map
    031F E8 02              2230 	lda	sp,2(sp)
-                           2231 ;	maps.c 204
+                           2231 ;	maps.c 209
                            2232 ;	genGoto
    0321 C3 65 03           2233 	jp	00114$
-                           2234 ;	maps.c 206
+                           2234 ;	maps.c 211
                            2235 ;	genLabel
    0324                    2236 00108$:
                            2237 ;	genIpush
@@ -2748,10 +2748,10 @@
                            2241 ;	genCall
    0328 CD 9C 00           2242 	call	_helper_copy_map
    032B E8 02              2243 	lda	sp,2(sp)
-                           2244 ;	maps.c 207
+                           2244 ;	maps.c 212
                            2245 ;	genGoto
    032D C3 65 03           2246 	jp	00114$
-                           2247 ;	maps.c 209
+                           2247 ;	maps.c 214
                            2248 ;	genLabel
    0330                    2249 00109$:
                            2250 ;	genIpush
@@ -2761,10 +2761,10 @@
                            2254 ;	genCall
    0334 CD 9C 00           2255 	call	_helper_copy_map
    0337 E8 02              2256 	lda	sp,2(sp)
-                           2257 ;	maps.c 210
+                           2257 ;	maps.c 215
                            2258 ;	genGoto
    0339 C3 65 03           2259 	jp	00114$
-                           2260 ;	maps.c 214
+                           2260 ;	maps.c 219
                            2261 ;	genLabel
    033C                    2262 00110$:
                            2263 ;	genIpush
@@ -2777,10 +2777,10 @@
                            2270 ;	genCall
    0344 CD CE 00           2271 	call	_helper_copy_map_smaller
    0347 E8 04              2272 	lda	sp,4(sp)
-                           2273 ;	maps.c 216
+                           2273 ;	maps.c 221
                            2274 ;	genGoto
    0349 C3 65 03           2275 	jp	00114$
-                           2276 ;	maps.c 220
+                           2276 ;	maps.c 225
                            2277 ;	genLabel
    034C                    2278 00111$:
                            2279 ;	genIpush
@@ -2793,10 +2793,10 @@
                            2286 ;	genCall
    0354 CD CE 00           2287 	call	_helper_copy_map_smaller
    0357 E8 04              2288 	lda	sp,4(sp)
-                           2289 ;	maps.c 228
+                           2289 ;	maps.c 233
                            2290 ;	genGoto
    0359 C3 65 03           2291 	jp	00114$
-                           2292 ;	maps.c 230
+                           2292 ;	maps.c 235
                            2293 ;	genLabel
    035C                    2294 00112$:
                            2295 ;	genIpush
@@ -2806,7 +2806,7 @@
                            2299 ;	genCall
    0360 CD 9C 00           2300 	call	_helper_copy_map
    0363 E8 02              2301 	lda	sp,2(sp)
-                           2302 ;	maps.c 233
+                           2302 ;	maps.c 238
                            2303 ;	genLabel
    0365                    2304 00114$:
                            2305 ;	genEndFunction
