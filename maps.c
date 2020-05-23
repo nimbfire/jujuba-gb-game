@@ -2,8 +2,8 @@
 
 // old maps
 // #include "maps/map1.c"
-#include "maps/map2.c"
-#include "maps/map3.c"
+// #include "maps/map2.c"
+// #include "maps/map3.c"
 #include "maps/map4.c"
 #include "maps/map5.c"
 #include "maps/map6.c"
@@ -35,7 +35,10 @@
 #include "tilemaps/MapBunnyWaterEasy.c"
 #define MAP_BUNNY_WATER_EASY 3
 
-void get_map_1();
+#include "tilemaps/MapForestJumpMedium.c"
+#define MAP_FOREST_JUMP_MEDIUM 4
+
+
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -59,6 +62,9 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 13 && y == 2) {
         return MAP_FOREST_KEY_EASY;
       }
+      if (x == 15 && y == 2) {
+        return MAP_FOREST_JUMP_MEDIUM;
+      }
       if (x == 13 && y == 4) {
         return MAP_TEACH_JUMP_OVER_ICE;
       }
@@ -68,6 +74,8 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 15 && y == 6) {
         return MAP_BUNNY_WATER_EASY;
       }
+
+
       // // printf("MAP DEV BUT NOT POSITIONING\n");
       // fperformantDelay(500);
 
@@ -195,8 +203,8 @@ void copy_map(UINT8 current_map) {
     case MAP_BUNNY_WATER_EASY:
       helper_copy_map(&MapBunnyWaterEasy);
       break;
-    case 4:
-      helper_copy_map(&Map4);
+    case MAP_FOREST_JUMP_MEDIUM:
+      helper_copy_map(&MapForestJumpMedium);
       break;
     case 5:
       helper_copy_map(&Map5);
