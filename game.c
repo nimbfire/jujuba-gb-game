@@ -1,6 +1,5 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
-#include <stdio.h>
 
 
 UBYTE running;
@@ -18,14 +17,7 @@ unsigned char map[360]; // Controlls which map we are seeing.
 #include "CharacterController.c"
 #include "ObjectController.c"
 
-
-
 #include "sprites/Sprites.c"
-
-
-
-
-
 
 // If by collecting this object the map is won.
 #define OBJECT_WIN_CONDITION_FLAG    0x01U
@@ -116,7 +108,7 @@ UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) ;
 void dog1_power_apply(UINT16 map_position_block, UINT8 direction, UINT16 map_position_next);
 
 void timers() {
-  // printf("%d\n", input_timer);
+  // // printf("%d\n", input_timer);
   // if (input_timer != 0) {
     // input_timer -= 1;
   // }
@@ -137,7 +129,7 @@ void main(void)
   
   }
 
-  printf("The end\n");
+  // printf("The end\n");
   while (1) {
 
   }
@@ -286,7 +278,7 @@ void map_enviroment_tiles(){
       map_position = 360;
       while (map_position != 0) {
         map_position -= 1;
-        // printf("%d\n", map_position);
+        // // printf("%d\n", map_position);
         switch((UINT16)map[map_position]) {
           case (UINT16) 25: // big fire
             map[map_position] = 26; // little fire
@@ -307,7 +299,7 @@ void map_enviroment_tiles(){
     //   map_position = 360;
     //   while (map_position != 0) {
     //     map_position -= 1;
-    //     // printf("%d\n", map_position);
+    //     // // printf("%d\n", map_position);
     //     switch((UINT16)map[map_position]) {
     //       case (UINT16) 25: // big fire
     //       case (UINT16) 26: // little fire
@@ -322,7 +314,7 @@ void map_enviroment_tiles(){
     //   map_position = 120;
     //   while (map_position != 0) {
     //     map_position -= 1;
-    //     // printf("%d\n", map_position);
+    //     // // printf("%d\n", map_position);
     //     switch((UINT16)map[map_position]) {
     //       case (UINT16) 25: // big fire
     //       case (UINT16) 26: // little fire
@@ -339,7 +331,7 @@ void map_enviroment_tiles(){
     //   map_position = 240;
     //   while (map_position != 120) {
     //     map_position -= 1;
-    //     // printf("%d\n", map_position);
+    //     // // printf("%d\n", map_position);
     //     switch((UINT16)map[map_position]) {
     //       case (UINT16) 25: // big fire
     //       case (UINT16) 26: // little fire
@@ -358,7 +350,7 @@ void map_enviroment_tiles(){
     map_position = 360;
     while (map_position != 0) {
       map_position -= 1;
-      // printf("%d\n", map_position);
+      // // printf("%d\n", map_position);
       switch((UINT16)map[map_position]) {
         case (UINT16) 17: // Cracked ice
           map[map_position] = SPRITE_VOID;
@@ -453,7 +445,7 @@ void map_loop() {
   }
 
   got_door(&player);
-  // printf("%u\n", (UINT16)_get_map_position_from_xy(player->x, player->y));
+  // // printf("%u\n", (UINT16)_get_map_position_from_xy(player->x, player->y));
   got_key(&player);
   map_enviroment_tiles();
 
@@ -546,7 +538,7 @@ void instanciate_chars() {
   // Update players positions.
   i = 0;
   while(i != 360) {
-    // printf("%u - %u\n", i, map[i]);
+    // // printf("%u - %u\n", i, map[i]);
     // performantDelay(2);
     switch (map[i]) {
       case 50: // bunny
@@ -650,8 +642,8 @@ int got_door(CharacterController** c) {
     return 0;
   }
   
-  // printf("%d - %d\n", player->x, player->y);
-  // printf("%d - %d\n", fix_x(player->x), fix_y(player->y));
+  // // printf("%d - %d\n", player->x, player->y);
+  // // printf("%d - %d\n", fix_x(player->x), fix_y(player->y));
 
   if ((UINT16)map[player_map_position] == SPRITE_DOOR) {
         //     cat.y = _get_y_from_map_position(i);
@@ -673,7 +665,7 @@ int is_ded(CharacterController** c) {
     return 0;
   }
 
-      // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
+      // // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
   map_position = _get_map_position_from_xy((*c)->x, (*c)->y);
 
 
@@ -715,7 +707,7 @@ void dog1_power() {
   map_position_block = _get_next_map_position(map_position_block,player->direction );
   map_position_next = _get_next_map_position(map_position_block, player->direction);
 
-  // printf("%u %u\n", map_position_block, map_position_next);
+  // // printf("%u %u\n", map_position_block, map_position_next);
   switch((UINT16)map[map_position_block]) {
     case (UINT16)45:// Brunio's block
     case (UINT16)15:// Brunio's block on ice
@@ -767,9 +759,9 @@ void dog1_power() {
 
       break;
   }
-  // printf("4\n");
+  // // printf("4\n");
   // UINT8 x_map = (x * 20);
-  // printf("%d %d\n", x, x_map );
+  // // printf("%d %d\n", x, x_map );
   // return 1;
   set_sprite_tile(player->type, player->sprite_1);
 }
@@ -895,7 +887,7 @@ UINT16 _get_map_position_from_xy(UINT8 x,UINT8 y) {
 
 
 void player_input(CharacterController** c) {
-  // printf("%d %d %d\n", input_timer, (*c)->power_timer, (*c)->power_active);
+  // // printf("%d %d %d\n", input_timer, (*c)->power_timer, (*c)->power_active);
 
   if ((*c)->power_timer == 0 && input_timer == 0) {
 
@@ -915,7 +907,7 @@ void player_input(CharacterController** c) {
         break;
 
       case J_B:
-        // printf("troca\n");
+        // // printf("troca\n");
         change_char();
 
         // This will make the player know which player char was 
@@ -961,10 +953,10 @@ void player_input(CharacterController** c) {
 }
 
 int can_move_to_map_pos(UINT16 map_position) {
-  // printf("%u\n", map_position);
+  // // printf("%u\n", map_position);
   if ((UINT16)map[map_position] > (UINT16)20 &&
     (UINT16)map[map_position] < (UINT16)41) {
-    // printf("2\n");
+    // // printf("2\n");
     return 0;
   }
 
@@ -975,8 +967,8 @@ int can_move_to_map_pos(UINT16 map_position) {
     case (UINT16)15:// Brunio's block on ice
     case (UINT16)16:// Brunio's block on cracked ice
 
-    // printf("PlayerNotMove\n");
-    // printf("3\n");
+    // // printf("PlayerNotMove\n");
+    // // printf("3\n");
       return 0;
       break;
   }
@@ -985,10 +977,10 @@ int can_move_to_map_pos(UINT16 map_position) {
     || (UINT16)map_position == dog1.map_position 
     || (UINT16)map_position == dog2.map_position 
     || (UINT16)map_position == cat.map_position ) {
-    // printf("3\n");
+    // f("3\n");
     return 0;
   }
-  // printf("4\n");
+  // f("4\n");
   return 1;
 }
 
@@ -996,7 +988,7 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   UINT8 _x;
   UINT8 _y;
   UINT16 map_position;
-      // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
+      // // printf("%u %u\n", (unsigned) player->x, ((unsigned) player->x) / 8) -1;
   // return 1;
 
   // Translate the xy to the map tile they are currently on.
@@ -1024,12 +1016,12 @@ int can_move(INT8 x, INT8 y, UINT8 direction) {
   _y = (((unsigned) y) / 8) -2;
 
 
-  //printf("x:%u _ %u %u\n", (unsigned) x, (unsigned) _x, (unsigned) direction);
+  //// printf("x:%u _ %u %u\n", (unsigned) x, (unsigned) _x, (unsigned) direction);
   // x logic
   // 8 -> 0 (because it starts at 8)
   // Stops the player of leaving the map.
   if (_x < 0 || (unsigned) _x > 19 || _y < 0 || (unsigned) _y > 17) {
-    // printf("1\n");
+    // // printf("1\n");
     return 0;
   }
 
@@ -1086,7 +1078,7 @@ void move_character(CharacterController* c) {
       {
         if (!can_move(c->x, c->y, c->direction)) {
           c->power_timer = 1; // 1 will make it end this loop.
-          // printf('cantmove\n');
+          // // printf('cantmove\n');
           movement = 0;
         }
       }
@@ -1153,7 +1145,7 @@ void move_character(CharacterController* c) {
       set_sprite_tile(c->type, c->sprite_3);
 
       if (c->power_active == 1) {
-        // printf("Power active 1\n");
+        // // printf("Power active 1\n");
         c->power_active = 2;
         c->power_timer = 16;
       }

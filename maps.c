@@ -58,12 +58,12 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 13 && y == 6) {
         return MAP_BUNNY_WATER_HARD;
       }
-      // printf("MAP DEV BUT NOT POSITIONING\n");
+      // // printf("MAP DEV BUT NOT POSITIONING\n");
       // fperformantDelay(500);
 
 
     default:
-      // printf("DEFAULT FUUUCK\n");
+      // // printf("DEFAULT FUUUCK\n");
       // fperformantDelay(500);
       
       return MAP_DEV;
@@ -216,7 +216,7 @@ void copy_map(UINT8 current_map) {
       // helper_copy_map(&MapDev);
       // set_bkg_tiles(0, 0, 20, 18, map);
 
-      // printf("Mapa QUINZE");
+      // // printf("Mapa QUINZE");
 
       // performantDelay(500);
 
