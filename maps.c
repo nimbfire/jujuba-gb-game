@@ -41,6 +41,9 @@
 #include "tilemaps/MapForestKeyMedium.c"
 #define MAP_FOREST_KEY_HARD 5
 
+#include "tilemaps/MapBunnyWaterMedium.c"
+#define MAP_BUNNY_WATER_MEDIUM 6
+
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -70,14 +73,19 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 17 && y == 2) {
         return MAP_FOREST_KEY_HARD;
       }
+
       if (x == 13 && y == 4) {
         return MAP_TEACH_JUMP_OVER_ICE;
       }
+
       if (x == 13 && y == 6) {
         return MAP_BUNNY_WATER_HARD;
       }
       if (x == 15 && y == 6) {
         return MAP_BUNNY_WATER_EASY;
+      }
+      if (x == 17 && y == 6) {
+        return MAP_BUNNY_WATER_MEDIUM;
       }
 
 
@@ -214,8 +222,8 @@ void copy_map(UINT8 current_map) {
     case MAP_FOREST_KEY_HARD:
       helper_copy_map(&MapForestKeyMedium);
       break;
-    case 6:
-      helper_copy_map(&Map6);
+    case MAP_BUNNY_WATER_MEDIUM:
+      helper_copy_map(&MapBunnyWaterMedium);
       break;
     case 7:
       helper_copy_map(&MapDev);
