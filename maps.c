@@ -8,10 +8,10 @@
 // #include "maps/map5.c"
 // #include "maps/map6.c"
 // #include "maps/map7.c"
-#include "maps/map8.c"
-#include "maps/map9.c"
-#include "maps/map10.c"
-#include "maps/mapTestSmallGrid.c"
+// #include "maps/map8.c"
+// #include "maps/map9.c"
+// #include "maps/map10.c"
+// #include "maps/mapTestSmallGrid.c"
 
 
 // -------------------------------------------------------
@@ -47,6 +47,11 @@
 #include "tilemaps/MapBunnyWaterIceAbismCrazy.c"
 #define MAP_BUNNY_WATER_ICE_ABISM_CRAZY 7
 
+#include "tilemaps/MapBunnyWaterIceAbismCrazy2.c"
+#define MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2 8
+
+#include "tilemaps/MapWin.c"
+#define MAP_WIN 9
 
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
@@ -93,6 +98,13 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
 
       if (x == 13 && y == 8) {
         return MAP_BUNNY_WATER_ICE_ABISM_CRAZY;
+      }
+      if (x == 15 && y == 8) {
+        return MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2;
+      }
+
+      if (x == 13 && y == 10) {
+        return MAP_WIN;
       }
 
 
@@ -235,16 +247,16 @@ void copy_map(UINT8 current_map) {
     case MAP_BUNNY_WATER_ICE_ABISM_CRAZY:
       helper_copy_map(&MapBunnyWaterIceAbismCrazy);
       break;
-    case 8:
-      helper_copy_map(&MapDev);
+    case MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2:
+      helper_copy_map(&MapBunnyWaterIceAbismCrazy2);
       break;
-    case 9:
-      helper_copy_map(&MapDev);
+    case MAP_WIN:
+      helper_copy_map(&MapWin);
       break;
-    case 10:
-      //   helper_copy_map(&MapDev);
-      // case 11:
-      helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
+    // case 10:
+    //   //   helper_copy_map(&MapDev);
+    //   // case 11:
+    //   helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
       
       break;
     case MAP_TEACH_JUMP_OVER_ICE:

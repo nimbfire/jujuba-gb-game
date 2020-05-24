@@ -141,7 +141,7 @@ void init() {
   characters_available = 2;
 
   copy_map(current_map);
-  set_bkg_data(0,120,Sprites);
+  set_bkg_data(0,127,Sprites);
   set_bkg_tiles(0, 0, 20, 18, map);
   
   set_sprite_data(0,30,Characters);
@@ -514,9 +514,9 @@ void instanciate_chars() {
   dog2.sprite_1 = 6;
   dog2.sprite_2 = 7;
   dog2.sprite_3 = 8;
-  dog2.sprite_4 = 19;
-  dog2.sprite_5 = 20;
-  dog2.sprite_6 = 21;
+  dog2.sprite_4 = 22;
+  dog2.sprite_5 = 23;
+  dog2.sprite_6 = 24;
   dog2.direction = 0;
   dog2.power_active = 0;
   dog2.type = 3;
