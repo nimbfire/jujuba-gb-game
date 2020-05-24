@@ -53,6 +53,9 @@
 #include "tilemaps/MapWin.c"
 #define MAP_WIN 9
 
+#include "tilemaps/MapStart.c"
+#define MAP_START 10
+
 void fperformantDelay(UINT8 numLoops) {
   UINT8 i;
   for (i = 0; i != numLoops; i++) {
@@ -69,7 +72,6 @@ void fperformantDelay(UINT8 numLoops) {
 // If a map has a door, this is the switch that decides to where
 // the player should jump to
 int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
-
   switch(current_map) {
     case MAP_DEV: 
       if (x == 13 && y == 2) {
@@ -106,11 +108,30 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       if (x == 13 && y == 10) {
         return MAP_WIN;
       }
+      if (x == 15 && y == 10) {
+        return MAP_START;
+      }
 
-
-      // // printf("MAP DEV BUT NOT POSITIONING\n");
-      // fperformantDelay(500);
-
+    case MAP_START: 
+      return MAP_FOREST_KEY_EASY;
+    case MAP_FOREST_KEY_EASY: 
+      return MAP_BUNNY_WATER_EASY;
+    case MAP_BUNNY_WATER_EASY: 
+      return MAP_FOREST_JUMP_MEDIUM;
+    case MAP_FOREST_JUMP_MEDIUM: 
+      return MAP_BUNNY_WATER_MEDIUM;
+    case MAP_BUNNY_WATER_MEDIUM: 
+      return MAP_TEACH_JUMP_OVER_ICE;
+    case MAP_TEACH_JUMP_OVER_ICE: 
+      return MAP_BUNNY_WATER_HARD;
+    case MAP_BUNNY_WATER_HARD: 
+      return MAP_FOREST_KEY_HARD;
+    case MAP_FOREST_KEY_HARD: 
+      return MAP_BUNNY_WATER_ICE_ABISM_CRAZY;
+    case MAP_BUNNY_WATER_ICE_ABISM_CRAZY: 
+      return MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2;
+    case MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2: 
+      return MAP_WIN;
 
     default:
       // // printf("DEFAULT FUUUCK\n");
@@ -252,6 +273,9 @@ void copy_map(UINT8 current_map) {
       break;
     case MAP_WIN:
       helper_copy_map(&MapWin);
+      break;
+    case MAP_START:
+      helper_copy_map(&MapStart);
       break;
     // case 10:
     //   //   helper_copy_map(&MapDev);
