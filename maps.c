@@ -5,9 +5,9 @@
 // #include "maps/map2.c"
 // #include "maps/map3.c"
 // #include "maps/map4.c"
-#include "maps/map5.c"
-#include "maps/map6.c"
-#include "maps/map7.c"
+// #include "maps/map5.c"
+// #include "maps/map6.c"
+// #include "maps/map7.c"
 #include "maps/map8.c"
 #include "maps/map9.c"
 #include "maps/map10.c"
@@ -43,6 +43,9 @@
 
 #include "tilemaps/MapBunnyWaterMedium.c"
 #define MAP_BUNNY_WATER_MEDIUM 6
+
+#include "tilemaps/MapBunnyWaterIceAbismCrazy.c"
+#define MAP_BUNNY_WATER_ICE_ABISM_CRAZY 7
 
 
 void fperformantDelay(UINT8 numLoops) {
@@ -86,6 +89,10 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       }
       if (x == 17 && y == 6) {
         return MAP_BUNNY_WATER_MEDIUM;
+      }
+
+      if (x == 13 && y == 8) {
+        return MAP_BUNNY_WATER_ICE_ABISM_CRAZY;
       }
 
 
@@ -225,8 +232,8 @@ void copy_map(UINT8 current_map) {
     case MAP_BUNNY_WATER_MEDIUM:
       helper_copy_map(&MapBunnyWaterMedium);
       break;
-    case 7:
-      helper_copy_map(&MapDev);
+    case MAP_BUNNY_WATER_ICE_ABISM_CRAZY:
+      helper_copy_map(&MapBunnyWaterIceAbismCrazy);
       break;
     case 8:
       helper_copy_map(&MapDev);
