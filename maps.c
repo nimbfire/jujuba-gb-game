@@ -38,6 +38,8 @@
 #include "tilemaps/MapForestJumpMedium.c"
 #define MAP_FOREST_JUMP_MEDIUM 4
 
+#include "tilemaps/MapForestKeyMedium.c"
+#define MAP_FOREST_KEY_HARD 5
 
 
 void fperformantDelay(UINT8 numLoops) {
@@ -64,6 +66,9 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       }
       if (x == 15 && y == 2) {
         return MAP_FOREST_JUMP_MEDIUM;
+      }
+      if (x == 17 && y == 2) {
+        return MAP_FOREST_KEY_HARD;
       }
       if (x == 13 && y == 4) {
         return MAP_TEACH_JUMP_OVER_ICE;
@@ -206,8 +211,8 @@ void copy_map(UINT8 current_map) {
     case MAP_FOREST_JUMP_MEDIUM:
       helper_copy_map(&MapForestJumpMedium);
       break;
-    case 5:
-      helper_copy_map(&Map5);
+    case MAP_FOREST_KEY_HARD:
+      helper_copy_map(&MapForestKeyMedium);
       break;
     case 6:
       helper_copy_map(&Map6);
