@@ -4,7 +4,7 @@
 // #include "maps/map1.c"
 // #include "maps/map2.c"
 // #include "maps/map3.c"
-#include "maps/map4.c"
+// #include "maps/map4.c"
 #include "maps/map5.c"
 #include "maps/map6.c"
 #include "maps/map7.c"
