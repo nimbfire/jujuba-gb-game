@@ -136,8 +136,8 @@ void main(void)
 }
 
 void init() {
-  // current_map = MAP_DEV;
-  current_map = MAP_START;
+  current_map = MAP_DEV;
+  // current_map = MAP_START;
   // current_map = MAP_;
   characters_available = 2;
 
