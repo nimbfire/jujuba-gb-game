@@ -19,7 +19,7 @@ all:	$(BINS)
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm -f *.o *.lst *.map *.gb
+	rm -f *.o *.lst *.map game.gb
 
 # Link file, and write 0x80 at position 0x143 in header
 game.gb:	game.o
