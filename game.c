@@ -42,7 +42,17 @@ unsigned char map[360]; // Controlls which map we are seeing.
 #define RGB_LIGHTFLESH RGB(30, 20, 15)
 
 UWORD spritePalette[] = {
-  RGB_GREEN_1, RGB_GREEN_2, RGB_GREEN_3, RGB_GREEN_4,
+  RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,
+
+  // RGB_GREEN_1, RGB_GREEN_2, RGB_GREEN_3, RGB_GREEN_4,
+  // 0, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,;
+
+  // 0, RGB_GREEN, RGB_BLUE, RGB_PURPLE,
+  // 0, RGB_BLACK, RGB_RED, RGB_WHITE
+};
+
+UWORD shadowSpritePalette[] = {
+  RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,
   // 0, RGB_GREEN, RGB_BLUE, RGB_PURPLE,
   // 0, RGB_BLACK, RGB_RED, RGB_WHITE
 };
@@ -136,8 +146,8 @@ void main(void)
 }
 
 void init() {
-  current_map = MAP_DEV;
-  // current_map = MAP_START;
+  // current_map = MAP_DEV;
+  current_map = MAP_START;
   // current_map = MAP_;
   characters_available = 2;
 
@@ -152,11 +162,14 @@ void init() {
   // set_sprite_palette(0, 3, spritePalette[3]);
   set_bkg_palette(0, 3, spritePalette);
   set_sprite_prop(0, 0);
+  set_sprite_prop(0, S_PALETTE);
+
 
   // BGP_REG = 0xF9U;
   // BGP_REG = 0xFEU;
   // BGP_REG = 0xFFU;
   BGP_REG = 0xE4U;
+  // BGP_REG = OBP0_REG = OBP1_REG = 0xE4U;
 
   DISPLAY_ON;
   
@@ -273,77 +286,77 @@ void map_enviroment_tiles(){
   }
 
   // Only update fire if the player isn't moving
-  if (input_timer == 0) {
-    // Update fire tiles
-    if (timer == 0) {
-      map_position = 360;
-      while (map_position != 0) {
-        map_position -= 1;
-        // // printf("%d\n", map_position);
-        switch((UINT16)map[map_position]) {
-          case (UINT16) 25: // big fire
-            map[map_position] = 26; // little fire
-            spread_fire(map_position);
-            break;
+  // if (input_timer == 0) {
+  //   // Update fire tiles
+  //   if (timer == 0) {
+  //     map_position = 360;
+  //     while (map_position != 0) {
+  //       map_position -= 1;
+  //       // // printf("%d\n", map_position);
+  //       switch((UINT16)map[map_position]) {
+  //         case (UINT16) 25: // big fire
+  //           map[map_position] = 26; // little fire
+  //           spread_fire(map_position);
+  //           break;
 
-          case (UINT16) 26: // little fire
-            spread_fire(map_position);
-            map[map_position] = 49; // burned tile
-            break;
+  //         case (UINT16) 26: // little fire
+  //           spread_fire(map_position);
+  //           map[map_position] = 49; // burned tile
+  //           break;
 
-        }
-      }
-    }
-    // // spread fire!
-    // if (timer == 10) {
-    //   //spread fire
-    //   map_position = 360;
-    //   while (map_position != 0) {
-    //     map_position -= 1;
-    //     // // printf("%d\n", map_position);
-    //     switch((UINT16)map[map_position]) {
-    //       case (UINT16) 25: // big fire
-    //       case (UINT16) 26: // little fire
-    //         spread_fire(map_position);
-    //         break;
-    //     }
-    //   }
-    // }
-    //   // spread fire!
-    // if (timer == 20) {
-    //   //spread fire
-    //   map_position = 120;
-    //   while (map_position != 0) {
-    //     map_position -= 1;
-    //     // // printf("%d\n", map_position);
-    //     switch((UINT16)map[map_position]) {
-    //       case (UINT16) 25: // big fire
-    //       case (UINT16) 26: // little fire
-    //         spread_fire(map_position);
-    //         break;
+  //       }
+  //     }
+  //   }
+  //   // // spread fire!
+  //   // if (timer == 10) {
+  //   //   //spread fire
+  //   //   map_position = 360;
+  //   //   while (map_position != 0) {
+  //   //     map_position -= 1;
+  //   //     // // printf("%d\n", map_position);
+  //   //     switch((UINT16)map[map_position]) {
+  //   //       case (UINT16) 25: // big fire
+  //   //       case (UINT16) 26: // little fire
+  //   //         spread_fire(map_position);
+  //   //         break;
+  //   //     }
+  //   //   }
+  //   // }
+  //   //   // spread fire!
+  //   // if (timer == 20) {
+  //   //   //spread fire
+  //   //   map_position = 120;
+  //   //   while (map_position != 0) {
+  //   //     map_position -= 1;
+  //   //     // // printf("%d\n", map_position);
+  //   //     switch((UINT16)map[map_position]) {
+  //   //       case (UINT16) 25: // big fire
+  //   //       case (UINT16) 26: // little fire
+  //   //         spread_fire(map_position);
+  //   //         break;
 
-    //     }
-    //   }
-    // }
+  //   //     }
+  //   //   }
+  //   // }
 
-    //   // spread fire!
-    // if (timer == 30) {
-    //   //spread fire
-    //   map_position = 240;
-    //   while (map_position != 120) {
-    //     map_position -= 1;
-    //     // // printf("%d\n", map_position);
-    //     switch((UINT16)map[map_position]) {
-    //       case (UINT16) 25: // big fire
-    //       case (UINT16) 26: // little fire
-    //         spread_fire(map_position);
-    //         break;
+  //   //   // spread fire!
+  //   // if (timer == 30) {
+  //   //   //spread fire
+  //   //   map_position = 240;
+  //   //   while (map_position != 120) {
+  //   //     map_position -= 1;
+  //   //     // // printf("%d\n", map_position);
+  //   //     switch((UINT16)map[map_position]) {
+  //   //       case (UINT16) 25: // big fire
+  //   //       case (UINT16) 26: // little fire
+  //   //         spread_fire(map_position);
+  //   //         break;
 
-    //     }
-    //   }
-    // }
+  //   //     }
+  //   //   }
+  //   // }
 
-  }
+  // }
 
   // Update any tile that needs updating
   // only if the player isn't moving

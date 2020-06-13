@@ -1,0 +1,108 @@
+* [31m701c554[m -[33m (HEAD -> game_2, new_branch)[m Updated makefile so ew keep old builds [32m(Sun May 31 20:34:51 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m96f88b7[m -[33m[m An dev build [32m(Sun May 31 20:34:10 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m3710b56[m -[33m[m Version 1.2 [32m(Sun May 24 11:10:01 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m8f02c3c[m -[33m[m Added names to the last 2 maps [32m(Sun May 24 11:06:50 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6ff54ca[m -[33m[m Fixed bug na fase da agua hard onde se podia usar a chave [32m(Sun May 24 03:57:30 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5bf8c77[m -[33m[m Coelho esperto lançado!!! [32m(Sun May 24 01:29:02 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6c66a43[m -[33m[m Added the end map! [32m(Sun May 24 00:53:27 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m66ef98d[m -[33m[m Added crazy map [32m(Sat May 23 23:51:06 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m699f020[m -[33m[m Added another water bunny map [32m(Sat May 23 23:34:48 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mff749b1[m -[33m[m Added one more forest map [32m(Sat May 23 23:28:40 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mad982db[m -[33m[m Updated maps [32m(Sat May 23 23:01:49 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mcd5fc17[m -[33m[m one more added map [32m(Sat May 23 20:39:18 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m677fae5[m -[33m[m Updates and stuff [32m(Sat May 23 20:33:39 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m1bbff60[m -[33m[m One extra map... but apparenlty we have an hard limit... not of ... variables... but of... strings?.... its... really strange [32m(Fri May 22 22:34:27 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m4ed19bd[m -[33m[m Removed printf dependencies!!! [32m(Fri May 22 22:18:51 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31ma9956b5[m -[33m[m New way of continuing, because its the way we can [32m(Fri May 22 22:13:32 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6456e14[m -[33m[m Added a hard bunny water only map [32m(Tue Apr 14 02:41:55 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m131c4d9[m -[33m[m Added the basic forest key map [32m(Tue Apr 14 02:20:45 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m423f796[m -[33m[m new way to handle maps its working. first teach map (on cie) ts working) [32m(Tue Apr 14 02:14:13 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5835154[m -[33m[m Moving some map function to the map c file [32m(Tue Apr 14 02:05:17 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m1782020[m -[33m[m Some map updates [32m(Tue Apr 14 01:01:52 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m11f03fa[m -[33m[m A lot of updates [32m(Tue Apr 14 00:51:37 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mfd707bc[m -[33m[m Updated LOTS of definitions for the sprites. Now we have a new file where the srpite logic will be ported to. [32m(Mon Apr 13 00:16:12 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0e9df09[m -[33m[m Updated a few maps, added a new one where you save the dog, updated the history [32m(Sat Apr 11 23:42:03 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m4369e49[m -[33m[m Updated the tile that is filled when the map is smaller [32m(Wed Mar 18 11:23:18 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mfe73428[m -[33m[m More tests [32m(Wed Mar 18 00:37:06 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6e54dae[m -[33m[m fixed bug where sprites just where lost in the middle of new maps [32m(Wed Mar 18 00:21:20 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m08028cc[m -[33m[m updates? [32m(Wed Mar 18 00:15:34 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m75b3c7c[m -[33m[m Fixed bug that locked the player in the jumping status if the player got in a dor by jumping. Now it waits untill the player lands [32m(Thu Mar 12 20:04:41 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m1eecffc[m -[33m[m Updated maps and logic to use the tiles in the maps to place the characters [32m(Thu Mar 12 20:02:08 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mddd4fb4[m -[33m[m Now the way the chars are instantiated is way better and we can control it using the map [32m(Thu Mar 12 19:43:36 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m89caa33[m -[33m[m Updated placement to work with dog1 [32m(Thu Mar 12 19:23:58 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m7a8ea2e[m -[33m[m Now the small map function is waaaaaaaaaaaaaaaaaay faster [32m(Tue Mar 10 20:04:38 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6ffd653[m -[33m[m Smaller map somewhat working [32m(Thu Mar 5 21:20:22 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mdc2f79a[m -[33m[m small fix on jump phase 6 [32m(Thu Mar 5 19:41:36 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31me6fa350[m -[33m[m Added a new way to pass the ice phase [32m(Thu Mar 5 19:35:19 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mc11fc96[m -[33m[m more or less fixed performance issues [32m(Thu Mar 5 18:31:38 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m4380e9e[m -[33m[m Better firemap spread [32m(Thu Mar 5 18:26:45 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31md278ada[m -[33m[m Updates and stuff [32m(Thu Mar 5 18:21:14 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m019fdf9[m -[33m[m better fire spread [32m(Wed Mar 4 19:49:01 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31md90b5e2[m -[33m[m Fire spread in different loops so doew not hoog the gb as much [32m(Wed Mar 4 19:10:13 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m81e8b86[m -[33m[m fire spread to all directions properly [32m(Wed Mar 4 11:23:16 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m861098e[m -[33m[m Added fire to the left [32m(Wed Mar 4 11:20:25 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m80b8264[m -[33m[m Little better fire [32m(Tue Mar 3 21:07:05 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m47c48b8[m -[33m[m Added simple fire [32m(Tue Mar 3 20:31:44 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m4c46f58[m -[33m[m updates? [32m(Tue Mar 3 20:14:50 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m61a3179[m -[33m[m Ups [32m(Fri Feb 28 23:30:04 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mdc812e0[m -[33m[m commits [32m(Fri Feb 28 21:57:47 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m72b709c[m -[33m[m Fase de gelo malvada feita [32m(Fri Feb 28 19:20:29 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mcedd365[m -[33m[m Updates varios de movimento [32m(Fri Feb 28 16:05:29 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5bd7680[m -[33m[m Ice is working! [32m(Fri Feb 28 15:47:37 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m636eb2d[m -[33m[m Better ice movment (but not ready yet) [32m(Fri Feb 28 15:36:01 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5293c9c[m -[33m[m Updating ice breackable [32m(Fri Feb 28 12:09:47 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m1c2e2d4[m -[33m[m Now we have death by abism [32m(Fri Feb 28 11:39:31 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5daf5bc[m -[33m[m Better movment 2 [32m(Fri Feb 28 11:18:15 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5e78541[m -[33m[m Part of the ice stuff its working [32m(Thu Feb 27 16:39:48 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m3ceb2fa[m -[33m[m Updated collision [32m(Thu Feb 27 16:16:31 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mad68624[m -[33m[m better block colision. Now it collides with the players and they do collide with themselves! [32m(Thu Feb 27 16:11:19 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m976d9a4[m -[33m[m Updated block movment [32m(Thu Feb 27 14:05:06 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mfefde22[m -[33m[m Working on the movment of the ice [32m(Thu Feb 27 13:15:29 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31ma4696a5[m -[33m[m fixed level 3 [32m(Thu Feb 27 00:11:19 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m379338a[m -[33m[m Starting to implement ice, cracked ice and abism [32m(Wed Feb 26 16:53:12 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mc626fb3[m -[33m[m beta 1.1 [32m(Wed Feb 26 00:19:01 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m7d8c4a5[m -[33m[m Updated beta1 [32m(Wed Feb 26 00:08:10 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m75a5f52[m -[33m[m beta1 pronto [32m(Tue Feb 25 23:59:30 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0d9ad73[m -[33m[m more tests on movment [32m(Tue Feb 25 23:34:44 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31me3d232f[m -[33m[m dog1 power block movment... working partially [32m(Tue Feb 25 21:41:54 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0c0ede3[m -[33m[m now the death resets the map [32m(Tue Feb 25 18:14:53 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0953925[m -[33m[m Updating map functions [32m(Tue Feb 25 17:46:07 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mc50a98d[m -[33m[m Updated map stuff [32m(Tue Feb 25 17:42:39 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m24d34dd[m -[33m[m Updates on movment and stuff [32m(Tue Feb 25 11:59:45 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m8a2f43d[m -[33m[m updates [32m(Tue Feb 25 02:33:12 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m01a8141[m -[33m[m New params for all chars in the map [32m(Tue Feb 25 02:18:40 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mf27be1e[m -[33m[m Starting the revamp to have multiple maps [32m(Mon Feb 24 23:57:20 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mac3fb0e[m -[33m[m Now we have the base for the brunio power! [32m(Mon Feb 24 22:53:22 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m8c0dc4d[m -[33m[m better changing chars [32m(Mon Feb 24 22:17:13 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mb32e3a9[m -[33m[m got it working on other emulators! [32m(Mon Feb 24 20:58:08 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31made36e4[m -[33m[m some adjustments on the player change [32m(Mon Feb 24 20:09:45 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31ma7036c9[m -[33m[m ups [32m(Mon Feb 24 19:30:02 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m555e199[m -[33m[m Better movment on the bunny jump [32m(Mon Feb 24 02:19:44 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mda82bbe[m -[33m[m Updated movement, not its even better the sprite handling. Next we need to check the special powers [32m(Mon Feb 24 01:37:54 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mdf87789[m -[33m[m Updated movement, not its even better the sprite handling. Next we need to check the special powers [32m(Mon Feb 24 01:37:20 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mcf12f73[m -[33m[m Sprites and movment on the base is better [32m(Sun Feb 23 20:57:46 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31ma1605ed[m -[33m[m Better collision on the base movement [32m(Sun Feb 23 20:54:48 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mf8c8ed4[m -[33m[m not working [32m(Fri Feb 21 22:23:11 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m7efe15c[m -[33m[m adding more life to the map 1 with tonhonho [32m(Thu Feb 20 18:40:53 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m8332ee4[m -[33m[m Using the key unblocks the blocked stuff [32m(Wed Feb 19 16:55:10 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31me3b6b6c[m -[33m[m Finnally got the got key function workin [32m(Wed Feb 19 16:32:02 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0b58cc1[m -[33m[m Updated sprites [32m(Wed Feb 19 14:35:34 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0daea82[m -[33m[m Updated how we update the sprites, now its way easier without needing to re-update the entire background [32m(Wed Feb 19 11:21:31 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m040c74f[m -[33m[m updated [32m(Tue Feb 18 16:43:19 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mb2ecac2[m -[33m[m Updated... stuff? [32m(Tue Feb 18 14:54:46 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mabd4682[m -[33m[m Updated and now we have a better map stuff [32m(Tue Feb 18 14:27:52 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mcb6ac9a[m -[33m[m Jumping over water [32m(Tue Feb 18 13:50:38 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m878289e[m -[33m[m You ded defined [32m(Tue Feb 18 10:58:03 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mda31a22[m -[33m[m Some fixes on the dog power [32m(Tue Feb 18 10:48:50 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m7abf7ae[m -[33m[m Colision with backgorund [32m(Mon Feb 17 17:18:44 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m6a829dd[m -[33m[m More updates and it is working [32m(Mon Feb 17 17:08:41 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mfc5d860[m -[33m[m Now we have a backbround mpa! [32m(Mon Feb 17 12:34:44 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m130047c[m -[33m[m Now the bunny collide with the walls! [32m(Mon Feb 17 12:11:46 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m129c214[m -[33m[m Updates now we have some colision and better handling of a lot of stuff [32m(Mon Feb 17 11:58:47 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m5d992a0[m -[33m[m Updates now we have dogs sprites as well [32m(Fri Feb 14 09:11:25 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m9fb18ba[m -[33m[m WOrkando com trocas agora [32m(Thu Feb 13 13:19:58 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m7d5a5a9[m -[33m[m MAZAAAA AGORA TEMOS O PLAYER LINDAMENTE FUNCIONANDOOOOO [32m(Wed Feb 12 17:11:46 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m57912e3[m -[33m[m ups [32m(Wed Feb 12 00:49:35 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31mc1ac1ea[m -[33m[m Updated base characters sctrucure [32m(Wed Feb 12 00:27:08 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m29190b1[m -[33m[m Update stuff [32m(Wed Feb 12 00:19:22 2020 -0300) [1;34m<Marcelo Soares>[m
+* [31m0d2c0d4[m -[33m[m First commit [32m(Wed Feb 12 00:05:04 2020 -0300) [1;34m<Marcelo Soares>[m

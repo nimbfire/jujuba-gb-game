@@ -1,9 +1,9 @@
 // Handles maps logic
 
 // old maps
-// #include "maps/map1.c"
-// #include "maps/map2.c"
-// #include "maps/map3.c"
+#include "maps/map1.c"
+#include "maps/map2.c"
+#include "maps/map3.c"
 // #include "maps/map4.c"
 // #include "maps/map5.c"
 // #include "maps/map6.c"
@@ -23,8 +23,8 @@
 #include "tilemaps/MapDev.c"
 #define MAP_DEV 0
 
-#include "tilemaps/MapTeachJumpOverIce.c"
-#define MAP_TEACH_JUMP_OVER_ICE 15
+#include "tilemaps/game_2/LongWater.c"
+#define MAP_LONG_WATER 15
 
 #include "tilemaps/MapForestKeyEasy.c"
 #define MAP_FOREST_KEY_EASY 1
@@ -85,7 +85,7 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
       }
 
       if (x == 13 && y == 4) {
-        return MAP_TEACH_JUMP_OVER_ICE;
+        return MAP_LONG_WATER;
       }
 
       if (x == 13 && y == 6) {
@@ -121,8 +121,6 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
     case MAP_FOREST_JUMP_MEDIUM: 
       return MAP_BUNNY_WATER_MEDIUM;
     case MAP_BUNNY_WATER_MEDIUM: 
-      return MAP_TEACH_JUMP_OVER_ICE;
-    case MAP_TEACH_JUMP_OVER_ICE: 
       return MAP_BUNNY_WATER_HARD;
     case MAP_BUNNY_WATER_HARD: 
       return MAP_FOREST_KEY_HARD;
@@ -131,6 +129,8 @@ int got_door_switch(UINT8 x, UINT8 y, UINT8 current_map) {
     case MAP_BUNNY_WATER_ICE_ABISM_CRAZY: 
       return MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2;
     case MAP_BUNNY_WATER_ICE_ABISM_CRAZY_2: 
+      return MAP_LONG_WATER;
+    case MAP_LONG_WATER:
       return MAP_WIN;
 
     default:
@@ -283,10 +283,13 @@ void copy_map(UINT8 current_map) {
     //   helper_copy_map_smaller(mapTestSmallGrid, mapTestSmallGridWidth, mapTestSmallGridHeight);
       
       break;
-    case MAP_TEACH_JUMP_OVER_ICE:
+    case MAP_LONG_WATER:
       //   helper_copy_map(&MapDev);
       // case 11:
-      helper_copy_map_smaller(MapTeachJumpOverIce, MapTeachJumpOverIceWidth, MapTeachJumpOverIceHeight);
+      helper_copy_map(&LongWater);
+
+      // LongWater
+      // helper_copy_map_smaller(MapTeachJumpOverIce, MapTeachJumpOverIceWidth, MapTeachJumpOverIceHeight);
       // helper_copy_map(&MapDev);
       // set_bkg_tiles(0, 0, 20, 18, map);
 

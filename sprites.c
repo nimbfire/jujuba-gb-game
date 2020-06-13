@@ -83,6 +83,11 @@
 #define SPRITE_DOG_2_DUMMY 61
 #define SPRITE_CAT_DUMMY 62
 
+#define SPRITE_BUNNY_LEFT 64
+#define SPRITE_BUNNY_RIGHT 65
+
+
+
 #define SPRITE_A 70
 #define SPRITE_B 71
 #define SPRITE_C 72
