@@ -9,6 +9,7 @@ Para rodar ele utilizei a GBDK, uma lib de desenvolvimento em c para gameboy (ma
 
 ## O jogo
 O arquivo coelho_esperto_1.3.gb é a rom valida que roda em gameboy e outros emuladores.
+https://github.com/nimbfire/jujuba-gb-game/raw/master/coelho_esperto_1.3.gb
 
 Por uma questão de não rodei no gb as primeiras builds não percebi que os sprites eram minusculos. Para jogar recomendo um emulador que aumente a tela em 4 vezes, mas 2x já ajuda bastante. É possivel jogar em tela x1, mas não recomendo. 
 
