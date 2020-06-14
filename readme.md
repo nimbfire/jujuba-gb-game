@@ -1,6 +1,6 @@
 # Coelho esperto 1
 
-Este jogo foi feito para JuliA BAuer, minha esposA, como presente de aniversário.
+Este jogo foi feito para JujubA, minha esposa, como presente de aniversário.
 
 Ela gosta de puzzles e portanto fiz ele razoavelmente difícil. Caso muitas pessoas peçam posso vir a fazer um tutorial de como passar das fases mais complicadas.
 Não tenho intenção de gastar muito mais tempo em código neste pois já estou trabalhando em outro projeto (o tal jogo 2) que vai ser melhor (espero).
