@@ -42,17 +42,7 @@ unsigned char map[360]; // Controlls which map we are seeing.
 #define RGB_LIGHTFLESH RGB(30, 20, 15)
 
 UWORD spritePalette[] = {
-  RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,
-
-  // RGB_GREEN_1, RGB_GREEN_2, RGB_GREEN_3, RGB_GREEN_4,
-  // 0, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,;
-
-  // 0, RGB_GREEN, RGB_BLUE, RGB_PURPLE,
-  // 0, RGB_BLACK, RGB_RED, RGB_WHITE
-};
-
-UWORD shadowSpritePalette[] = {
-  RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4, RGB_GREEN_4,
+  RGB_GREEN_1, RGB_GREEN_2, RGB_GREEN_3, RGB_GREEN_4,
   // 0, RGB_GREEN, RGB_BLUE, RGB_PURPLE,
   // 0, RGB_BLACK, RGB_RED, RGB_WHITE
 };
@@ -162,7 +152,7 @@ void init() {
   // set_sprite_palette(0, 3, spritePalette[3]);
   set_bkg_palette(0, 3, spritePalette);
   set_sprite_prop(0, 0);
-  set_sprite_prop(0, S_PALETTE);
+  // set_sprite_prop(0, S_PALETTE);
 
 
   // BGP_REG = 0xF9U;
