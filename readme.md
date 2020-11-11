@@ -27,3 +27,6 @@ Foi feito um sistema e fogo que espalha por arvores, apaga com o tempo, entre ou
 
 GoHorse. Desculpe aos que entendem de código, mas sempre fiz com o objetivo de ter algo funcional. Cada vez que tentei refatorar e deixar direito alguma limitação do gameboy ou do meu conhecimento me atrapalhava. O próximo vai ser bem melhor.
 
+## Itch.io
+
+https://nimbfire.itch.io/coelho-esperto-1-a-gameboy-game
