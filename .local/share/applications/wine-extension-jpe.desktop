@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Wine Internet Explorer
+MimeType=image/jpeg;
+Exec=env WINEPREFIX="/home/gbdev/wine" wine start /ProgIDOpen jpegfile %f
+NoDisplay=true
+StartupNotify=true

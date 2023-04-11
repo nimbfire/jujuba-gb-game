@@ -4,40 +4,82 @@ AREA .  .ABS.
 	SIZE 0000
 	ATTRIB ABS OVR
 	GLOBALS
+		s__HEADERf	0000
 		l__HEAP	0000
+		s__HEADER0	0000
 		l__BSEG	0000
+		s__HEADER1	0000
 		l_.  .ABS.	0000
+		s__HEADER2	0000
+		s__HEADER3	0000
 		l__GSFINAL	0000
+		s__HEADER4	0000
+		s__HEADER5	0000
+		s__HEADER6	0000
+		s__HEADER7	0000
 		l__ISEG	0000
+		l__HRAM	0000
+		s__HEADER8	0000
 		s_.  .ABS.	0000
+		s__HEADER9	0000
+		l__HEADER	0000
+		s__HRAM	0000
 		s__HEADER	0000
 		l__XSEG	0000
 		.init	0000
 		l__OVERLAY	0000
 		l__LIT	0000
+		s__HEADER10	0000
+		s__HEADERa	0000
+		s__HEADER11	0000
+		s__HEADERb	0000
+		s__HRAM13	0000
+		s__HEADER12	0000
+		s__HEADERc	0000
+		s__HEADERd	0000
+		s__HEADERe	0000
+		l__HEADER0	0001
 		l__GSINITTAIL	0001
-		l__BSS	005C
-		l__HOME	01D3
-		l__HEADER	01E1
+		l__HEADERa	0001
+		l__HEADERb	0001
+		l__HRAM13	0001
+		l__HEADER12	0001
+		l__HEADERc	0001
+		l__HEADERe	0001
+		l__HEADERf	0001
+		l__HEADER10	0002
+		l__HEADERd	0002
+		l__HEADER9	0003
+		l__HEADER8	0006
+		l__HEADER2	0007
+		l__HEADER3	0007
+		l__HEADER4	0007
+		l__HEADER5	0007
+		l__HEADER1	0010
+		l__HEADER6	001F
+		l__HEADER7	0034
+		l__BSS	005B
+		l__HEADER11	0085
+		l__HOME	01CF
 		s__CODE	0200
 		l__BASE	0211
 		l__GSINIT	1259
 		l__DATA	186D
 		l__CODE	2E58
 		s__HOME	3058
-		s__BASE	322B
-		s__LIT	343C
-		s__GSINIT	343C
-		s__GSINITTAIL	4695
-		s__GSFINAL	4696
+		s__BASE	3227
+		s__LIT	3438
+		s__GSINIT	3438
+		s__GSINITTAIL	4691
+		s__GSFINAL	4692
 		.OAM	C000
 		s__DATA	C0A0
 		s__BSS	D90D
-		s__HEAP	D969
-		s__BSEG	D969
-		s__ISEG	D969
-		s__XSEG	D969
-		s__OVERLAY	D969
+		s__HEAP	D968
+		s__BSEG	D968
+		s__ISEG	D968
+		s__XSEG	D968
+		s__OVERLAY	D968
 		.STACK	E000
 		.refresh_OAM	FF80
 AREA _CODE
@@ -113,17 +155,107 @@ AREA _CODE
 		_cpu_slow	2FED
 		_cpu_fast	3008
 		_cgb_compatibility	300F
-AREA _HEADER
+AREA _HEADER0
 	RADIX HEX
 	BASE 0000
-	SIZE 01E1
-	ATTRIB ABS OVR
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADER1
+	RADIX HEX
+	BASE 0000
+	SIZE 0010
+	ATTRIB ABS CON
+AREA _HEADER2
+	RADIX HEX
+	BASE 0000
+	SIZE 0007
+	ATTRIB ABS CON
+AREA _HEADER3
+	RADIX HEX
+	BASE 0000
+	SIZE 0007
+	ATTRIB ABS CON
+AREA _HEADER4
+	RADIX HEX
+	BASE 0000
+	SIZE 0007
+	ATTRIB ABS CON
+AREA _HEADER5
+	RADIX HEX
+	BASE 0000
+	SIZE 0007
+	ATTRIB ABS CON
+AREA _HEADER6
+	RADIX HEX
+	BASE 0000
+	SIZE 001F
+	ATTRIB ABS CON
+AREA _HEADER7
+	RADIX HEX
+	BASE 0000
+	SIZE 0034
+	ATTRIB ABS CON
+AREA _HEADER8
+	RADIX HEX
+	BASE 0000
+	SIZE 0006
+	ATTRIB ABS CON
+AREA _HEADER9
+	RADIX HEX
+	BASE 0000
+	SIZE 0003
+	ATTRIB ABS CON
+AREA _HEADERa
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADERb
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADERc
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADERd
+	RADIX HEX
+	BASE 0000
+	SIZE 0002
+	ATTRIB ABS CON
+AREA _HEADERe
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADERf
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+AREA _HEADER10
+	RADIX HEX
+	BASE 0000
+	SIZE 0002
+	ATTRIB ABS CON
+AREA _HEADER11
+	RADIX HEX
+	BASE 0000
+	SIZE 0085
+	ATTRIB ABS CON
 	GLOBALS
 		_exit	01D2
+AREA _HEADER12
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
 AREA _HOME
 	RADIX HEX
 	BASE 3058
-	SIZE 01D3
+	SIZE 01CF
 	ATTRIB REL CON
 	GLOBALS
 		.set_mode	3058
@@ -138,85 +270,85 @@ AREA _HOME
 		.add_SIO	3098
 		.add_JOY	309E
 		.remove_int	30A4
-		.add_int	30C4
-		.wait_vbl_done	30E0
-		_wait_vbl_done	30E0
-		_display_off	30F7
-		.display_off	30F7
-		.serial_IO	3118
-		_mode	3147
-		_get_mode	3150
-		_enable_interrupts	3155
-		_disable_interrupts	3157
-		_reset	3159
-		.reset	3159
-		_set_interrupts	315F
-		_remove_VBL	316A
-		_remove_LCD	3175
-		_remove_TIM	3180
-		_remove_SIO	318B
-		_remove_JOY	3196
-		_add_VBL	31A1
-		_add_LCD	31AC
-		_add_TIM	31B7
-		_add_SIO	31C2
-		_add_JOY	31CD
-		_clock	31D8
-		__printTStates	31E1
-		banked_call	31E2
-		banked_ret	31FB
-		__initrleblock	3204
+		.add_int	30C3
+		.wait_vbl_done	30DF
+		_wait_vbl_done	30DF
+		_display_off	30F6
+		.display_off	30F6
+		.serial_IO	3117
+		_mode	3146
+		_get_mode	314F
+		_enable_interrupts	3154
+		_disable_interrupts	3156
+		_reset	3158
+		.reset	3158
+		_set_interrupts	315E
+		_remove_VBL	3169
+		_remove_LCD	3174
+		_remove_TIM	317F
+		_remove_SIO	318A
+		_remove_JOY	3195
+		_add_VBL	31A0
+		_add_LCD	31AB
+		_add_TIM	31B6
+		_add_SIO	31C1
+		_add_JOY	31CC
+		_clock	31D7
+		__printTStates	31E0
+		banked_call	31E1
+		banked_ret	31F8
+		__initrleblock	3200
 AREA _BASE
 	RADIX HEX
-	BASE 322B
+	BASE 3227
 	SIZE 0211
 	ATTRIB REL CON
 	GLOBALS
-		.set_sprite_prop	322B
-		_set_sprite_prop	3238
-		_set_bkg_palette	3243
-		_set_sprite_palette	326E
-		.mv_sprite	3299
-		_move_sprite	32A8
-		_set_win_data	32B5
-		_set_bkg_data	32B5
-		_set_sprite_data	3302
-		.padup	3331
-		_waitpadup	3331
-		.jpad	3341
-		.wait_pad	336E
-		_joypad	3375
-		_waitpad	337A
-		.set_sprite_tile	3384
-		_set_sprite_tile	3391
-		.copy_vram	339C
-		_get_data	33AB
-		_set_data	33AB
-		_set_bkg_tiles	33BE
-		.set_xy_wtt	33D2
-		.set_xy_btt	33E3
-		.set_xy_tt	33F2
-		_set_tiles	3423
+		.set_sprite_prop	3227
+		_set_sprite_prop	3234
+		_set_bkg_palette	323F
+		_set_sprite_palette	326A
+		.mv_sprite	3295
+		_move_sprite	32A4
+		_set_win_data	32B1
+		_set_bkg_data	32B1
+		_set_sprite_data	32FE
+		.padup	332D
+		_waitpadup	332D
+		.jpad	333D
+		.wait_pad	336A
+		_joypad	3371
+		_waitpad	3376
+		.set_sprite_tile	3380
+		_set_sprite_tile	338D
+		.copy_vram	3398
+		_get_data	33A7
+		_set_data	33A7
+		_set_bkg_tiles	33BA
+		.set_xy_wtt	33CE
+		.set_xy_btt	33DF
+		.set_xy_tt	33EE
+		_set_tiles	341F
 AREA _LIT
 	RADIX HEX
-	BASE 343C
+	BASE 3438
 	SIZE 0000
 	ATTRIB REL CON
 AREA _GSINIT
 	RADIX HEX
-	BASE 343C
+	BASE 3438
 	SIZE 1259
 	ATTRIB REL CON
 	GLOBALS
-		gsinit	343C
+		gsinit	3438
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 4695
+	BASE 4691
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 4696
+	BASE 4692
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
@@ -256,7 +388,7 @@ AREA _DATA
 AREA _BSS
 	RADIX HEX
 	BASE D90D
-	SIZE 005C
+	SIZE 005B
 	ATTRIB REL CON
 	GLOBALS
 		__cpu	D90D
@@ -265,68 +397,81 @@ AREA _BSS
 		__io_in	D910
 		__io_status	D911
 		.vbl_done	D912
-		__current_bank	D913
-		_sys_time	D914
-		.sys_time	D914
-		.int_0x40	D916
-		.int_0x48	D926
-		.int_0x50	D936
-		.int_0x58	D946
-		.int_0x60	D956
+		_sys_time	D913
+		.sys_time	D913
+		.int_0x40	D915
+		.int_0x48	D925
+		.int_0x50	D935
+		.int_0x58	D945
+		.int_0x60	D955
 AREA _HEAP
 	RADIX HEX
-	BASE D969
+	BASE D968
 	SIZE 0000
 	ATTRIB REL CON
 	GLOBALS
-		_malloc_heap_start	D969
+		_malloc_heap_start	D968
+AREA _HRAM13
+	RADIX HEX
+	BASE 0000
+	SIZE 0001
+	ATTRIB ABS CON
+	GLOBALS
+		__current_bank	FF90
 AREA _OVERLAY
 	RADIX HEX
-	BASE D969
+	BASE D968
 	SIZE 0000
 	ATTRIB REL CON
 AREA _ISEG
 	RADIX HEX
-	BASE D969
+	BASE D968
 	SIZE 0000
 	ATTRIB REL CON
 AREA _BSEG
 	RADIX HEX
-	BASE D969
+	BASE D968
 	SIZE 0000
 	ATTRIB REL CON
 AREA _XSEG
 	RADIX HEX
-	BASE D969
+	BASE D968
 	SIZE 0000
 	ATTRIB REL CON
+AREA .  .ABS.
+	RADIX HEX
+	BASE 0000
+	SIZE 0000
+	ATTRIB ABS OVR
+	GLOBALS
+		.__.ABS.	0000
 MODULES
-	FILE /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/crt0.o
+	FILE /opt/gbdk/lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE game.o
 		NAME lcc155650
 LIBRARIES
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE crt0_rle.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_prop.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE div.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE cgb.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE mv_spr.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_data.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE pad.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_spr.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE cpy_data.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_bk_t.o
-	LIBRARY /home/nimbfire/Documents/gbdk/lib/small/asxxxx/gb/gb.lib
+	LIBRARY /opt/gbdk/lib/small/asxxxx/gb/gb.lib
 		MODULE set_xy_t.o
 USERBASEDEF
 	_CODE=0x0200

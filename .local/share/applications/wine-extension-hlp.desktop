@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=winhlp32
+MimeType=application/winhlp;
+Exec=env WINEPREFIX="/home/gbdev/wine" wine start /ProgIDOpen hlpfile %f
+NoDisplay=true
+StartupNotify=true

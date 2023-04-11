@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=winebrowser
+MimeType=application/pdf;
+Exec=env WINEPREFIX="/home/gbdev/wine" wine start /ProgIDOpen pdffile %f
+NoDisplay=true
+StartupNotify=true

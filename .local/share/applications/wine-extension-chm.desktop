@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=hh
+MimeType=application/vnd.ms-htmlhelp;
+Exec=env WINEPREFIX="/home/gbdev/wine" wine start /ProgIDOpen chm.file %f
+NoDisplay=true
+StartupNotify=true
